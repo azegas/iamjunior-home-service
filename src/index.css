@@ -1,0 +1,102 @@
+:root {
+    --main-color: purple;
+    --accent-color: yellow;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    width: 60%; /* Set a smaller width for the app */
+    margin: 0 auto; /* Center the app horizontally */
+}
+
+.title {
+    margin: 10px; /* Add some margin for spacing */
+    width: 50%;
+    text-align: center;
+}
+
+.subtitle {
+    margin: 10px; /* Add some margin for spacing */
+    text-align: center;
+    color: gray;
+    font-weight: 600;
+}
+
+.navbar {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    width: 100%; /* Make navbar full width */
+    gap: 20px;
+}
+
+.navbar .logo {
+    width: 50px;
+}
+
+.navbar .links a {
+    margin-right: 10px; /* Add some margin between links */
+    transition: color 0.3s ease; /* Add transition effect to color change */
+}
+.navbar .links a:hover {
+    color: var(--main-color); /* Change color on hover */
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.content {
+    margin-top: 20px; /* Space between navbar and content */
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px; /* Add margin for spacing */
+}
+
+.service .logo {
+    font-size: 2rem;
+    margin-bottom: 10px; /* Add margin for spacing */
+}
+
+.login {
+    margin-left: auto; /* Push login to the right */
+    background-color: var(--main-color);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 10px;
+    text-align: center;
+}
