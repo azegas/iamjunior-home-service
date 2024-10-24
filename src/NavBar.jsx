@@ -1,4 +1,5 @@
-import Logo from './assets/logo.png'
+import Logo from './assets/logo.png';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
@@ -8,13 +9,14 @@ const Navbar = () => {
             </div>
             <a href="/"><h1>Home Service</h1></a>
             <div className="links">
-                <a href="/">Home</a>
-                <a href="/create">New Blog</a>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
+                <nav>
+                    <Link to="/services">Services</Link>
+                    <Link to="/about">About</Link>
+                    <Link to="/contact">Contact</Link>
+                </nav>
             </div>
             <div className="login">
-                <a href="/login">Login/Signup</a>
+                <a href="#">Login/Signup</a>
             </div>
         </nav>
     );
