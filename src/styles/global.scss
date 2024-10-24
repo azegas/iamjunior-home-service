@@ -1,4 +1,3 @@
-// main_style.scss
 @use 'variables'; // Use the @use instead of @import
 
 a {
@@ -10,4 +9,5 @@ a {
   display: flex;
   flex-direction: column;
   margin: 0 auto; /* Center the app horizontally */
+  width: 80%;
 }

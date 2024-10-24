@@ -1,0 +1,19 @@
+.businessCard {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid black;
+    width: 20%;
+    gap: 10px;
+    @media (max-width: 768px) {
+        width: 50%;
+    }
+    @media (max-width: 480px) {
+        width: 100%;
+    }
+}
+
+.businessCard img {
+    height: 200px;
+    object-fit: cover;
+}

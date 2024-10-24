@@ -1,13 +1,11 @@
 import Hero from '../components/common/Hero';
-import CategoryList from '../components/category/CategoryList';
-import SearchInput from '../components/common/SearchInput';
+import BusinessList from '../components/business/BusinessList';
 
-const Home = ({ services }) => {
+const Home = ({ services, businesses }) => {
     return (
         <>
-            <Hero services={services}/>
-            <SearchInput />
-            <CategoryList services={services} />
+            <Hero services={services} businesses={businesses}/>
+            <BusinessList businesses={businesses} />
         </>
     );
 }
