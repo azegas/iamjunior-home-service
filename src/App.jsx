@@ -1,8 +1,9 @@
 import Navbar from './NavBar';
-import Home from './Home';
-import Services from './Services';
-import Contact from './Contact';
-import About from './About';
+import Home from '../pages/Home';
+import Services from '../pages/Services';
+import Contact from '../pages/Contact';
+import About from '../pages/About';
+import Login from '../pages/Login';
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
