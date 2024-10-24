@@ -4,7 +4,7 @@ import Services from './Services';
 import Contact from './Contact';
 import About from './About';
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
+            <Route path="/login" element={<Login />} />
         </Routes>
     </BrowserRouter>
 );
