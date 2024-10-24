@@ -8,4 +8,12 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
-TODO what is module in scss
+TODO Responsive design (optional): Naudoti CSS media queries, kad puslapis tinkamai atrodytų įvairaus dydžio įrenginiuose.
+
+
+## JSON Server
+
+Install to local project environment, dev dependencies
+https://github.com/typicode/json-server
+- install json-server - npm install json-server --save-dev
+- run json-server --watch data/db.json --port 3001

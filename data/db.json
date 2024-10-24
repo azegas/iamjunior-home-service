@@ -1,0 +1,40 @@
+{
+    "services": [
+        {
+            "id": 1,
+            "name": "Cleaning",
+            "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+            "icon": "https://img.icons8.com/?size=100&id=8088&format=png&color=800080"
+        },
+        {
+            "id": 2,
+            "name": "Repair",
+            "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+            "icon": "https://img.icons8.com/?size=100&id=92378&format=png&color=FFFF00"
+        },
+        {
+            "id": 3,
+            "name": "Painting",
+            "description": "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit",
+            "icon": "https://img.icons8.com/?size=100&id=8141&format=png&color=CCFFCC"
+        },
+        {
+            "id": 4,
+            "name": "Shifting",
+            "description": "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque",
+            "icon": "https://img.icons8.com/?size=100&id=9341&format=png&color=FF0000"
+        },
+        {
+            "id": 5,
+            "name": "Plumbing",
+            "description": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+            "icon": "https://img.icons8.com/?size=100&id=67287&format=png&color=FFA500"
+        },
+        {
+            "id": 6,
+            "name": "Electric",
+            "description": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla",
+            "icon": "https://img.icons8.com/?size=100&id=77278&format=png&color=0000FF"
+        }
+    ]
+}

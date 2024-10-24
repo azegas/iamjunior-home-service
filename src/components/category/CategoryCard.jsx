@@ -1,8 +1,10 @@
-const CategoryCard = () => {
+import styles from './CategoryCard.module.scss';
+
+const CategoryCard = ({ service }) => {
     return (
-        <div className="category-card">
-            <h1>Category Card</h1>
-            {/* TODO: categories from data youtube example */}
+        <div className={styles.categoryCard}>
+            <img src={service.icon} alt={service.name} />
+            <p>{service.name}</p>
         </div>
     );
 };

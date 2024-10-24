@@ -1,14 +1,15 @@
 import CategoryCard from './CategoryCard';
-import SearchInput from '../common/SearchInput';
 import styles from './CategoryList.module.scss';
 
-const CategoryList = () => {
+const CategoryList = ({ services }) => {    
     return (
-        <div className={styles.categoryList}>
-            <SearchInput />
-            <CategoryCard />
-            <CategoryCard />
-        </div>
+        <>
+            <div className={styles.categoryList}>
+                {services.map((service) => (
+                    <CategoryCard key={service.id} service={service} />
+                ))}
+            </div>
+        </>
     );
 };
 

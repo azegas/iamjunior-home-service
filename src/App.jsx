@@ -5,21 +5,29 @@ import Services from './pages/Services';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Login from './pages/Login';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
 
+  const [services, setServices] = useState([]);
+
   useEffect(() => {
-    console.log('App component mounted');
-  });
+    fetch('http://localhost:8000/services')
+    .then(response => 
+      response.json())
+    .then(data => 
+      {console.log(data);
+      setServices(data);
+    })
+    }, []);
 
   return (
     <BrowserRouter>
       <div className="app">
         <Navbar />
         <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home services={services} />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
