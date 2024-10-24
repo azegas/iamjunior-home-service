@@ -1,0 +1,8 @@
+@use '../../styles/variables';
+
+.categoryList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: variables.$primary-color;
+}

@@ -1,6 +1,14 @@
 // main_style.scss
 @use 'variables'; // Use the @use instead of @import
 
-body {
-  background-color: variables.$primary-color; // Reference the variable with its namespace
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 60%; /* Set a smaller width for the app */
+  margin: 0 auto; /* Center the app horizontally */
 }

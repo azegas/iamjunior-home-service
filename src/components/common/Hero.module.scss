@@ -1,0 +1,19 @@
+@use '../../styles/variables';
+
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin: 10px; /* Add some margin for spacing */
+    width: 50%;
+    text-align: center;
+}
+
+.title span {
+    color: variables.$primary-color;
+}

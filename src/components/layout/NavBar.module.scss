@@ -1,0 +1,22 @@
+@use '../../styles/variables';
+
+.navbar {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    width: 100%; /* Make navbar full width */
+    gap: 20px;
+}
+
+.navbar .logo {
+    width: 50px;
+}
+
+.navbar .links a {
+    margin-right: 10px; /* Add some margin between links */
+    transition: color 0.3s ease; /* Add transition effect to color change */
+}
+.navbar .links a:hover {
+    color: variables.$primary-color; /* Change color on hover */
+    font-weight: bold;
+    font-size: 1rem;
+}
