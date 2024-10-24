@@ -1,0 +1,6 @@
+// main_style.scss
+@use 'variables'; // Use the @use instead of @import
+
+body {
+  background-color: variables.$primary-color; // Reference the variable with its namespace
+}
