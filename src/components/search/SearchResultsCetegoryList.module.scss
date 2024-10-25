@@ -1,0 +1,24 @@
+.searchResultsSidebar {
+  width: 30%;
+}
+
+.searchResultsContainer {
+  display: flex;
+}
+
+.searchResultsContent {
+  width: 70%;
+  padding: 20px;
+}
+
+.categoryListSidebar {
+    background-color: red;
+    flex-direction: column;
+}
+
+.categoryCardSidebar {
+    display: flex;
+    align-items: left;
+    flex-direction: row;
+    background-color: blue;
+}

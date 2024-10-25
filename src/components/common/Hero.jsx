@@ -14,7 +14,7 @@ const Hero = ({ services, businesses }) => {
                 </div>
 
                 <SearchInput />
-                <CategoryList services={services} businesses={businesses} />
+                <CategoryList services={services} className={styles.categoryList} />
             </div>
         </>
     );
