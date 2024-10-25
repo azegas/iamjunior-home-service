@@ -8,3 +8,7 @@
     color: variables.$primary-color;
     gap: 20px;
 }
+
+.categoryListSidebar {
+    flex-direction: column;
+}
