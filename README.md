@@ -10,6 +10,10 @@ Currently, two official plugins are available:
 
 TODO Responsive design (optional): Naudoti CSS media queries, kad puslapis tinkamai atrodytų įvairaus dydžio įrenginiuose.
 
+TODO pagination padaryk ir pridek 1000 darbu pvz
+
+TODO pasidaryk reusable custom hook - https://github.com/ZilvinasVidmantas/feac6/commit/a2f6dd244497eb038d18f15ca534a4394f2e452d
+
 
 ## JSON Server
 
