@@ -5,6 +5,7 @@ import Services from './pages/Services';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Login from './pages/Login';
+import SearchResults from './pages/SearchResults';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/global.scss';
@@ -37,6 +38,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/search/:serviceName" element={<SearchResults services={services} businesses={businesses} />} />
         </Routes>
       </div>
     </BrowserRouter>
