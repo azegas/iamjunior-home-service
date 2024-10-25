@@ -1,5 +1,3 @@
-@use '../../styles/variables';
-
 .categoryCard {
     background-color: lightgray;
     display: flex;
@@ -11,22 +9,9 @@
 
 .categoryCard:hover {
     cursor: pointer;
-    border: 1px solid primary-color;
 }
 
 .categoryCard img {
     width: 50px;
     height: 50px;
 }
-
-// .categoryCardSidebar {
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     gap: 10px;
-// }
-
-// .categoryCardSidebar img {
-//     width: 30px;
-//     height: 30px;
-// }

@@ -1,7 +1,7 @@
 import styles from './CategoryCard.module.scss';
 import { useNavigate } from 'react-router-dom';
 
-const CategoryCard = ({ service, className }) => {
+const CategoryCard = ({ service }) => {
     const navigate = useNavigate();
 
     const handleCardClick = () => {
@@ -9,7 +9,7 @@ const CategoryCard = ({ service, className }) => {
     };
 
     return (
-        <div className={`${styles.categoryCard} ${className}`} onClick={handleCardClick}>
+        <div className={styles.categoryCard} onClick={handleCardClick}>
             <img src={service.icon} alt={service.name} />
             <p>{service.name}</p>
         </div>

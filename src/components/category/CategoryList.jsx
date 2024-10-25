@@ -1,14 +1,12 @@
 import CategoryCard from './CategoryCard';
 import styles from './CategoryList.module.scss';
-import categoryCardStyles from './CategoryCard.module.scss';
 
-const CategoryList = ({ services, className }) => {    
+const CategoryList = ({ services }) => {    
     return (
         <>
-            {/* Custom class names 'className' can be passed to override the default styling */}
-            <div className={`${styles.categoryList} ${className}`}>
+            <div className={styles.categoryList}>
                 {services.map((service) => (
-                    <CategoryCard key={service.id} service={service} className={categoryCardStyles.categoryCardSidebar}/>
+                    <CategoryCard key={service.id} service={service} />
                 ))}
             </div>
         </>
