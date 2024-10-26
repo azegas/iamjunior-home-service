@@ -7,29 +7,14 @@ import About from './pages/About';
 import Login from './pages/Login';
 import SearchResults from './pages/SearchResults';
 import Page404 from './pages/404';
-import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './styles/reset.css'; // must be imported first, before other styles
+import './styles/reset.css'; // must be imported first, before ot
 import './styles/global.scss';
-
+import useFetch from './hooks/use-fetch';
 function App() {
 
-  const [services, setServices] = useState([]);
-  const [businesses, setBusinesses] = useState([]);
-
-  // TODO create custom hook for fetching data, DRY
-  // TODO create error handling
-  useEffect(() => {
-    fetch('http://localhost:8000/services')
-    .then(response => response.json())
-    .then(data => setServices(data));
-  }, []);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/businesses')
-    .then(response => response.json())
-    .then(data => setBusinesses(data));
-  }, []);
+  const { data: services } = useFetch('http://localhost:8000/services');
+  const { data: businesses } = useFetch('http://localhost:8000/businesses');
 
   // TODO fix routes as in the example
   return (
