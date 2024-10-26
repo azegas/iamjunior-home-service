@@ -2,7 +2,7 @@ import styles from './Hero.module.scss';
 import CategoryList from '../category/CategoryList';
 import SearchInput from './SearchInput';
 
-const Hero = ({ services, businesses }) => {
+const Hero = ({ services }) => {
     return (
         <>
             <div className={styles.hero}>
