@@ -5,6 +5,7 @@ const useFetch = (url) => {
     // in front of component let's us know when the data has been fetched, it is shown ONLY when its fetched
     const [data, setData] = useState(null); 
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,9 +18,14 @@ const useFetch = (url) => {
                 // if the url includes 'businesses', then wait 2 seconds before setting the data. Loading effect faked
                 // we assume that services are hardcoded and instantly available, but businesses need to be fetched from some external source
                 if (url.includes('businesses')) {
-                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    setTimeout(() => {
+                        setData(data);
+                        setLoading(false);
+                    }, 2000);
+                } else {    
+                    setData(data);
+                    setLoading(false);
                 }
-                setData(data);
             } catch (error) {
                 // console.error('Fetch error:', error.message);
                 setError(error.message);
@@ -29,7 +35,7 @@ const useFetch = (url) => {
         fetchData();
     }, [url]);
 
-    return { data, error };
+    return { data, error, loading };
 };
 
 export default useFetch;

@@ -14,7 +14,7 @@ import useFetch from './hooks/use-fetch';
 function App() {
 
   const { data: services } = useFetch('http://localhost:8000/services');
-  const { data: businesses } = useFetch('http://localhost:8000/businesses');
+  const { data: businesses, loading: businessesLoading } = useFetch('http://localhost:8000/businesses');
 
   // TODO fix routes as in the example
   return (
@@ -22,7 +22,7 @@ function App() {
       <div className="app">
         <Navbar />
         <Routes>
-            <Route path="/" element={<Home services={services} businesses={businesses} />} />
+            <Route path="/" element={<Home services={services} businesses={businesses} businessesLoading={businessesLoading} />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
