@@ -14,19 +14,17 @@ const SearchResultsCetegoryList = ({ services, businesses }) => {
     }, [serviceName, businesses]);
 
     return (
-        <div>
+        <div className="container">
             <div className={styles.searchResultsContainer}>
                 <div className={styles.searchResultsSidebar}>
+                    <p>Categories</p>
                     <CategoryList services={services} classNameList={styles.categoryListSidebar} classNameCard={styles.categoryCardSidebar}/>
                 </div>
-                <div className={styles.searchResultsContent}>
-                    <h1>Results for {serviceName}</h1>
                     {filteredBusinesses.length > 0 ? (
                         <BusinessList businesses={filteredBusinesses} />
                 ) : (
                         <p>No results found for {serviceName}.</p>
                     )}
-                </div>
             </div>
         </div>
     );

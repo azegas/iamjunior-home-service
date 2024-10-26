@@ -1,14 +1,15 @@
+@use '../../styles/global';
+@use '../../styles/variables';
+
 .categoryCard {
-    background-color: lightgray;
+    background-color: variables.$secondary-color;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     border-radius: 10px;
-}
-
-.categoryCard:hover {
-    cursor: pointer;
+    gap: 10px;
+    @include global.global-hover(variables.$primary-color);
 }
 
 .categoryCard img {

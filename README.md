@@ -14,6 +14,9 @@ TODO pagination padaryk ir pridek 1000 darbu pvz
 
 TODO pasidaryk reusable custom hook - https://github.com/ZilvinasVidmantas/feac6/commit/a2f6dd244497eb038d18f15ca534a4394f2e452d
 
+TODO routes kaip priklauso is pavyzdzio - https://github.com/ZilvinasVidmantas/feac6/commit/f7ca3353629a16a9f5976a1252cc1cc4a23d06f5#diff-c751cd19bab79c757cbf995168c195ac58266bd9ff3b781fb17769a91762c96dR1
+
+
 
 ## JSON Server
 

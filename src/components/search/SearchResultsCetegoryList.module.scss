@@ -1,18 +1,13 @@
 .searchResultsSidebar {
-  width: 30%;
+  width: 300px;
 }
 
 .searchResultsContainer {
   display: flex;
-}
-
-.searchResultsContent {
-  width: 70%;
-  padding: 20px;
+  margin-top: 20px;
 }
 
 .categoryListSidebar {
-    background-color: red;
     flex-direction: column;
 }
 
@@ -20,5 +15,13 @@
     display: flex;
     align-items: left;
     flex-direction: row;
-    background-color: blue;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+}
+
+.categoryCardSidebar img {
+    width: 40px;
+    height: 40px;
 }

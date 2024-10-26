@@ -1,19 +1,24 @@
+@use '../../styles/variables';
+@use '../../styles/global';
+
 .businessCard {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    border: 1px solid black;
-    width: 20%;
+    border: 1px solid lightgray;
     gap: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     @media (max-width: 768px) {
         width: 50%;
     }
     @media (max-width: 480px) {
         width: 100%;
     }
+    @include global.global-hover(variables.$primary-color);
 }
 
 .businessCard img {
     height: 200px;
+    width: 200px;
     object-fit: cover;
 }

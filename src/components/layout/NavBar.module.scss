@@ -1,22 +1,22 @@
 @use '../../styles/variables';
+@use '../../styles/global';
 
 .navbar {
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Center items vertically */
-    width: 100%; /* Make navbar full width */
-    gap: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-.navbar .logo {
+.navbar .left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar img {
     width: 50px;
 }
 
-.navbar .links a {
+.navbar .links a{
     margin-right: 10px; /* Add some margin between links */
-    transition: color 0.3s ease; /* Add transition effect to color change */
-}
-.navbar .links a:hover {
-    color: variables.$primary-color; /* Change color on hover */
-    font-weight: bold;
-    font-size: 1rem;
 }

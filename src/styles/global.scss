@@ -1,5 +1,9 @@
 @use 'variables'; // Use the @use instead of @import
 
+* {
+  box-sizing: border-box;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -9,5 +13,23 @@ a {
   display: flex;
   flex-direction: column;
   margin: 0 auto; /* Center the app horizontally */
+}
+
+@mixin global-hover($color) {
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px $color;
+  }
+}
+
+.active {
+  color: variables.$primary-color;
+  background-color: variables.$secondary-color;
+}
+
+.container {
   width: 80%;
+  margin: 0 auto;
 }
