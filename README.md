@@ -16,6 +16,8 @@ TODO pasidaryk reusable custom hook - https://github.com/ZilvinasVidmantas/feac6
 
 TODO routes kaip priklauso is pavyzdzio - https://github.com/ZilvinasVidmantas/feac6/commit/f7ca3353629a16a9f5976a1252cc1cc4a23d06f5#diff-c751cd19bab79c757cbf995168c195ac58266bd9ff3b781fb17769a91762c96dR1
 
+TODO entry of the app now is this - http://127.0.0.1:5173/. IF the user does not go there, the fetches will not be made, since they are set to be null in use-fetch hook. So what we need to do is either make an empty list to be in use-fetch hook by default instead of null or somehow, if data is not fetched, fetch it when loading the search results page.
+
 
 
 ## JSON Server

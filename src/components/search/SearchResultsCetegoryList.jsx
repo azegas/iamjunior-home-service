@@ -18,7 +18,7 @@ const SearchResultsCetegoryList = ({ services, businesses }) => {
             <div className={styles.searchResultsContainer}>
                 <div className={styles.searchResultsSidebar}>
                     <p>Categories</p>
-                    <CategoryList services={services} classNameList={styles.categoryListSidebar} classNameCard={styles.categoryCardSidebar}/>
+                    <CategoryList services={services} classNameList={styles.categoryListSidebar} classNameCard={styles.categoryCardSidebar} businesses={businesses} showCount={true}/>
                 </div>
                     {filteredBusinesses.length > 0 ? (
                         <BusinessList businesses={filteredBusinesses} />

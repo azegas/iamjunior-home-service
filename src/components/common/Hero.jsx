@@ -10,11 +10,11 @@ const Hero = ({ services }) => {
                     <h1>Find Home <span>Service/Repair</span> Near You</h1>
                 </div>
                 <div className={styles.heroSubtitle}>
-                    <p>Explore the best home services in your area ({services.length} services available)</p>
+                    <p>Explore the best home services in your area)</p>
                 </div>
 
                 <SearchInput />
-                <CategoryList services={services} className={styles.categoryList} />
+                <CategoryList services={services} className={styles.categoryList} showCount={false} />
                 <hr />
             </div>
         </>

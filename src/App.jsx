@@ -11,12 +11,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/reset.css'; // must be imported first, before ot
 import './styles/global.scss';
 import useFetch from './hooks/use-fetch';
+
 function App() {
 
   const { data: services } = useFetch('http://localhost:8000/services');
   const { data: businesses, loading: businessesLoading } = useFetch('http://localhost:8000/businesses');
 
   // TODO fix routes as in the example
+  // TODO add search page in navbar su active ir pan
   return (
     <BrowserRouter>
       <div className="app">
