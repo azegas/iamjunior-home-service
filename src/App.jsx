@@ -10,12 +10,8 @@ import Page404 from './pages/404';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/reset.css'; // must be imported first, before ot
 import './styles/global.scss';
-import useFetch from './hooks/use-fetch';
 
 function App() {
-
-  const { data: services } = useFetch('http://localhost:8000/services');
-  const { data: businesses, loading: businessesLoading } = useFetch('http://localhost:8000/businesses');
 
   // TODO fix routes as in the example
   // TODO add search page in navbar su active ir pan
@@ -24,12 +20,12 @@ function App() {
       <div className="app">
         <Navbar />
         <Routes>
-            <Route path="/" element={<Home services={services} businesses={businesses} businessesLoading={businessesLoading} />} />
+            <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/search/:serviceName" element={<SearchResults services={services} businesses={businesses} />} />
+            <Route path="/search/:serviceName" element={<SearchResults/>} />
             <Route path="*" element={<Page404 />} />
         </Routes>
       </div>

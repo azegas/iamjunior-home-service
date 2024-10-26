@@ -1,8 +1,12 @@
 import Hero from '../components/common/Hero';
 import Loading from '../components/common/Loading';
 import BusinessList from '../components/business/BusinessList';
+import useFetch from '../hooks/use-fetch';
 
-const Home = ({ services, businesses, businessesLoading }) => {
+const Home = () => {
+    const { data: services } = useFetch('http://localhost:8000/services');
+    const { data: businesses, loading: businessesLoading } = useFetch('http://localhost:8000/businesses');
+
     return (
         <>
             {services && <Hero services={services} />}
