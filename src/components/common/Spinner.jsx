@@ -8,9 +8,9 @@ const Spinner = () => {
     return (
         <div>
             <img className={styles.spinner} src={svg} alt="spinner" />
-            <p>Loading...</p>
-            <p>Since you are visiting this site for the first time, it may take a while to load the services and businesses</p>
-            <p>Will fetch them from localstorage next (until I learn how to use cache)</p>
+            <p>Fake loading effect for the first site visit</p>
+            <p>Will store businesses data to localstorage</p>
+            <p>When I learn how - will store to cache instead</p>
         </div>
     );
 };

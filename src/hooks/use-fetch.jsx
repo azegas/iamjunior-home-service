@@ -33,7 +33,7 @@ const useFetch = (url) => {
                     setTimeout(() => {
                         setData(data);
                         setLoading(false); // changing the loading state to false. This is done to mimic a real-world scenario where fetching data might take some time.
-                    }, 2000);
+                    }, 5000);
                 } else {    
                     setData(data);
                     setLoading(false);
