@@ -3,8 +3,10 @@ import Loading from '../components/common/Loading';
 import BusinessList from '../components/business/BusinessList';
 import useFetch from '../hooks/use-fetch';
 import Spinner from 'react-bootstrap/Spinner';
+import { saveToLocalStorage, getFromLocalStorage } from '../utils/utils';
 
 const Home = () => {
+
     const servicesFetch = useFetch('http://localhost:8000/services');
     const services = servicesFetch.data;
     

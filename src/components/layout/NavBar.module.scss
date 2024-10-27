@@ -6,11 +6,18 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    
 }
 
 .navbar .left {
     display: flex;
     align-items: center;
+}
+
+.navbar .right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .navbar img {

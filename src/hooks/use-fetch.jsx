@@ -9,6 +9,14 @@ const useFetch = (url) => {
 
     useEffect(() => {
         const fetchData = async () => {
+            // Check local storage for existing data, if it exists, set the data and loading to false, and return(stopping the function from going further)
+            const localStorageData = localStorage.getItem(url);
+            if (localStorageData) {
+                setData(JSON.parse(localStorageData));
+                setLoading(false);
+                return;
+            }
+
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
@@ -17,6 +25,10 @@ const useFetch = (url) => {
                 const data = await response.json();
                 // if the url includes 'businesses', then wait 2 seconds before setting the data. Loading effect faked
                 // we assume that services are hardcoded and instantly available, but businesses need to be fetched from some external source
+                
+                // Save fetched data to local storage
+                localStorage.setItem(url, JSON.stringify(data));
+                
                 if (url.includes('businesses')) {
                     setTimeout(() => {
                         setData(data);

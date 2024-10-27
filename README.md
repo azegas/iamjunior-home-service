@@ -8,6 +8,7 @@
 - [x] active class both in menu and in service search
 - [x] loading effect faked in useFetch hook by adding setTimeout
 - [x] catch error in useFetch hook and display it in the component
+- [ ] go to individual business pagees
 
 
 # Actual project requirements
