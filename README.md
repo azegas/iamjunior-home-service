@@ -5,7 +5,7 @@
 - [x] json server to to mimic and provide fake data
 - [ ] pagination (100 businesses)
 - [ ] absolute paths in App.jsx
-- [x] active class
+- [x] active class both in menu and in service search
 - [x] loading effect faked in useFetch hook by adding setTimeout
 - [x] catch error in useFetch hook and display it in the component
 

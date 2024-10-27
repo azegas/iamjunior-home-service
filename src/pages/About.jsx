@@ -1,8 +1,10 @@
+import '../styles/global.scss';
+
 const About = () => {
     return (
         <div className="container">
-            <h1>About Us</h1>
-            <p>Details about who we are.</p>
+            <h1 className="title">About Us</h1>
+            <p className="text">Details about who we are.</p>
         </div>
     );
 }
