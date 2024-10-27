@@ -10,6 +10,7 @@ const Home = () => {
     return (
         <>
             {services && <Hero services={services} />}
+            {/* Show loading component while businesses are being fetched */}
             {businessesLoading && <Loading />}
             {/* 
             && - If left is false (null), then it does not output what is on the right (BusinessList component). 

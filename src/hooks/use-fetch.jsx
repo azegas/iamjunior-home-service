@@ -5,7 +5,7 @@ const useFetch = (url) => {
     // in front of component let's us know when the data has been fetched, it is shown ONLY when its fetched
     const [data, setData] = useState(null); 
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true); // initial loading state is true, because we want to show loading component while fetching data
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,7 +20,7 @@ const useFetch = (url) => {
                 if (url.includes('businesses')) {
                     setTimeout(() => {
                         setData(data);
-                        setLoading(false);
+                        setLoading(false); // changing the loading state to false. This is done to mimic a real-world scenario where fetching data might take some time.
                     }, 2000);
                 } else {    
                     setData(data);
