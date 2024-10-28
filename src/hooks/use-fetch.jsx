@@ -15,13 +15,15 @@ const useFetch = (url) => {
             if (localStorageData) {
                 setData(JSON.parse(localStorageData));
                 setLoading(false);
+                setError(null);
                 return;
             }
 
             try {
                 const response = await fetch(url);
+                // console.log(response);
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Network response was not ok, could not fetch data');
                 }
                 const data = await response.json();
                 // if the url includes 'businesses', then wait 2 seconds before setting the data. Loading effect faked
@@ -34,6 +36,7 @@ const useFetch = (url) => {
                     setTimeout(() => {
                         setData(data);
                         setLoading(false); // changing the loading state to false. This is done to mimic a real-world scenario where fetching data might take some time.
+                        setError(null);
                     }, 5000);
                 } else {    
                     setData(data);
