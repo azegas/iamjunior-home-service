@@ -1,5 +1,14 @@
-# Implemented bonus features
-- [x] deployed to vercel (https://iamjunior-home-service-teux.vercel.app/)
+https://www.iamjunior.lt/front-end-akceleratorius-javascript course task
+
+live site - https://iamjunior-home-service-teux.vercel.app/
+
+# To run the project
+1. npm install
+2. npm run dev
+3. npx json-server --watch data/db.json --port 8000
+
+# DONE bonus features
+- [x] deployed to vercel
 - [x] implementing localstorage to save the fetched data for the first time visit
 - [x] Mimicking loading functionality - fetching what is "static" quickly, fetching businesses with setTimeout to imitate loading, so the user is aware, that he will get some information soon. Not having a long initial loading screen.
 - [x] json server to to mimic and provide fake data
@@ -10,12 +19,11 @@
 - [x] 404 page
 - [x] favicon
 
-# Planning to implement bonus features
+# TODO bonus features
 - [ ] Functional search in homepage
 - [ ] pagination (100 businesses)
 - [ ] absolute paths instead of ../../
 - [ ] dark mode - https://usehooks-ts.com/react-hook/use-dark-mode
-
 
 # Actual project requirements
 - [x] Topbar komponentas: Tai turėtų apimti logotipą ir navigacijos meniu, kuris kol kas gali būti statinis (vėliau bus įtrauktas react-router).
