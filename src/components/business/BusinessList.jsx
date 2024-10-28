@@ -8,8 +8,8 @@ const BusinessList = ({ businesses, serviceName }) => {
                 <h1 className="titleSmaller">{serviceName}</h1>
                 <div className={styles.businessList}>
                     {businesses.map((business) => (
-                        <Link to={`/business/${business.id}`}>
-                            <BusinessCard key={business.id} business={business} />
+                        <Link to={`/business/${business.id}`} key={business.id}>
+                            <BusinessCard business={business} />
                         </Link>
                     ))}
                 </div>
