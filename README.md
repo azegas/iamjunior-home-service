@@ -1,14 +1,18 @@
 # Bonus features
-- [ ] localstorage to fix this - (TODO entry of the app now is this - http://127.0.0.1:5173/. IF the user does not go there, the fetches will not be made, since they are set to be null in use-fetch hook. So what we need to do is either make an empty list to be in use-fetch hook by default instead of null or somehow, if data is not fetched, fetch it when loading the search results page.)
-- [ ] implementing localstorage to save the fetched data from the homescreen.
-- [ ] Mimicking loading functionality - fetching what is "static" quickly, fetching businesses with setTimeout to imitate loading, so the user is aware, that he will get some information soon. Not having a long initial loading screen.
+- [x] implementing localstorage to save the fetched data for the first time visit
+- [x] Mimicking loading functionality - fetching what is "static" quickly, fetching businesses with setTimeout to imitate loading, so the user is aware, that he will get some information soon. Not having a long initial loading screen.
 - [x] json server to to mimic and provide fake data
 - [ ] pagination (100 businesses)
 - [ ] absolute paths in App.jsx
 - [x] active class both in menu and in service search
 - [x] loading effect faked in useFetch hook by adding setTimeout
 - [x] catch error in useFetch hook and display it in the component
-- [ ] go to individual business pagees
+- [ ] go to individual business pages
+- [ ] /implement aboslute paths with @ 'npm install path?' instead of ../../
+- [ ] 404 page
+- [ ] deployed to heroku
+
+
 
 
 # Actual project requirements
