@@ -41,3 +41,7 @@ https://www.iamjunior.lt/front-end-akceleratorius-javascript course task
 - [x] Categories komponentas: Įgyvendinti kategorijų pasirinkimą. Paspaudus ant kitos kategorijos turi pasikeisti ir URL iš /search/cleaning į /search/repair
 - [x] Filtravimas: Išfiltruoti tik tas paslaugas kurios įeina į kategoriją
 - [ ] Save as favorite (optional): Pridėti ant kortelės širdelės arba žymos ikoną, kurią nuspaudus būtų išsaugotą paslauga į localStorage. Galite naudoti useLocalStorage hooksą.
+- [ ] Login: Sukurti /login route, įgyvendinti savo norimą dizainą ir pridėti inputų validaciją.
+- [ ] Redirect: Suvedus inputus ir paspaudus Login mygtuką išsaugoti userio informaciją su useContext ir localStorage bei redirectint į pagrindinį / route
+- [ ] Topbar komponentas: Atnaujinti komponento state kai asmuo yra prisijungęs
+- [ ] Register (optional): Įgyvendinti /register route ir savo norimą dizainą
