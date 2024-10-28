@@ -7,15 +7,10 @@ import useFetch from '../hooks/use-fetch';
 const Home = () => {
 
     const servicesUrl = 'http://localhost:8000/services';
-    const servicesFetch = useFetch(servicesUrl);
-    const services = servicesFetch.data;
-    const servicesError = servicesFetch.error;
+    const { data: services, error: servicesError } = useFetch(servicesUrl);
 
     const businessesUrl = 'http://localhost:8000/businesses';
-    const businessesFetch = useFetch(businessesUrl);
-    const businesses = businessesFetch.data;
-    const businessesError = businessesFetch.error;
-    const businessesLoading = businessesFetch.loading;
+    const { data: businesses, error: businessesError, isLoading: businessesLoading } = useFetch(businessesUrl);
 
     return (
         <>

@@ -5,17 +5,16 @@ const useFetch = (url) => {
     // in front of component let's us know when the data has been fetched, it is shown ONLY when its fetched
     const [data, setData] = useState(null); 
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false); // initial loading state is false, not to have blitc flicker of loading component at the beginning
+    const [isLoading, setIsLoading] = useState(false); // initial loading state is false, not to have blitc flicker of loading component at the beginning
 
     useEffect(() => {
         const fetchData = async () => {
             // Check local storage for existing data, if it exists, set the data and loading to false, and return(stopping the function from going further)
-            setLoading(true); // Only show the loading component while fetching data (when fetchData is called), not sooner
+            setIsLoading(true); // Only show the loading component while fetching data (when fetchData is called), not sooner
             const localStorageData = localStorage.getItem(url);
             if (localStorageData) {
                 setData(JSON.parse(localStorageData));
-                setLoading(false);
-                setError(null);
+                setIsLoading(false);
                 return;
             }
 
@@ -35,12 +34,11 @@ const useFetch = (url) => {
                 if (url.includes('businesses')) {
                     setTimeout(() => {
                         setData(data);
-                        setLoading(false); // changing the loading state to false. This is done to mimic a real-world scenario where fetching data might take some time.
-                        setError(null);
+                        setIsLoading(false); // changing the loading state to false. This is done to mimic a real-world scenario where fetching data might take some time.
                     }, 5000);
                 } else {    
                     setData(data);
-                    setLoading(false);
+                    setIsLoading(false);
                 }
             } catch (error) {
                 // console.error('Fetch error:', error.message);
@@ -51,7 +49,7 @@ const useFetch = (url) => {
         fetchData();
     }, [url]);
 
-    return { data, error, loading };
+    return { data, error, isLoading };
 };
 
 export default useFetch;

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import BusinessList from '../business/BusinessList';
 import CategoryList from '../category/CategoryList';
 import styles from './SearchResultsCetegoryList.module.scss';
+import '../../styles/global.scss';
 
 const SearchResultsCetegoryList = ({ services, businesses }) => {
     const { serviceName } = useParams();
@@ -17,11 +18,11 @@ const SearchResultsCetegoryList = ({ services, businesses }) => {
         <div className="container">
             <div className={styles.searchResultsContainer}>
                 <div className={styles.searchResultsSidebar}>
-                    <p>Categories</p>
+                    <h1 className="title">Categories</h1>
                     <CategoryList services={services} classNameList={styles.categoryListSidebar} classNameCard={styles.categoryCardSidebar} businesses={businesses} showCount={true}/>
                 </div>
                     {filteredBusinesses.length > 0 ? (
-                        <BusinessList businesses={filteredBusinesses} />
+                        <BusinessList businesses={filteredBusinesses} serviceName={serviceName}/>
                 ) : (
                         <p>No results found for {serviceName}.</p>
                     )}
