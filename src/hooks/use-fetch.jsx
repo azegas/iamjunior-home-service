@@ -5,11 +5,12 @@ const useFetch = (url) => {
     // in front of component let's us know when the data has been fetched, it is shown ONLY when its fetched
     const [data, setData] = useState(null); 
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true); // initial loading state is true, because we want to show loading component while fetching data
+    const [loading, setLoading] = useState(false); // initial loading state is false, not to have blitc flicker of loading component at the beginning
 
     useEffect(() => {
         const fetchData = async () => {
             // Check local storage for existing data, if it exists, set the data and loading to false, and return(stopping the function from going further)
+            setLoading(true); // Only show the loading component while fetching data (when fetchData is called), not sooner
             const localStorageData = localStorage.getItem(url);
             if (localStorageData) {
                 setData(JSON.parse(localStorageData));
