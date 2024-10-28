@@ -1,7 +1,5 @@
 https://www.iamjunior.lt/front-end-akceleratorius-javascript course task
 
-live site - https://iamjunior-home-service-teux.vercel.app/
-
 # To run the project
 0. git clone https://github.com/azegas/iamjunior-home-service
 1. cd iamjunior-home-service
@@ -10,7 +8,6 @@ live site - https://iamjunior-home-service-teux.vercel.app/
 3. npx json-server --watch data/db.json --port 8000
 
 # DONE bonus features
-- [x] deployed to vercel
 - [x] implementing localstorage to save the fetched data for the first time visit
 - [x] Mimicking loading functionality - fetching what is "static" quickly, fetching businesses with setTimeout to imitate loading, so the user is aware, that he will get some information soon. Not having a long initial loading screen.
 - [x] json server to to mimic and provide fake data
@@ -20,6 +17,7 @@ live site - https://iamjunior-home-service-teux.vercel.app/
 - [x] go to individual business pages
 - [x] 404 page
 - [x] favicon
+- [x] deployed to vercel
 
 # TODO bonus features
 - [ ] Functional search in homepage
