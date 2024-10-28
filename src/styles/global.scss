@@ -30,7 +30,8 @@ a {
 
 .active {
   color: variables.$primary-color;
-  background-color: variables.$secondary-color;
+  background-color: variables.$tertiary-color;
+  font-weight: bold;
 }
 
 .container {
