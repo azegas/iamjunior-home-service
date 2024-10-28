@@ -3,8 +3,10 @@ https://www.iamjunior.lt/front-end-akceleratorius-javascript course task
 live site - https://iamjunior-home-service-teux.vercel.app/
 
 # To run the project
-1. npm install
-2. npm run dev
+0. git clone https://github.com/azegas/iamjunior-home-service
+1. cd iamjunior-home-service
+2. npm i
+3. npm run dev
 3. npx json-server --watch data/db.json --port 8000
 
 # DONE bonus features
