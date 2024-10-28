@@ -1,4 +1,5 @@
 # Bonus features
+- [ ] deployed to vercel (https://iamjunior-home-service-teux.vercel.app/)
 - [x] implementing localstorage to save the fetched data for the first time visit
 - [x] Mimicking loading functionality - fetching what is "static" quickly, fetching businesses with setTimeout to imitate loading, so the user is aware, that he will get some information soon. Not having a long initial loading screen.
 - [x] json server to to mimic and provide fake data
@@ -9,10 +10,8 @@
 - [x] catch error in useFetch hook and display it in the component
 - [ ] go to individual business pages
 - [ ] /implement aboslute paths with @ 'npm install path?' instead of ../../
-- [ ] 404 page
-- [ ] deployed to heroku
-
-
+- [x] 404 page
+- [x] favicon
 
 
 # Actual project requirements
