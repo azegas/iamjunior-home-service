@@ -1,17 +1,20 @@
-# Bonus features
-- [ ] deployed to vercel (https://iamjunior-home-service-teux.vercel.app/)
+# Implemented bonus features
+- [x] deployed to vercel (https://iamjunior-home-service-teux.vercel.app/)
 - [x] implementing localstorage to save the fetched data for the first time visit
 - [x] Mimicking loading functionality - fetching what is "static" quickly, fetching businesses with setTimeout to imitate loading, so the user is aware, that he will get some information soon. Not having a long initial loading screen.
 - [x] json server to to mimic and provide fake data
-- [ ] pagination (100 businesses)
-- [ ] absolute paths in App.jsx
 - [x] active class both in menu and in service search
 - [x] loading effect faked in useFetch hook by adding setTimeout
 - [x] catch error in useFetch hook and display it in the component
-- [ ] go to individual business pages
-- [ ] /implement aboslute paths with @ 'npm install path?' instead of ../../
+- [x] go to individual business pages
 - [x] 404 page
 - [x] favicon
+
+# Planning to implement bonus features
+- [ ] Functional search in homepage
+- [ ] pagination (100 businesses)
+- [ ] absolute paths instead of ../../
+- [ ] dark mode - https://usehooks-ts.com/react-hook/use-dark-mode
 
 
 # Actual project requirements
