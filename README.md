@@ -1,5 +1,7 @@
 https://www.iamjunior.lt/front-end-akceleratorius-javascript course task
 
+![login_page](./src/assets/login_page.png)
+
 # To run the project
 0. git clone https://github.com/azegas/iamjunior-home-service
 1. cd iamjunior-home-service
