@@ -22,14 +22,12 @@ Changes from https://github.com/azegas/iamjunior-home-service/tree/1-react-first
 ![progress3](./src/assets/progress3.png)
 ![progress4](./src/assets/progress4.png)
 ![progress5](./src/assets/progress5.png)
-![progress6](./src/assets/progress6.png)
-![progress7](./src/assets/progress7.png)
 
 # To run the project
 
 ```bash
 git clone https://github.com/azegas/iamjunior-home-service
-git checkout 2-react-second-presentation
+# choose a correct branch
 cd iamjunior-home-service
 npm i
 npm run dev
