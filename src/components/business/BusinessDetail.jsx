@@ -7,15 +7,11 @@ import '../../styles/global.scss';
 
 const BusinessDetail = () => {
     const { id } = useParams();
-    const { businesses, error, isLoading } = useFetchFile();
+    const { businesses, error} = useFetchFile();
 
-    if (isLoading) {
-        return <Loading />;
-    }
+    if (!businesses) return <Loading />;
 
-    if (error) {
-        return <Error />;
-    }
+    if (error) return <Error message={error} />;
 
     // Find the specific business by id
     const business = businesses ? businesses.find(b => b.id === parseInt(id)) : null;

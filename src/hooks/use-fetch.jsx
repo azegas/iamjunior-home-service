@@ -14,7 +14,7 @@ const useFetchFile = () => {
                     setServices(data.services);
                     setBusinesses(data.businesses);
                     setIsLoading(false);
-                }, 1000);
+                }, 500);
             } catch (error) {
                 setError(error.message);
             } finally {
