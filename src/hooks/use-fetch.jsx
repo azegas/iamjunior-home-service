@@ -1,55 +1,41 @@
 import { useState, useEffect } from "react";
+import data from '../../data/db.json';
 
-const useFetch = (url) => {
-    // for DATA - having initial useState value as null instead of an empty array, then having 'services && businesses &&' 
-    // in front of component let's us know when the data has been fetched, it is shown ONLY when its fetched
-    const [data, setData] = useState(null); 
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false); // initial loading state is false, not to have blitc flicker of loading component at the beginning
+const useFetchFile = () => {
+    const [services, setServices] = useState(null);
+    const [businesses, setBusinesses] = useState(null);
+    const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
-            // Check local storage for existing data, if it exists, set the data and loading to false, and return(stopping the function from going further)
-            setIsLoading(true); // Only show the loading component while fetching data (when fetchData is called), not sooner
-            const localStorageData = localStorage.getItem(url);
-            if (localStorageData) {
-                setData(JSON.parse(localStorageData));
-                setIsLoading(false);
-                return;
-            }
+        const fetchData = () => {
+            setTimeout(() => {
+                const newErrors = []; // Local array to collect any errors
 
-            try {
-                const response = await fetch(url);
-                // console.log(response);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok, could not fetch data');
+                if (!data.services) {
+                    newErrors.push({message: "Services not found"});
+                } else {
+                    setServices(data.services);
                 }
-                const data = await response.json();
-                // if the url includes 'businesses', then wait 2 seconds before setting the data. Loading effect faked
-                // we assume that services are hardcoded and instantly available, but businesses need to be fetched from some external source
-                
-                // Save fetched data to local storage
-                localStorage.setItem(url, JSON.stringify(data));
-                
-                if (url.includes('businesses')) {
-                    setTimeout(() => {
-                        setData(data);
-                        setIsLoading(false); // changing the loading state to false. This is done to mimic a real-world scenario where fetching data might take some time.
-                    }, 5000);
-                } else {    
-                    setData(data);
-                    setIsLoading(false);
+
+                if (!data.businesses) {
+                    newErrors.push({message: "Businesses not found"});
+                } else {
+                    setBusinesses(data.businesses);
                 }
-            } catch (error) {
-                // console.error('Fetch error:', error.message);
-                setError(error.message);
-            }
+
+                if (newErrors.length > 0) {
+                    setErrors(newErrors);
+                }
+
+                setIsLoading(false); // Stop loading regardless of success or errors
+            }, 500);
         };
 
         fetchData();
-    }, [url]);
+    }, []);
 
-    return { data, error, isLoading };
+    return { services, businesses, errors, isLoading };
 };
 
-export default useFetch;
+export default useFetchFile;

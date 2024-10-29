@@ -6,7 +6,8 @@ import Services from '../pages/Services';
 import Contact from '../pages/Contact';
 import About from '../pages/About';
 import Login from '../pages/Login';
-import SearchResults from '../pages/SearchResults';
+import Register from '../pages/Register';
+import Search from '../pages/Search';
 import Page404 from '../pages/404';
 import Navbar from '../components/layout/NavBar';
 import BusinessDetail from '../components/business/BusinessDetail';
@@ -33,7 +34,8 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "about", element: <About /> },
       { path: "login", element: <Login /> },
-      { path: "search/:serviceName", element: <SearchResults /> },
+      { path: "register", element: <Register /> },
+      { path: "search/:serviceName", element: <Search /> },
       { path: "*", element: <Page404 /> },
       { path: "business/:id", element: <BusinessDetail /> },
     ],
