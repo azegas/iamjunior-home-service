@@ -9,33 +9,20 @@ const useFetch = (url) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            // Check local storage for existing data, if it exists, set the data and loading to false, and return(stopping the function from going further)
-            setIsLoading(true); // Only show the loading component while fetching data (when fetchData is called), not sooner
-            const localStorageData = localStorage.getItem(url);
-            if (localStorageData) {
-                setData(JSON.parse(localStorageData));
-                setIsLoading(false);
-                return;
-            }
-
             try {
                 const response = await fetch(url);
-                // console.log(response);
                 if (!response.ok) {
                     throw new Error('Network response was not ok, could not fetch data');
                 }
                 const data = await response.json();
                 // if the url includes 'businesses', then wait 2 seconds before setting the data. Loading effect faked
                 // we assume that services are hardcoded and instantly available, but businesses need to be fetched from some external source
-                
-                // Save fetched data to local storage
-                localStorage.setItem(url, JSON.stringify(data));
-                
+
                 if (url.includes('businesses')) {
                     setTimeout(() => {
                         setData(data);
                         setIsLoading(false); // changing the loading state to false. This is done to mimic a real-world scenario where fetching data might take some time.
-                    }, 5000);
+                    }, 500);
                 } else {    
                     setData(data);
                     setIsLoading(false);
