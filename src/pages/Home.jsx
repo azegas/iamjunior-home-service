@@ -10,7 +10,9 @@ const Home = () => {
     return (
         <>
             {/* Show error message if there is an error */}
-            {errors && <Error message={errors} />}
+            {errors && errors.map((error, index) => (
+                <Error key={index} message={error.message} />
+            ))}
             
             {/* Show loading component while fetching data */}
             {isLoading && <Loading />}
