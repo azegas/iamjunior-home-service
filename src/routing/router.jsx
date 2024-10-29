@@ -11,6 +11,7 @@ import Search from '../pages/Search';
 import Page404 from '../pages/404';
 import Navbar from '../components/layout/NavBar';
 import BusinessDetail from '../components/business/BusinessDetail';
+import Favorites from '../pages/Favorites';
 import { Outlet } from "react-router-dom";
 
 // Define the Root component
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       { path: "search/:serviceName", element: <Search /> },
       { path: "*", element: <Page404 /> },
       { path: "business/:id", element: <BusinessDetail /> },
+      { path: "favorites", element: <Favorites /> },
     ],
   },
 ]);

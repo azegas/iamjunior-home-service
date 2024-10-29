@@ -1,6 +1,5 @@
 import BusinessCard from './BusinessCard';
 import styles from './BusinessList.module.scss';
-import { Link } from 'react-router-dom';
 
 const BusinessList = ({ businesses, serviceName }) => {
 
@@ -8,8 +7,10 @@ const BusinessList = ({ businesses, serviceName }) => {
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         if (favorites.includes(businessId)) {
             favorites = favorites.filter(id => id !== businessId);
+            alert(`${businessId} removed from favorites`);  
         } else {
             favorites.push(businessId);
+            alert(`${businessId} added to favorites`);
         }
         localStorage.setItem('favorites', JSON.stringify(favorites));
     };
