@@ -2,15 +2,15 @@ import Hero from '../components/common/Hero';
 import Loading from '../components/common/Loading';
 import BusinessList from '../components/business/BusinessList';
 import Error from '../components/common/Error';
-import useFetch from '../hooks/use-fetch';
+import useFetchApi from '../hooks/use-fetch';
 
 const Home = () => {
 
     const servicesUrl = 'http://localhost:8000/services';
-    const { data: services, error: servicesError } = useFetch(servicesUrl);
+    const { data: services, error: servicesError } = useFetchApi(servicesUrl);
 
     const businessesUrl = 'http://localhost:8000/businesses';
-    const { data: businesses, error: businessesError, isLoading: businessesLoading } = useFetch(businessesUrl);
+    const { data: businesses, error: businessesError, isLoading: businessesLoading } = useFetchApi(businessesUrl);
 
     return (
         <>

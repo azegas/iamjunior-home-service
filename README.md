@@ -13,8 +13,8 @@ https://www.iamjunior.lt/front-end-akceleratorius-javascript course task
 - [x] Mimicking loading functionality - fetching what is "static" quickly, fetching businesses with setTimeout to imitate loading, so the user is aware, that he will get some information soon. Not having a long initial loading screen.
 - [x] json server to to mimic and provide fake data
 - [x] active class both in menu and in service search
-- [x] loading effect faked in useFetch hook by adding setTimeout
-- [x] catch error in useFetch hook and display it in the component
+- [x] loading effect faked in useFetchApi hook by adding setTimeout
+- [x] catch error in useFetchApi hook and display it in the component
 - [x] go to individual business pages
 - [x] 404 page
 - [x] favicon

@@ -1,6 +1,35 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url) => {
+// const useFetchFile = () => {
+//     const [services, setServices] = useState(null);
+//     const [businesses, setBusinesses] = useState(null);
+//     const [error, setError] = useState(null);
+//     const [isLoading, setIsLoading] = useState(true);
+
+//     useEffect(() => {
+//         const fetchData = () => {
+//             try {
+//                 setServices(data.services);
+//                 setBusinesses(data.businesses);
+//             } catch (error) {
+//                 setError(error.message);
+//             } finally {
+//                 setIsLoading(false);
+//             }
+//         };
+
+//         fetchData();
+//     }, []);
+
+//     return { services, businesses, error, isLoading };
+// };
+
+// export default useFetchFile;
+
+
+
+
+const useFetchApi = (url) => {
     // for DATA - having initial useState value as null instead of an empty array, then having 'services && businesses &&' 
     // in front of component let's us know when the data has been fetched, it is shown ONLY when its fetched
     const [data, setData] = useState(null); 
@@ -39,4 +68,5 @@ const useFetch = (url) => {
     return { data, error, isLoading };
 };
 
-export default useFetch;
+export default useFetchApi;
+
