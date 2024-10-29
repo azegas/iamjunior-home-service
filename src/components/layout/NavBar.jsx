@@ -19,9 +19,10 @@ const Navbar = () => {
                 </div>
                 <div className={styles.links}>
                     <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>Home Service</NavLink>
-                <NavLink to="/services" className={({ isActive }) => isActive ? "active" : ""}>Services</NavLink>
-                <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>About</NavLink>
+                    <NavLink to="/services" className={({ isActive }) => isActive ? "active" : ""}>Services</NavLink>
+                    <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>About</NavLink>
                     <NavLink to="/contact" className={({ isActive }) => isActive ? "active" : ""}>Contact</NavLink>
+                    <NavLink to="/favorites" className={({ isActive }) => isActive ? "active" : ""}>Favorites</NavLink>
                 </div>
             </div>
             <div className={styles.right}>
