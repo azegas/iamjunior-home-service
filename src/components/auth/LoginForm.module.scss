@@ -1,7 +1,26 @@
+@import '../../styles/variables.scss';
+
 .login {
-    margin-left: auto; /* Push login to the right */
-    background-color: var(--main-color);
-    color: white;
-    padding: 10px;
+    background-color: $primary-color;
+    padding: 20px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin: 0; /* No need for margin auto since we're using flexbox to center it */
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    button {
+        background-color: $secondary-color;
+        color: $primary-color;
+        width: fit-content;
+    }
 }

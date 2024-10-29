@@ -28,8 +28,6 @@ const useFetchFile = () => {
                     setErrors(newErrors);
                 }
 
-                console.log(newErrors);
-
                 setIsLoading(false); // Stop loading regardless of success or errors
             }, 500);
         };

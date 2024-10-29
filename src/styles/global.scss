@@ -69,3 +69,10 @@ a {
   border-radius: 5px; /* Rounded corners */
   font-weight: bold; /* Make the text bold */
 }
+
+.middleOfPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
