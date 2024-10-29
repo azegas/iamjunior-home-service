@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import BusinessList from '../business/BusinessList';
 import CategoryList from '../category/CategoryList';
-import styles from './SearchResultsCetegoryList.module.scss';
+import styles from './SearchResults.module.scss';
 import '../../styles/global.scss';
 
-const SearchResultsCetegoryList = ({ services, businesses }) => {
+const SearchResults = ({ services, businesses }) => {
     const { serviceName } = useParams();
     const [filteredBusinesses, setFilteredBusinesses] = useState([]);
 
@@ -16,8 +16,8 @@ const SearchResultsCetegoryList = ({ services, businesses }) => {
 
     return (
         <div className="container">
-            <div className={styles.searchResultsContainer}>
-                <div className={styles.searchResultsSidebar}>
+            <div className={styles.searchContainer}>
+                <div className={styles.searchSidebar}>
                     <h1 className="title">Categories</h1>
                     <CategoryList services={services} classNameList={styles.categoryListSidebar} classNameCard={styles.categoryCardSidebar} businesses={businesses} showCount={true}/>
                 </div>
@@ -31,4 +31,4 @@ const SearchResultsCetegoryList = ({ services, businesses }) => {
     );
 };
 
-export default SearchResultsCetegoryList;
+export default SearchResults;

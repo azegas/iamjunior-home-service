@@ -1,9 +1,9 @@
-import SearchResultsCetegoryList from '../components/search/SearchResultsCetegoryList';
+import SearchResults from '../components/search/SearchResults';
 import useFetchFile from '../hooks/use-fetch';
 import '../styles/global.scss';
 import Loading from '../components/common/Loading';
 
-const SearchResults = () => {
+const Search = () => {
     const { services } = useFetchFile();
     const { businesses } = useFetchFile();
 
@@ -11,9 +11,9 @@ const SearchResults = () => {
 
     return (
         <>
-            <SearchResultsCetegoryList services={services} businesses={businesses}/>
+            <SearchResults services={services} businesses={businesses}/>
         </>
     );
 }
 
-export default SearchResults;
+export default Search;
