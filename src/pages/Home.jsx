@@ -5,25 +5,22 @@ import Error from '../components/common/Error';
 import useFetchFile from '../hooks/use-fetch';
 
 const Home = () => {
-
-    const { services, error: servicesError } = useFetchFile();
-    const { businesses, error: businessesError } = useFetchFile();
+    const { services, businesses, errors, isLoading } = useFetchFile();
 
     return (
         <>
             {/* Show error message if there is an error */}
-            {servicesError && <Error message={servicesError}/>}
-            {businessesError && <Error message={businessesError}/>}
+            {errors && <Error message={errors} />}
+            
+            {/* Show loading component while fetching data */}
+            {isLoading && <Loading />}
 
-            {/* Show hero component only if services are fetched */}
-            {services && <Hero services={services} />}
-            {businesses && <BusinessList businesses={businesses} />}
-
-            {/* Show loading component only while fetching data */}
-            {!businesses && !services && <Loading />}
-
+            {/* Show hero and business list components only if data is fetched */}
+            {!isLoading && services && <Hero services={services} />}
+            {!isLoading && businesses && <BusinessList businesses={businesses} />}
+            
         </>
     );
-}
+};
 
 export default Home;

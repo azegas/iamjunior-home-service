@@ -4,28 +4,40 @@ import data from '../../data/db.json';
 const useFetchFile = () => {
     const [services, setServices] = useState(null);
     const [businesses, setBusinesses] = useState(null);
-    const [error, setError] = useState(null);
+    const [errors, setErrors] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = () => {
-            try {
-                setTimeout(() => {
+            setTimeout(() => {
+                const newErrors = []; // Local array to collect any errors
+
+                if (!data.services) {
+                    newErrors.push("Services not found");
+                } else {
                     setServices(data.services);
+                }
+
+                if (!data.businesses) {
+                    newErrors.push("Businesses not found");
+                } else {
                     setBusinesses(data.businesses);
-                    setIsLoading(false);
-                }, 500);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setIsLoading(false);
-            }
+                }
+
+                if (newErrors.length > 0) {
+                    setErrors(newErrors);
+                }
+
+                console.log(newErrors);
+
+                setIsLoading(false); // Stop loading regardless of success or errors
+            }, 2000);
         };
 
         fetchData();
     }, []);
 
-    return { services, businesses, error, isLoading };
+    return { services, businesses, errors, isLoading };
 };
 
 export default useFetchFile;
