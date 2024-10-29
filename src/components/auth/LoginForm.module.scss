@@ -1,7 +1,7 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables';
 
 .login {
-    background-color: $primary-color;
+    background-color: variables.$primary-color;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -19,8 +19,8 @@
     }
 
     button {
-        background-color: $secondary-color;
-        color: $primary-color;
+        background-color: variables.$secondary-color;
+        color: variables.$primary-color;
         width: fit-content;
     }
 }
