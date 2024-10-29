@@ -1,3 +1,14 @@
+- [iamjunior-home-service](#iamjunior-home-service)
+- [To run the project](#to-run-the-project)
+- [DONE BONUS features](#done-bonus-features)
+- [TODO BONUS features](#todo-bonus-features)
+- [Actual project requirements](#actual-project-requirements)
+  - [React ekosistema, JSX sintaksė ir state valdymas](#react-ekosistema-jsx-sintaksė-ir-state-valdymas)
+  - [Komponento gyvavimo ciklai ir react-router-dom](#komponento-gyvavimo-ciklai-ir-react-router-dom)
+  - [Custom Hooks](#custom-hooks)
+  - [React Context ir zustand](#react-context-ir-zustand)
+- [Known bugs](#known-bugs)
+
 # iamjunior-home-service
 
 Main task that was done during iamjunior course - https://www.iamjunior.lt/front-end-akceleratorius-javascript 
@@ -21,7 +32,7 @@ npm run dev
 # open http://localhost:5173/ in your browser to preview the site
 ```
 
-# DONE bonus features
+# DONE BONUS features
 - [x] Mimicking loading functionality - fetching what is "static" quickly, fetching businesses with setTimeout to imitate loading, so the user is aware, that he will get some information soon. Not having a long initial loading screen.
 - [x] json server to to mimic and provide fake data
 - [x] active class both in menu and in service search
@@ -32,7 +43,7 @@ npm run dev
 - [x] favicon
 - [x] deployed to vercel
 
-# TODO bonus features
+# TODO BONUS features
 - [ ] Functional search in homepage
 - [ ] pagination (100 businesses)
 - [ ] absolute paths instead of ../../
@@ -56,7 +67,7 @@ npm run dev
 ## Custom Hooks
 1. [x] Categories komponentas: Įgyvendinti kategorijų pasirinkimą. Paspaudus ant kitos kategorijos turi pasikeisti ir URL iš /search/cleaning į /search/repair
 2. [x] Filtravimas: Išfiltruoti tik tas paslaugas kurios įeina į kategoriją
-3. [ ] Save as favorite (optional): Pridėti ant kortelės širdelės arba žymos ikoną, kurią nuspaudus būtų išsaugotą paslauga į localStorage. Galite naudoti useLocalStorage hooksą.
+3. [x] Save as favorite (optional): Pridėti ant kortelės širdelės arba žymos ikoną, kurią nuspaudus būtų išsaugotą paslauga į localStorage. Galite naudoti useLocalStorage hooksą.
 
 ## React Context ir zustand
 1. [x] Login: Sukurti /login route, įgyvendinti savo norimą dizainą ir pridėti inputų validaciją.
