@@ -15,6 +15,7 @@ Changes from https://github.com/azegas/iamjunior-home-service/tree/1-react-first
 - spinner logic improved
 - error handling improved
 - login functionality implemented
+- register form created(no register functionality yet)
 
 ![progress1](./src/assets/progress1.png)
 ![progress2](./src/assets/progress2.png)
@@ -76,4 +77,4 @@ npm run dev
 1. [x] Login: Sukurti /login route, įgyvendinti savo norimą dizainą ir pridėti inputų validaciją.
 2. [x] Redirect: Suvedus inputus ir paspaudus Login mygtuką išsaugoti userio informaciją su useContext ir localStorage bei redirectint į pagrindinį / route
 3. [x] Topbar komponentas: Atnaujinti komponento state kai asmuo yra prisijungęs
-4. [ ] Register (optional): Įgyvendinti /register route ir savo norimą dizainą
+4. [x] Register (optional): Įgyvendinti /register route ir savo norimą dizainą
