@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
+import { useUser } from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.scss';
 import '../../styles/global.scss';
 
-
-
 const LoginForm = () => {
+    const { saveUser } = useUser();
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle login logic here (e.g., API call)
-        console.log('Username:', username);
-        console.log('Password:', password);
+        const userData = { username, password };
+        saveUser(userData);
+        navigate('/');
     };
 
     return (
