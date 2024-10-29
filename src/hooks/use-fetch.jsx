@@ -1,72 +1,31 @@
 import { useState, useEffect } from "react";
+import data from '../../data/db.json';
 
-// const useFetchFile = () => {
-//     const [services, setServices] = useState(null);
-//     const [businesses, setBusinesses] = useState(null);
-//     const [error, setError] = useState(null);
-//     const [isLoading, setIsLoading] = useState(true);
-
-//     useEffect(() => {
-//         const fetchData = () => {
-//             try {
-//                 setServices(data.services);
-//                 setBusinesses(data.businesses);
-//             } catch (error) {
-//                 setError(error.message);
-//             } finally {
-//                 setIsLoading(false);
-//             }
-//         };
-
-//         fetchData();
-//     }, []);
-
-//     return { services, businesses, error, isLoading };
-// };
-
-// export default useFetchFile;
-
-
-
-
-const useFetchApi = (url) => {
-    // for DATA - having initial useState value as null instead of an empty array, then having 'services && businesses &&' 
-    // in front of component let's us know when the data has been fetched, it is shown ONLY when its fetched
-    const [data, setData] = useState(null); 
+const useFetchFile = () => {
+    const [services, setServices] = useState(null);
+    const [businesses, setBusinesses] = useState(null);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false); // initial loading state is false, not to have blitc flicker of loading component at the beginning
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = () => {
             try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok, could not fetch data');
-                }
-                const data = await response.json();
-                // if the url includes 'businesses', then wait 2 seconds before setting the data. Loading effect faked
-                // we assume that services are hardcoded and instantly available, but businesses need to be fetched from some external source
-
-                if (url.includes('businesses')) {
-                    setTimeout(() => {
-                        setData(data);
-                        setIsLoading(false); // changing the loading state to false. This is done to mimic a real-world scenario where fetching data might take some time.
-                    }, 500);
-                } else {    
-                    setData(data);
+                setTimeout(() => {
+                    setServices(data.services);
+                    setBusinesses(data.businesses);
                     setIsLoading(false);
-                }
+                }, 1000);
             } catch (error) {
-                // console.error('Fetch error:', error.message);
                 setError(error.message);
+            } finally {
+                setIsLoading(false);
             }
         };
 
         fetchData();
-    }, [url]);
+    }, []);
 
-    return { data, error, isLoading };
+    return { services, businesses, error, isLoading };
 };
 
-export default useFetchApi;
-
+export default useFetchFile;

@@ -1,11 +1,11 @@
 import SearchResultsCetegoryList from '../components/search/SearchResultsCetegoryList';
-import useFetchApi from '../hooks/use-fetch';
+import useFetchFile from '../hooks/use-fetch';
 import '../styles/global.scss';
 import Loading from '../components/common/Loading';
 
 const SearchResults = () => {
-    const { data: services } = useFetchApi('http://localhost:8000/services');
-    const { data: businesses } = useFetchApi('http://localhost:8000/businesses');
+    const { services } = useFetchFile();
+    const { businesses } = useFetchFile();
 
     // do loading for the WHOLE page (both category list and businisses list), doing this on purpose to show loading component for the whole page
     // also, category component needs to know about businisses, so both have to be loaded
