@@ -1,6 +1,6 @@
 https://www.iamjunior.lt/front-end-akceleratorius-javascript course task
 
-LIVE app - https://iamjunior-home-service-git-2-reac-779967-azes-projects-a16d53d6.vercel.app/
+LIVE app - https://iamjunior-home-service.vercel.app/
 
 Second presented version of the project.
 
