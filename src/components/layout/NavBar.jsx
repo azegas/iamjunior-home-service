@@ -4,12 +4,14 @@ import styles from './NavBar.module.scss';
 import { clearLocalStorage } from '../../utils/utils';
 import { useUser } from '../../context/UserContext';
 import { useFavorite } from '../../context/FavoriteContext';
+import { toast } from 'react-toastify';
 
 
 const Navbar = () => {
     const navigate = useNavigate();
     const { user, clearUser } = useUser();
     const { favorites } = useFavorite();
+    
     return (
         // TODO fix order, so that container is INSIDE in navbar, not other way around. same for rest. sot html source is readable
         <div className="container"> 
@@ -30,8 +32,11 @@ const Navbar = () => {
                 
                 {user ? (
                     <>
-                        <p>Welcome, {user.username}!</p>
-                        <button onClick={clearUser}>Logout</button>
+                        <p>{user.username}!</p>
+                        <button onClick={() => {
+                            clearUser();
+                            toast.success(`Logged out successfully, bye ${user.username}!`);
+                        }}>Logout</button>
                     </>
                 ) : <button onClick={() => navigate('/login')}>Login/Signup</button>}
 

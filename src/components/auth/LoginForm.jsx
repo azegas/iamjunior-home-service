@@ -3,6 +3,7 @@ import { useUser } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.scss';
 import '../../styles/global.scss';
+import { toast } from 'react-toastify';
 
 const LoginForm = () => {
     const { saveUser } = useUser();
@@ -20,6 +21,7 @@ const LoginForm = () => {
         setUsernameError('');
         const userData = { username, password };
         saveUser(userData);
+        toast.success(`Login successful, hello ${username}!`);
         navigate('/');
     };
 
