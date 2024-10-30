@@ -60,6 +60,7 @@ npm run dev
 - [x] Allow user to add favorites only if they are logged in
 - [x] Navigation menu displays favorites only if the user is logged in
 - [x] login/logout/register info messages
+- [ ] If no favorites in the favorites page, display a message and a button to go back to the main page to add some
 
 # TODO BONUS features
 - [ ] Functional search in homepage
