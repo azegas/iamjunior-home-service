@@ -3,12 +3,13 @@ import { useNavigate, NavLink } from "react-router-dom";
 import styles from './NavBar.module.scss';
 import { clearLocalStorage } from '../../utils/utils';
 import { useUser } from '../../context/UserContext';
+import { useFavorite } from '../../context/FavoriteContext';
 
 
 const Navbar = () => {
     const navigate = useNavigate();
     const { user, clearUser } = useUser();
-
+    const { favorites } = useFavorite();
     return (
         // TODO fix order, so that container is INSIDE in navbar, not other way around. same for rest. sot html source is readable
         <div className="container"> 
@@ -22,7 +23,7 @@ const Navbar = () => {
                     <NavLink to="/services" className={({ isActive }) => isActive ? "active" : ""}>Services</NavLink>
                     <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>About</NavLink>
                     <NavLink to="/contact" className={({ isActive }) => isActive ? "active" : ""}>Contact</NavLink>
-                    <NavLink to="/favorites" className={({ isActive }) => isActive ? "active" : ""}>Favorites</NavLink>
+                    <NavLink to="/favorites" className={({ isActive }) => isActive ? "active" : ""}>Favorites ({favorites.length})</NavLink>
                 </div>
             </div>
             <div className={styles.right}>

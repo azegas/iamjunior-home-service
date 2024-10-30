@@ -15,11 +15,22 @@ Main task that was done during iamjunior course - https://www.iamjunior.lt/front
 
 LIVE app - https://iamjunior-home-service.vercel.app/
 
-![progress1](./src/assets/progress1.png)
-![progress2](./src/assets/progress2.png)
-![progress3](./src/assets/progress3.png)
-![progress4](./src/assets/progress4.png)
-![progress5](./src/assets/progress5.png)
+Homepage:
+![home](./src/assets/home.png)
+Search:
+![search](./src/assets/search.png)
+Single page:  
+![single_page](./src/assets/single_page.png)
+Favorites:
+![favorites](./src/assets/favorites.png)
+Login:
+![login](./src/assets/login.png)
+Register:
+![register](./src/assets/register.png)
+Contact:
+![contact](./src/assets/contact.png)
+404:
+![404](./src/assets/404.png)
 
 # To run the project
 
@@ -42,6 +53,7 @@ npm run dev
 - [x] 404 page
 - [x] favicon
 - [x] deployed to vercel
+- [x] toast notifications
 
 # TODO BONUS features
 - [ ] Functional search in homepage
@@ -76,5 +88,5 @@ npm run dev
 4. [x] Register (optional): Įgyvendinti /register route ir savo norimą dizainą
 
 # Known bugs
-- [ ] when in favorites, clicking a favorite button - does not remove the favorite from the favorites immeaditelly, a refresh is needed
+- [x] when in favorites, clicking a favorite button - does not remove the favorite from the favorites immeaditelly, a refresh is needed
 - [ ] page is not responsive
