@@ -27,6 +27,8 @@ Login:
 ![login](./src/assets/login.png)
 Register:
 ![register](./src/assets/register.png)
+User dashboard:
+![user_dashboard](./src/assets/user_dashboard.png)
 Contact:
 ![contact](./src/assets/contact.png)
 404:
@@ -54,6 +56,10 @@ npm run dev
 - [x] favicon
 - [x] deployed to vercel
 - [x] toast notifications
+- [x] user dashboard
+- [x] Allow user to add favorites only if they are logged in
+- [x] Navigation menu displays favorites only if the user is logged in
+- [x] login/logout/register info messages
 
 # TODO BONUS features
 - [ ] Functional search in homepage

@@ -3,6 +3,7 @@ import { useUser } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import styles from './RegisterForm.module.scss';
 import '../../styles/global.scss';
+import { toast } from 'react-toastify';
 
 const RegisterForm = () => {
     const { saveUser } = useUser();
@@ -27,6 +28,7 @@ const RegisterForm = () => {
         setEmailError('');
         const userData = { username, password, email };
         saveUser(userData);
+        toast.success(`Registered successfully, hello ${username}!`);
         navigate('/');
     };
 

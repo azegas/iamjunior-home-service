@@ -10,6 +10,7 @@ import Register from '../pages/Register';
 import Search from '../pages/Search';
 import Page404 from '../pages/404';
 import Navbar from '../components/layout/NavBar';
+import Dashboard from '../pages/Dashboard';
 import BusinessDetail from '../components/business/BusinessDetail';
 import Favorites from '../pages/Favorites';
 import { Outlet } from "react-router-dom";
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
       { path: "*", element: <Page404 /> },
       { path: "business/:id", element: <BusinessDetail /> },
       { path: "favorites", element: <Favorites /> },
+      { path: "dashboard", element: <Dashboard /> },
     ],
   },
 ]);

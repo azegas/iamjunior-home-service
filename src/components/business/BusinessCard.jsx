@@ -1,10 +1,14 @@
 import styles from './BusinessCard.module.scss';
 import { Link } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
+
 
 const BusinessCard = ({ business, onFavoriteClick }) => {
+    const { user } = useUser();
+
     return (
         <div className={styles.businessCard}>
-            <img className={styles.favoriteButton} src="https://img.icons8.com/?size=100&id=DFU1kReSUccu&format=png&color=000000" alt="Favorite" onClick={onFavoriteClick} />
+            {user && <img className={styles.favoriteButton} src="https://img.icons8.com/?size=100&id=DFU1kReSUccu&format=png&color=000000" alt="Favorite" onClick={onFavoriteClick} />}
             <Link to={`/business/${business.id}`} className={styles.businessLink}>
                 <img className={styles.image} src={business.image} alt={business.name} />
                 <div className={styles.info}>

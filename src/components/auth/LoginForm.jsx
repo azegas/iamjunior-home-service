@@ -21,7 +21,7 @@ const LoginForm = () => {
         setUsernameError('');
         const userData = { username, password };
         saveUser(userData);
-        toast.success(`Login successful, hello ${username}!`);
+        toast.success(`Login successful, hello ${username}! You can now add businesses to your favorites.`);
         navigate('/');
     };
 
