@@ -4,7 +4,6 @@ import { useFavorite } from '../context/FavoriteContext';
 
 
 const Favorites = () => {
-    // Fetch data using the custom hook
     const { businesses } = useFetchFile();
     const { favorites } = useFavorite();
     
