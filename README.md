@@ -76,5 +76,5 @@ npm run dev
 4. [x] Register (optional): Įgyvendinti /register route ir savo norimą dizainą
 
 # Known bugs
-- [ ] when in favorites, clicking a favorite button - does not remove the favorite from the favorites immeaditelly, a refresh is needed
+- [x] when in favorites, clicking a favorite button - does not remove the favorite from the favorites immeaditelly, a refresh is needed
 - [ ] page is not responsive
