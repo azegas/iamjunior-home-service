@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-
+import { toast } from 'react-toastify';
 const FavoriteContext = createContext();
 
 export const FavoriteProvider = ({ children }) => {
@@ -15,9 +15,11 @@ export const FavoriteProvider = ({ children }) => {
         if (favorites.includes(favoriteId)) {
             // If it is, filter it out to remove it from the favorites
             updatedFavorites = favorites.filter(id => id !== favoriteId);
+            toast.error('Removed from favorites');
         } else {
             // If it's not, add it to the favorites array
             updatedFavorites = [...favorites, favoriteId];
+            toast.success('Added to favorites');
         }
         // Update the state with the new favorites array
         setFavorites(updatedFavorites);
