@@ -1,4 +1,4 @@
-const { categories } = require('../../data/data');
+const { categories } = require('../../../data/data');
 
 /*
 http://localhost:3000/api/categories

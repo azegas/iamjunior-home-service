@@ -1,4 +1,4 @@
-const { bookings } = require('../../data/data');
+const { bookings } = require('../../../data/data');
 
 /*
 http://localhost:3000/api/bookings/:businessId/email/:email

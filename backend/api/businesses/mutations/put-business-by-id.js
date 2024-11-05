@@ -1,4 +1,4 @@
-const { businesses } = require('../../data/data');
+const { businesses } = require('../../../data/data');
 
 // TODO make it so that you can only choose from the categories in the categories field
 

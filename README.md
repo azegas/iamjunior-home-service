@@ -24,6 +24,8 @@ npm run dev
 ### Backend
 
 ```bash
+# set the environment variables
+cp backend/.env_template backend/.env
 cd backend
 npm i
 npm run server

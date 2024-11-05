@@ -26,7 +26,7 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ["./src/**/*.js"], // where swagger should look for api endpoints (basically in all files)
+  apis: ["./api/**/*.js"], // where swagger should look for api endpoints (basically in all files)
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -58,9 +58,9 @@ app.use(morgan('common'));
 // ROUTES
 // ----------------------------------------------------------------
 
-const { categoriesRouter } = require('./categories');
-const { businessesRouter } = require('./businesses');
-const { bookingsRouter } = require('./bookings');
+const { categoriesRouter } = require('./api/categories');
+const { businessesRouter } = require('./api/businesses');
+const { bookingsRouter } = require('./api/bookings');
 
 // middleware to handle the routes. here we define the route prefix
 app.use('/api/categories', categoriesRouter);

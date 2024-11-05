@@ -1,4 +1,4 @@
-const { businesses } = require('../../data/data');
+const { businesses } = require('../../../data/data');
 
 /*
 http://localhost:3000/api/businesses

@@ -1,4 +1,4 @@
-const { businesses, bookings } = require('../../data/data');
+const { businesses, bookings } = require('../../../data/data');
 
 /*
 http://localhost:3000/api/businesses/:id/bookings/date/:date
