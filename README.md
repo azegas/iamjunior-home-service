@@ -11,6 +11,8 @@
 
 # iamjunior-home-service
 
+THIS BRANCH IS THE STATE OF THE APP BEFORE THE NODE PART. NO API, NO DB.
+
 Main task that was done during iamjunior course - https://www.iamjunior.lt/front-end-akceleratorius-javascript 
 
 LIVE app - https://iamjunior-home-service.vercel.app/
