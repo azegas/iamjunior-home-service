@@ -24,7 +24,7 @@ npm run server
 ```
 
 # BONUS tasks
-- [ ] Swagger API docs - https://www.youtube.com/watch?v=eiSem0cqaN0&ab_channel=KrisFoster
+- [x] Swagger API docs - https://www.youtube.com/watch?v=eiSem0cqaN0&ab_channel=KrisFoster
 
 # Uzduotys
 

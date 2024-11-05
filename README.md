@@ -24,5 +24,9 @@ npm run dev
 ### Backend
 
 ```bash
-????
+cd backend
+npm i
+npm run server
+# open http://localhost:3000/api-docs/ in your browser to preview the swagger docs
+# open http://localhost:3000/api/<name_of_endpoint> in your browser to preview the chosen endpoint
 ```
