@@ -50,7 +50,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // middleware - logs request details
-app.use(morgan('dev'));
+app.use(morgan('common'));
+
 
 // ----------------------------------------------------------------
 // ROUTES
