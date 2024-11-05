@@ -5,6 +5,26 @@ http://localhost:3000/api/businesses/:id/bookings/date/:date
 http://localhost:3000/api/businesses/1/bookings/date/2023-10-01
 */
 
+/**
+ * @swagger
+ * /api/businesses/{id}/bookings/date/{date}:
+ *   get:
+ *     summary: Get bookings for a business by ID and date
+ *     tags: [Businesses]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the business
+ *       - in: path
+ *         name: date
+ *         required: true
+ *         description: The date of the booking
+ *     responses:
+ *       200:
+ *         description: A list of bookings
+ */
+
 function getBusinessByIdAndDate(req, res) {
   const businessId = req.params.id;
   const date = req.params.date;

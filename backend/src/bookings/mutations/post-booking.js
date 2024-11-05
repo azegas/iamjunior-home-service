@@ -13,6 +13,38 @@ http://localhost:3000/api/bookings
 }
 */
 
+/**
+ * @swagger
+ * /api/bookings:
+ *   post:
+ *     summary: Create a new booking
+ *     tags: [Bookings]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               businessId:
+ *                 type: string
+ *               date:
+ *                 type: string
+ *               time:
+ *                 type: string
+ *               userEmail:
+ *                 type: string
+ *               userName:
+ *                 type: string
+ *               status:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Booking created successfully
+ *       400:
+ *         description: Invalid input
+ */
+
 function postBooking(req, res) {
 
     const { businessId, date, time, userEmail, userName, status } = req.body;

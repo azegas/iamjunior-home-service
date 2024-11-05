@@ -6,6 +6,23 @@ Example API endpoints for deleting a booking by ID:
   - http://localhost:3000/api/bookings/1
 */
 
+
+/**
+ * @swagger
+ * /api/bookings/{id}:
+ *   delete:
+ *     summary: Delete a booking by ID
+ *     tags: [Bookings]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the booking
+ *     responses:
+ *       200:
+ *         description: Booking deleted successfully
+ */
+
 function deleteBooking(req, res) {
     const { id } = req.params;
 

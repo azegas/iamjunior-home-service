@@ -1,5 +1,7 @@
 const { businesses } = require('../../data/data');
 
+// TODO make it so that you can only choose from the categories in the categories field
+
 /*
 http://localhost:3000/api/businesses/:id
 http://localhost:3000/api/businesses/1
@@ -14,6 +16,47 @@ http://localhost:3000/api/businesses/1
     "images": ["new-image1.jpg", "new-image2.jpg"]
 }
 */
+
+/**
+ * @swagger
+ * /api/businesses/{id}:
+ *   put:
+ *     summary: Update a business by ID
+ *     tags: [Businesses]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the business
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               address:
+ *                 type: string
+ *               category:
+ *                 type: string
+ *               contactPerson:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               images:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: Business updated successfully
+ *       400:
+ *         description: Invalid input
+ */
 
 function putBusiness(req, res) {
     const businessId = req.params.id;

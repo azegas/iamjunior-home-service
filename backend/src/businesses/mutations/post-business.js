@@ -8,12 +8,48 @@ http://localhost:3000/api/businesses
     "name": "Fake Business Name",
     "description": "This is a fake business description.",
     "address": "123 Fake Street, Faketown, USA",
-    "category": "Food",
+    "category": "cleaning",
     "contactPerson": "John Doe",
     "email": "john.doe@fakebusiness.com",
     "images": ["image1.jpg", "image2.jpg"]
 }
 */
+
+/**
+ * @swagger
+ * /api/businesses:
+ *   post:
+ *     summary: Create a new business
+ *     tags: [Businesses]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               address:
+ *                 type: string
+ *               category:
+ *                 type: string
+ *               contactPerson:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               images:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       201:
+ *         description: Business created successfully
+ *       400:
+ *         description: Invalid input
+ */
 
 function postBusiness(req, res) {
 

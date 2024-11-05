@@ -10,6 +10,32 @@ http://localhost:3000/api/categories
 }
 */
 
+/**
+ * @swagger
+ * /api/categories:
+ *   post:
+ *     summary: Create a new category
+ *     tags: [Categories]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               color:
+ *                 type: string
+ *               url:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Category created successfully
+ *       400:
+ *         description: Invalid input
+ */
+
 function postCategory(req, res) {
     const { name, color, url } = req.body;
     if (!name || !color || !url) {
