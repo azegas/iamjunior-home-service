@@ -3,10 +3,15 @@ const path = require("path");
 const morgan = require("morgan");
 require("dotenv").config();
 const app = express();
+const cors = require("cors");
 
 // ----------------------------------------------------------------
 // MIDDLEWARES 
 // ----------------------------------------------------------------
+
+// middleware - cors (allow requests from the frontend on port 5173)
+app.use(cors({ origin: 'http://localhost:5173' }));
+
 app.use(express.static(path.join(__dirname, '../public')));
 
 // middleware - custom middleware before processing requests

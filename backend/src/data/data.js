@@ -1,97 +1,192 @@
 const categories = [
     { 
         id: 1, 
-        name: "electronics", 
-        color: "blue", 
-        url: "https://example.com/electronics"
+        name: "Cleaning", 
+        color: "blue",
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+        icon: "https://img.icons8.com/?size=100&id=8088&format=png&color=800080"
     },
     { 
         id: 2, 
-        name: "fashion", 
-        color: "pink", 
-        url: "https://example.com/fashion"
+        name: "Repair", 
+        color: "pink",
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto", 
+        icon: "https://img.icons8.com/?size=100&id=92378&format=png&color=ebdf34"
     },
     { 
         id: 3, 
-        name: "home", 
+        name: "Painting", 
         color: "green", 
-        url: "https://example.com/home-garden"
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+        icon: "https://img.icons8.com/?size=100&id=8141&format=png&color=34ebdb"
     },
     { 
         id: 4, 
-        name: "sports", 
+        name: "Shifting", 
         color: "orange", 
-        url: "https://example.com/sports-outdoors"
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+        icon: "https://img.icons8.com/?size=100&id=9341&format=png&color=FF0000"
     },
     { 
         id: 5, 
-        name: "toys", 
+        name: "Plumbing", 
         color: "yellow", 
-        url: "https://example.com/toys-games"
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+        icon: "https://img.icons8.com/?size=100&id=67287&format=png&color=FFA500"
+    },
+    { 
+        id: 6, 
+        name: "Electric", 
+        color: "yellow", 
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+        icon: "https://img.icons8.com/?size=100&id=77278&format=png&color=0000FF"
     }
 ];
 
 const businesses = [
     { 
         id: 1, 
-            name: "TechCorp", 
-            description: "Leading electronics manufacturer", 
-            address: "123 Tech St, Silicon Valley", 
-            category: "electronics", 
-            contactPerson: "John Doe", 
-            email: "john.doe@techcorp.com", 
-            images: ["https://example.com/techcorp-logo.png"]
-        },
-        { 
-            id: 2, 
-            name: "Fashionista", 
-            description: "Trendy fashion retailer", 
-            address: "456 Fashion Ave, New York", 
-            category: "fashion", 
-            contactPerson: "Jane Smith", 
-            email: "jane.smith@fashionista.com", 
-            images: ["https://example.com/fashionista-logo.png"]
-        },
-        { 
-            id: 3, 
-            name: "GreenThumb", 
-            description: "Home and garden supplies", 
-            address: "789 Garden St, Los Angeles", 
-            category: "home", 
-            contactPerson: "Michael Brown", 
-            email: "michael.brown@greenthumb.com", 
-            images: ["https://example.com/greenthumb-logo.png"]
-        },
-        { 
-            id: 4, 
-            name: "OutdoorAdventures", 
-            description: "Sports and outdoor gear", 
-            address: "1010 Outdoor Dr, Denver", 
-            category: "sports", 
-            contactPerson: "Emily Johnson", 
-            email: "emily.johnson@outdooradventures.com", 
-            images: ["https://example.com/outdooradventures-logo.png"]
-        },
-        { 
-            id: 5, 
-            name: "Toyland", 
-            description: "Toys and games for all ages", 
-            address: "1212 Toy St, Chicago", 
-            category: "toys", 
-            contactPerson: "Sarah Lee", 
-            email: "sarah.lee@toyland.com", 
-        images: ["https://example.com/toyland-logo.png"]
-        },
-        { 
-            id: 6, 
-            name: "Fashionista", 
-            description: "Trendy fashion retailer", 
-            address: "456 Fashion Ave, New York", 
-            category: "fashion", 
-            contactPerson: "Jane Smith", 
-            email: "jane.smith@fashionista.com", 
-            images: ["https://example.com/fashionista-logo.png"]
-        },
+        name: "Cleaning", 
+        description: "House cleaning services", 
+        address: "Vilnius, Lithuania", 
+        worker: "John Doe", 
+        contactPerson: "Jane Smith",
+        email: "jane.smith@fashionista.com", 
+        category: "Cleaning", 
+        images: ["https://media.istockphoto.com/id/609608134/photo/woman-with-basket-and-cleaning-equipment.jpg?s=612x612&w=0&k=20&c=9a6DIVAdZnS8tRQ9UA5wWsvIvexqq8jyGq2woKzUyWE="] 
+    },
+    { 
+        id: 2, 
+        name: "Appliance Repair", 
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto", 
+        address: "Kaunas, Lithuania", 
+        worker: "Jane Smith", 
+        contactPerson: "Jane Smith",
+        email: "jane.smith@appliance-repair.com", 
+        category: "Repair", 
+        images: ["https://media.istockphoto.com/id/486913078/photo/repairman-at-customers-front-door.jpg?s=612x612&w=0&k=20&c=7W7AwpwIYq-4Uf6hxKfWM6KanW_Q_Oj6KChM4HxNbMM="] 
+    },
+    { 
+        id: 3, 
+        name: "Interior Painting", 
+        description: "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit", 
+        address: "Klaipeda, Lithuania", 
+        worker: "Michael Johnson", 
+        contactPerson: "Michael Johnson",
+        email: "michael.johnson@interior-painting.com", 
+        category: "Painting", 
+        images: ["https://www.homepainterstoronto.com/wp-content/uploads/2023/03/4._Different_Qualities_of_Paint-1024x769.webp"] 
+    },
+    { 
+        id: 4, 
+        name: "Furniture Moving", 
+        description: "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque", 
+        address: "Panevezys, Lithuania", 
+        worker: "Emily Brown", 
+        contactPerson: "Emily Brown",
+        email: "emily.brown@furniture-moving.com", 
+        category: "Shifting", 
+        images: ["https://www.move.org/app/uploads/2020/03/The-5-Best-Moving-Companies-of-2020.jpeg"] 
+    },
+    { 
+        id: 5, 
+        name: "Plumbing Services", 
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto", 
+        address: "Siauliai, Lithuania", 
+        worker: "Elizabeth Johnson", 
+        contactPerson: "Elizabeth Johnson",
+        email: "elizabeth.johnson@plumbing-services.com", 
+        category: "Plumbing", 
+        images: ["https://www.tradesfortomorrow.ca/wp-content/uploads/2023/08/AdobeStock_618936025-scaled.jpeg"] 
+    },
+    { 
+        id: 6, 
+        name: "Electrical Work", 
+        description: "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla", 
+        address: "Taurage, Lithuania", 
+        worker: "Sarah Taylor", 
+        contactPerson: "Sarah Taylor",
+        email: "sarah.taylor@electrical-work.com", 
+        category: "Electric", 
+        images: ["https://www.optimistdaily.com/wp-content/uploads/shutterstock_668450440.jpg"] 
+    },
+    { 
+        id: 7, 
+        name: "Gardening Services", 
+        description: "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla", 
+        address: "Alytus, Lithuania", 
+        worker: "James Wilson", 
+        contactPerson: "James Wilson",
+        email: "james.wilson@gardening-services.com", 
+        category: "Gardening", 
+        images: ["https://www.familyeducation.com/sites/default/files/fe_slideshow/2008_03/Landscaping_H.jpg"] 
+    },
+    { 
+        id: 8, 
+        name: "House Cleaning 2", 
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto", 
+        address: "Vilnius, Lithuania", 
+        worker: "John Doe", 
+        contactPerson: "John Doe",
+        email: "john.doe@house-cleaning-2.com", 
+        category: "Cleaning", 
+        images: ["https://media.istockphoto.com/id/609608134/photo/woman-with-basket-and-cleaning-equipment.jpg?s=612x612&w=0&k=20&c=9a6DIVAdZnS8tRQ9UA5wWsvIvexqq8jyGq2woKzUyWE="] 
+    },
+    { 
+        id: 9, 
+        name: "Appliance Repair 2", 
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto", 
+        address: "Kaunas, Lithuania", 
+        worker: "Jane Smith", 
+        contactPerson: "Jane Smith",
+        email: "jane.smith@appliance-repair-2.com", 
+        category: "Repair", 
+        images: ["https://media.istockphoto.com/id/486913078/photo/repairman-at-customers-front-door.jpg?s=612x612&w=0&k=20&c=7W7AwpwIYq-4Uf6hxKfWM6KanW_Q_Oj6KChM4HxNbMM="] 
+    },
+    { 
+        id: 10, 
+        name: "Interior Painting 2", 
+        description: "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit", 
+        address: "Klaipeda, Lithuania", 
+        worker: "Michael Johnson", 
+        contactPerson: "Michael Johnson",
+        email: "michael.johnson@interior-painting-2.com", 
+        category: "Painting", 
+        images: ["https://www.homepainterstoronto.com/wp-content/uploads/2023/03/4._Different_Qualities_of_Paint-1024x769.webp"] 
+    },
+    { 
+        id: 11, 
+        name: "Furniture Moving 2", 
+        description: "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque", 
+        address: "Panevezys, Lithuania", 
+        worker: "Emily Brown", 
+        contactPerson: "Emily Brown",
+        email: "emily.brown@furniture-moving-2.com", 
+        category: "Shifting", 
+        images: ["https://www.move.org/app/uploads/2020/03/The-5-Best-Moving-Companies-of-2020.jpeg"] 
+    },
+    { 
+        id: 12, 
+        name: "House Cleaning 3", 
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto", 
+        address: "Vilnius, Lithuania", 
+        worker: "John Doe", 
+        contactPerson: "John Doe",
+        email: "john.doe@house-cleaning-3.com", 
+        category: "Cleaning", 
+        images: ["https://media.istockphoto.com/id/609608134/photo/woman-with-basket-and-cleaning-equipment.jpg?s=612x612&w=0&k=20&c=9a6DIVAdZnS8tRQ9UA5wWsvIvexqq8jyGq2woKzUyWE="] 
+    },
+    { 
+        id: 13, 
+        name: "Plumbing Services 3", 
+        description: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto", 
+        address: "Siauliai, Lithuania", 
+        worker: "Elizabeth Johnson", 
+        contactPerson: "Elizabeth Johnson",
+        email: "elizabeth.johnson@plumbing-services-3.com", 
+        category: "Plumbing", 
+        images: ["https://www.tradesfortomorrow.ca/wp-content/uploads/2023/08/AdobeStock_618936025-scaled.jpeg"] 
+    }
 ];
 
 const bookings = [
