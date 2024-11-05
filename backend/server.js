@@ -74,10 +74,9 @@ app.use('/api/bookings', bookingsRouter);
 
 // connect to the database
 mongoose.connect(process.env.DB_CONNECTION_STRING)
-
-// launch the server only after successfully connecting to the database
-.then(() => {
-  app.listen(process.env.API_PORT, () => {
+  .then(() => {
+    console.log("Connected to the database successfully");
+    app.listen(process.env.API_PORT, () => {
     console.log(`Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`);
   });
 })

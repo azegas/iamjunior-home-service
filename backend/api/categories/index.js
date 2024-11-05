@@ -1,12 +1,12 @@
 const express = require('express');
 
 const { getCategories } = require('./queries/get-categories');
-const { postCategory } = require('./mutations/post-category');
+const { createCategory } = require('./mutations/create-category');
 
 const categoriesRouter = express.Router();
 
 categoriesRouter.get('/', getCategories);
-categoriesRouter.post('/', postCategory);
+categoriesRouter.post('/', createCategory);
 
 module.exports = {
   categoriesRouter,

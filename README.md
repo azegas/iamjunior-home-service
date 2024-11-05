@@ -12,23 +12,10 @@ git clone https://github.com/azegas/iamjunior-home-service
 cd iamjunior-home-service
 ```
 
-### Frontend
+# Run backend
 
-```bash
-cd frontend
-npm i
-npm run dev
-# open http://localhost:5173/ in your browser to preview the site
-```
+Check out backend/README.md for more information.
 
-### Backend
+# Run frontend
 
-```bash
-# set the environment variables
-cp backend/.env_template backend/.env
-cd backend
-npm i
-npm run server
-# open http://localhost:3000/api-docs/ in your browser to preview the swagger docs
-# open http://localhost:3000/api/<name_of_endpoint> in your browser to preview the chosen endpoint
-```
+Check out frontend/README.md for more information.

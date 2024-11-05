@@ -1,4 +1,5 @@
 - [iamjunior-home-service (frontend)](#iamjunior-home-service-frontend)
+- [Run frontend](#run-frontend)
 - [React part](#react-part)
   - [DONE BONUS features](#done-bonus-features)
   - [TODO BONUS features](#todo-bonus-features)
@@ -31,6 +32,16 @@ Contact:
 ![contact](./src/assets/contact.png)
 404:
 ![404](./src/assets/404.png)
+
+# Run frontend
+
+```bash
+# make sure backend server is running first
+cd frontend
+npm i
+npm run dev
+# open http://localhost:5173/ in your browser to preview the site
+```
 
 # React part
 

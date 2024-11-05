@@ -1,4 +1,4 @@
-const { categories } = require('../../../data/data');
+const { CategoryModel } = require('../../../db/category-model');
 
 /*
 http://localhost:3000/api/categories
@@ -15,7 +15,8 @@ http://localhost:3000/api/categories
  *         description: A list of categories
  */
 
-function getCategories(req, res) {
+async function getCategories(req, res) {
+  const categories = await CategoryModel.find();
   if (categories.length === 0) {
     return res.status(404).json({ success: false, message: 'No categories found.' });
   }

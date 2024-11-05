@@ -17,16 +17,28 @@ To know how the initial backend node project was built(simply the api), check ou
 
 Database is in MongoDB over at - https://www.mongodb.com (accessed from all ips (0.0.0.0/0) - configured on mongo atlas side)
 
-```
-npm init (sukuria package.json)
-susikurk rankutem server.js
-npm i express
-node src/server.js
+To start the API server, run the following commands:
+
+```bash
+# set the environment variables
+cp backend/.env_template backend/.env
+cd backend
+npm i
 npm run server
+# open http://localhost:3000/api-docs/ in your browser to preview the swagger docs
+# open http://localhost:3000/api/<name_of_endpoint> in your browser to preview the chosen endpoint
+```
+
+To recreate the database, run the following command:
+```
+cd db
+node recreate-db.js
 ```
 
 # BONUS tasks
 - [x] Swagger API docs - https://www.youtube.com/watch?v=eiSem0cqaN0&ab_channel=KrisFoster
+- [ ] dont allow to create categories/businesses with curse words in it
+- [x] Automatically recreate database data from scratch
 
 # Uzduotys
 
