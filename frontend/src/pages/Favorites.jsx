@@ -1,11 +1,11 @@
 import BusinessList from '../components/business/BusinessList';
-import useFetchFile from '../hooks/use-fetch';
+import useFetch from '../hooks/use-fetch';
 import { useFavorite } from '../context/FavoriteContext';
 import '../styles/global.scss';
 import { useNavigate } from 'react-router-dom';
 
 const Favorites = () => {
-    const { businesses } = useFetchFile();
+    const { businesses } = useFetch();
     const { favorites } = useFavorite();
     const navigate = useNavigate();
     

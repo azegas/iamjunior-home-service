@@ -1,41 +1,43 @@
 import { useState, useEffect } from "react";
-import data from '../../../data/db.json';
 
-const useFetchFile = () => {
-    const [services, setServices] = useState(null);
+const useFetch = () => {
+    const [categories, setCategories] = useState(null);
     const [businesses, setBusinesses] = useState(null);
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = () => {
-            setTimeout(() => {
-                const newErrors = []; // Local array to collect any errors
+        const fetchData = async () => {
+            try {
+                const categoriesResponse = await fetch('http://localhost:3000/api/categories');
+                const categoriesData = await categoriesResponse.json();
 
-                if (!data.services) {
-                    newErrors.push({message: "Services not found"});
+                const businessesResponse = await fetch('http://localhost:3000/api/businesses');
+                const businessesData = await businessesResponse.json();
+
+                if (!categoriesData) {
+                    setErrors([{message: "Categories not found"}]);
                 } else {
-                    setServices(data.services);
+                    setCategories(categoriesData);
                 }
 
-                if (!data.businesses) {
-                    newErrors.push({message: "Businesses not found"});
+                if (!businessesData) {
+                    setErrors([{message: "Businesses not found"}]);
                 } else {
-                    setBusinesses(data.businesses);
-                }
-
-                if (newErrors.length > 0) {
-                    setErrors(newErrors);
+                    setBusinesses(businessesData);
                 }
 
                 setIsLoading(false); // Stop loading regardless of success or errors
-            }, 500);
+            } catch (error) {
+                setErrors([{message: "Failed to fetch data"}]);
+                setIsLoading(false);
+            }
         };
 
         fetchData();
     }, []);
 
-    return { services, businesses, errors, isLoading };
+    return { categories, businesses, errors, isLoading };
 };
 
-export default useFetchFile;
+export default useFetch;

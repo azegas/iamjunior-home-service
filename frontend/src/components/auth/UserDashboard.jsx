@@ -1,13 +1,13 @@
 import '../../styles/global.scss';
 import { useUser } from '../../context/UserContext';
 import { useFavorite } from '../../context/FavoriteContext';
-import useFetchFile from '../../hooks/use-fetch';
+import useFetch from '../../hooks/use-fetch';
 import { useNavigate } from 'react-router-dom';
 
 const UserDashboard = () => {
     const { user } = useUser();
     const { favorites } = useFavorite();
-    const { businesses } = useFetchFile();
+    const { businesses } = useFetch();
     const navigate = useNavigate();
     
     const filteredBusinesses = businesses

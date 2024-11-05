@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import useFetchFile from '../../hooks/use-fetch';
+import useFetch from '../../hooks/use-fetch';
 import Loading from '../common/Loading';
 import Error from '../common/Error';
 import styles from './BusinessDetail.module.scss';
@@ -7,7 +7,7 @@ import '../../styles/global.scss';
 
 const BusinessDetail = () => {
     const { id } = useParams();
-    const { businesses, error} = useFetchFile();
+    const { businesses, error} = useFetch();
 
     if (!businesses) return <Loading />;
 

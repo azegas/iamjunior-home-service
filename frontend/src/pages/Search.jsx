@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import useFetchFile from '../hooks/use-fetch';
+import useFetch from '../hooks/use-fetch';
 import Loading from '../components/common/Loading';
 import Error from '../components/common/Error';
 import BusinessList from '../components/business/BusinessList';
@@ -10,7 +10,7 @@ import styles from '../components/common/Search.module.scss';
 
 const Search = () => {
     const { serviceName } = useParams();
-    const { services, businesses, errors, isLoading } = useFetchFile();
+    const { services, businesses, errors, isLoading } = useFetch();
     const [filteredBusinesses, setFilteredBusinesses] = useState([]);
 
     useEffect(() => {

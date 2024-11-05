@@ -2,10 +2,10 @@ import Hero from '../components/common/Hero';
 import Loading from '../components/common/Loading';
 import BusinessList from '../components/business/BusinessList';
 import Error from '../components/common/Error';
-import useFetchFile from '../hooks/use-fetch';
+import useFetch from '../hooks/use-fetch';
 
 const Home = () => {
-    const { services, businesses, errors, isLoading } = useFetchFile();
+    const { services, businesses, errors, isLoading } = useFetch();
 
     return (
         <>
