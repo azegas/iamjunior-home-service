@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import data from '../../data/db.json';
+import data from '../../../data/db.json';
 
 const useFetchFile = () => {
     const [services, setServices] = useState(null);
