@@ -73,7 +73,7 @@ app.use('/api/bookings', bookingsRouter);
 // ----------------------------------------------------------------
 
 // connect to the database
-mongoose.connect(`mongodb+srv://${process.env.MONGO_UID}:${process.env.MONGO_PWD}@cluster0.dvi79.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+mongoose.connect(process.env.DB_CONNECTION_STRING)
 
 // launch the server only after successfully connecting to the database
 .then(() => {
