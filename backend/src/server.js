@@ -6,6 +6,7 @@ const app = express();
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
+const mongoose = require('mongoose');
 
 // ----------------------------------------------------------------
 // SWAGGER CONFIGURATION
@@ -35,8 +36,8 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // MIDDLEWARES 
 // ----------------------------------------------------------------
 
-// middleware - cors (allow requests from the frontend on port 5173)
-app.use(cors({ origin: 'http://localhost:5173' }));
+// middleware - cors (allow requests from the frontend, all ips. CHANGE THIS IN PROD)
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -66,10 +67,18 @@ app.use('/api/categories', categoriesRouter);
 app.use('/api/businesses', businessesRouter);
 app.use('/api/bookings', bookingsRouter);
 
+
 // ----------------------------------------------------------------
-// SERVER
+// DATABASE CONNECTION & SERVER LAUNCH
 // ----------------------------------------------------------------
 
-app.listen(process.env.API_PORT, () => {
-  console.log(`Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`);
-});
+// connect to the database
+mongoose.connect(`mongodb+srv://${process.env.MONGO_UID}:${process.env.MONGO_PWD}@cluster0.dvi79.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+
+// launch the server only after successfully connecting to the database
+.then(() => {
+  app.listen(process.env.API_PORT, () => {
+    console.log(`Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`);
+  });
+})
+.catch((err) => console.log(err));

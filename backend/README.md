@@ -15,6 +15,8 @@
 
 To know how the initial backend node project was built(simply the api), check out this repo - https://github.com/azegas/iamjunior-nodejs
 
+Database is in MongoDB over at - https://www.mongodb.com (accessed from all ips (0.0.0.0/0) - configured on mongo atlas side)
+
 ```
 npm init (sukuria package.json)
 susikurk rankutem server.js
