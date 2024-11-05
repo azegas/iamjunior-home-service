@@ -9,19 +9,20 @@ import '../styles/global.scss';
 import styles from '../components/common/Search.module.scss';
 
 const Search = () => {
-    const { serviceName } = useParams();
-    const { services, businesses, errors, isLoading } = useFetch();
+    const { categoryName } = useParams();
+    const { categories, businesses, errors, isLoading } = useFetch();
     const [filteredBusinesses, setFilteredBusinesses] = useState([]);
+
 
     useEffect(() => {
         if (businesses) {
-            const filtered = businesses.filter(business => business.category.toLowerCase() === serviceName.toLowerCase());
+            const filtered = businesses.filter(business => business.category === categoryName);
             setFilteredBusinesses(filtered);
         } else {
             setFilteredBusinesses([]);
         }
 
-    }, [serviceName, businesses]);
+    }, [categoryName, businesses]);
     
     return (
         <>
@@ -39,9 +40,9 @@ const Search = () => {
                 <div className={styles.searchContainer}>
                     <div className={styles.searchSidebar}>
                         <h1 className="title">Categories</h1>
-                        {services && <CategoryList services={services} businesses={businesses} classNameList={styles.categoryListSidebar} classNameCard={styles.categoryCardSidebar} showCount={true}/>}
+                        {categories && <CategoryList categories={categories} businesses={businesses} classNameList={styles.categoryListSidebar} classNameCard={styles.categoryCardSidebar} showCount={true}/>}
                     </div>
-                    {filteredBusinesses.length > 0 && <BusinessList businesses={filteredBusinesses} serviceName={serviceName}/>}
+                    {filteredBusinesses.length > 0 && <BusinessList businesses={filteredBusinesses} categoryName={categoryName}/>}
                 </div>
             </div>}
         </>

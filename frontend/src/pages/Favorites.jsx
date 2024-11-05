@@ -17,7 +17,7 @@ const Favorites = () => {
         return <div className="container middleOfPage">No favorites yet. Please add some! <button onClick={() => navigate('/')}>Go back to the main page and add some! 🙏</button></div>;
     }
 
-    return <BusinessList businesses={filteredBusinesses} serviceName="Favorites" />;
+    return <BusinessList businesses={filteredBusinesses} categoryName="Favorites" />;
 };
 
 export default Favorites;

@@ -5,7 +5,7 @@ import Error from '../components/common/Error';
 import useFetch from '../hooks/use-fetch';
 
 const Home = () => {
-    const { services, businesses, errors, isLoading } = useFetch();
+    const { categories, businesses, errors, isLoading } = useFetch();
 
     return (
         <>
@@ -18,7 +18,7 @@ const Home = () => {
             {isLoading && <Loading />}
 
             {/* Show hero and business list components only if data is fetched */}
-            {!isLoading && services && <Hero services={services} />}
+            {!isLoading && categories && <Hero categories={categories} />}
             {!isLoading && businesses && <BusinessList businesses={businesses} />}
             
         </>

@@ -2,7 +2,7 @@ import styles from './Hero.module.scss';
 import CategoryList from '../category/CategoryList';
 import SearchInput from './SearchInput';
 
-const Hero = ({ services }) => {
+const Hero = ({ categories }) => {
     return (
         <>
             <div className={styles.hero}>
@@ -14,7 +14,7 @@ const Hero = ({ services }) => {
                 </div>
 
                 <SearchInput />
-                <CategoryList services={services} className={styles.categoryList} showCount={false} />
+                <CategoryList categories={categories} className={styles.categoryList} showCount={false} />
                 <hr />
             </div>
         </>
