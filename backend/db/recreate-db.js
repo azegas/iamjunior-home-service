@@ -1,5 +1,5 @@
 // recreate-db.js is used to recreate the database from scratch
-// it deletes all categories and recreates them with sample data
+// it deletes all categories, businesses, and bookings and recreates them with sample data
 // useful when developing locally
 // run this file with "node recreate-db.js"
 
@@ -9,9 +9,11 @@ dotenv.config({ path: '../.env' });
 
 const { CategoryModel } = require('./category-model');
 const { BusinessModel } = require('./business-model');
+const { BookingModel } = require('./booking-model');
 
 const categories = require('./sample-data').categories;
 const businesses = require('./sample-data').businesses;
+const bookings = require('./sample-data').bookings;
 
 async function connectToDB() {
     if (!process.env.DB_CONNECTION_STRING) {
@@ -68,10 +70,20 @@ async function recreateBusinesses(createdCategories) {
     }
 }
 
+async function recreateBookings() {
+    try {
+        await BookingModel.deleteMany({});
+        console.log('Bookings deleted successfully');
+    } catch (error) {
+        console.error('Error recreating bookings:', error);
+    }
+}
+
 async function main() {
     await connectToDB();
     const createdCategories = await recreateCategories();
     await recreateBusinesses(createdCategories);
+    await recreateBookings();
     await disconnectFromDB();
     process.exit(0); // Exit process when done
 }
