@@ -1,4 +1,4 @@
-const { businesses } = require('../../../data/data');
+const { BusinessModel } = require('../../../db/business-model');
 
 /*
 http://localhost:3000/api/businesses
@@ -15,11 +15,17 @@ http://localhost:3000/api/businesses
  *         description: A list of businesses
  */
 
-function getBusinesses(req, res) {
-  if (businesses.length === 0) {
-    return res.status(404).json({ success: false, message: 'No businesses found.' });
+async function getBusinesses(req, res) {
+  try {
+    const businesses = await BusinessModel.find();
+    if (businesses.length === 0) {
+      return res.status(404).json({ success: false, message: 'No businesses found.' });
+    }
+    res.json(businesses);
+  } catch (error) {
+    console.error('Error fetching businesses:', error);
+    res.status(500).json({ success: false, message: 'Internal server error.' });
   }
-  res.json(businesses);
 }
 
 module.exports = {
