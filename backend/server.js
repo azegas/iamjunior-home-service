@@ -12,6 +12,8 @@ const mongoose = require('mongoose');
 // SWAGGER CONFIGURATION
 // ----------------------------------------------------------------
 
+// TODO move swagger stuff to separate file
+
 const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
@@ -36,6 +38,8 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // MIDDLEWARES 
 // ----------------------------------------------------------------
 
+// TODO move middleware to separate file
+
 // middleware - cors (allow requests from the frontend, all ips. CHANGE THIS IN PROD)
 app.use(cors());
 
@@ -58,6 +62,8 @@ app.use(morgan('common'));
 // ROUTES
 // ----------------------------------------------------------------
 
+// TODO move routes to separate file
+
 const { categoriesRouter } = require('./api/categories/routes');
 const { businessesRouter } = require('./api/businesses/routes');
 const { bookingsRouter } = require('./api/bookings/routes');
@@ -71,6 +77,8 @@ app.use('/api/bookings', bookingsRouter);
 // ----------------------------------------------------------------
 // DATABASE CONNECTION & SERVER LAUNCH
 // ----------------------------------------------------------------
+
+// TODO move database connection to separate file
 
 // connect to the database
 mongoose.connect(process.env.DB_CONNECTION_STRING)
