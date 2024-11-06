@@ -58,9 +58,9 @@ app.use(morgan('common'));
 // ROUTES
 // ----------------------------------------------------------------
 
-const { categoriesRouter } = require('./api/categories');
-const { businessesRouter } = require('./api/businesses');
-const { bookingsRouter } = require('./api/bookings');
+const { categoriesRouter } = require('./api/categories/routes');
+const { businessesRouter } = require('./api/businesses/routes');
+const { bookingsRouter } = require('./api/bookings/routes');
 
 // middleware to handle the routes. here we define the route prefix
 app.use('/api/categories', categoriesRouter);
