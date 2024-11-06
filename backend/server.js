@@ -6,6 +6,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require('mongoose');
 const { swaggerMiddleware } = require('./middlewares/swagger-middleware');
+const { connectToDB } = require('./utils/db');
 
 // ----------------------------------------------------------------
 // GLOBAL MIDDLEWARES 
@@ -52,14 +53,16 @@ app.use('/api/auth', authRouter);
 // DATABASE CONNECTION & SERVER LAUNCH
 // ----------------------------------------------------------------
 
-// TODO move database connection to separate file
+const startServer = async () => {
+  try {
+      await connectToDB(); // Connect to the database
+      // if connection is successful, start the server
+      app.listen(process.env.API_PORT, () => {
+          console.log(`Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`);
+      });
+  } catch (error) {
+      console.error('Failed to start the server:', error);
+  }
+};
 
-// connect to the database
-mongoose.connect(process.env.DB_CONNECTION_STRING)
-  .then(() => {
-    console.log("Connected to the database successfully");
-    app.listen(process.env.API_PORT, () => {
-    console.log(`Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`);
-  });
-})
-.catch((err) => console.log(err));
+startServer();
