@@ -14,7 +14,7 @@ const BusinessDetail = () => {
     if (error) return <Error message={error} />;
 
     // Find the specific business by id
-    const business = businesses ? businesses.find(b => b.id === parseInt(id)) : null;
+    const business = businesses ? businesses.find(b => b._id === id) : null;
 
     if (business) {
         return (
