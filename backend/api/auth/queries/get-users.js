@@ -1,5 +1,4 @@
 const { UserModel } = require('../model');
-
 /**
  * @swagger
  * /api/auth/users:
