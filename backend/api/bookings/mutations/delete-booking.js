@@ -1,4 +1,4 @@
-const { bookings } = require('../../../data/data');
+const { BookingModel } = require('../../../db/booking-model');
 
 /*
 Example API endpoints for deleting a booking by ID:
@@ -23,27 +23,28 @@ Example API endpoints for deleting a booking by ID:
  *         description: Booking deleted successfully
  */
 
-function deleteBooking(req, res) {
+async function deleteBooking(req, res) {
     const { id } = req.params;
 
     if (!id) {
         return res.status(400).json({ success: false, message: 'Id is required.' });
     }
 
-    // Find the index of the booking with the specified 'id' by comparing it to each booking's id
-    // parseInt(id) is used to ensure 'id' is treated as an integer
-    const index = bookings.findIndex(booking => booking.id === parseInt(id));
-    
-    // Check if the booking with the specified id exists in the 'bookings' array
-    if (index === -1) {
-        // If not found, return a 404 Not Found error with a message
-        return res.status(404).json({ success: false, message: 'Booking not found.' });
+    try {
+        // Find and delete the booking with the specified 'id'
+        const result = await BookingModel.findByIdAndDelete(id);
+        
+        // Check if the booking with the specified id exists
+        if (!result) {
+            // If not found, return a 404 Not Found error with a message
+            return res.status(404).json({ success: false, message: 'Booking not found.' });
+        }
+
+        res.status(200).json({ success: true, message: 'Booking deleted successfully.' });
+    } catch (error) {
+        console.error('Error deleting booking:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
-
-    // Remove the booking from the 'bookings' array using its index
-    bookings.splice(index, 1);
-
-    res.status(200).json({ success: true, message: 'Booking deleted successfully.' });
 }
 
 module.exports = { 
