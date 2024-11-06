@@ -1,4 +1,4 @@
-const { bookings } = require('../../../data/data');
+const { BookingModel } = require('../../../db/booking-model');
 
 /*
 http://localhost:3000/api/bookings
@@ -13,10 +13,21 @@ http://localhost:3000/api/bookings
  *     responses:
  *       200:
  *         description: A list of bookings
+ *       404:
+ *         description: No bookings found
  */
 
-function getBookings(req, res) {
-  res.json(bookings);
+async function getBookings(req, res) {
+  try {
+    const bookings = await BookingModel.find();
+    if (bookings.length === 0) {
+      return res.status(404).json({ success: false, message: 'No bookings found.' });
+    }
+    res.json(bookings);
+  } catch (error) {
+    console.error('Error fetching bookings:', error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
 }
 
 module.exports = {
