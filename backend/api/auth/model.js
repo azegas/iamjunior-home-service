@@ -35,6 +35,15 @@ userSchema.methods.isCorrectPassword = function (password) {
     return bcrypt.compare(password, this.password);
 };
 
+// toJSON method to remove password from user object when sending to client (frontend)
+// this is used to avoid sending the password to the client (frontend)
+// check api response with and without this method
+userSchema.methods.toJSON = function () {
+    const userObject = this.toObject();
+    delete userObject.password;
+    return userObject;
+};
+
 const UserModel = mongoose.model('User', userSchema);
 
 module.exports = {

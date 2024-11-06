@@ -1,5 +1,5 @@
 const { UserModel } = require('../model');
-
+const { generateToken } = require('../password');
 /**
  * @swagger
  * /api/auth/login:
@@ -67,9 +67,14 @@ const loginUser = async (req, res) => {
             });
         }
 
+        // Generate JWT token
+        const token = generateToken(existingUser._id);
+
         res.status(200).json({
             success: true,
             message: 'User logged in successfully',
+            token,
+            user: existingUser
         });
     } catch (error) {
         console.error('Error logging in user:', error);
