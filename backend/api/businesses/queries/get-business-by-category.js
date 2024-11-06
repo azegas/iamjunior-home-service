@@ -1,4 +1,5 @@
-const { businesses } = require('../../../data/data');
+const { BusinessModel } = require('../../../db/business-model');
+const { CategoryModel } = require('../../../db/category-model');
 
 /*
 http://localhost:3000/api/businesses/category/:category
@@ -21,13 +22,24 @@ http://localhost:3000/api/businesses/category/fashion
  *         description: A list of businesses
  */
 
-function getBusinessByCategory(req, res) {
-  const category = req.params.category;
-  const business = businesses.filter(business => business.category.toLowerCase() === category.toLowerCase());
-  if (business.length > 0) {
-    res.json(business);
-  } else {
-    res.status(404).json({ message: 'Business with such category does not exist' });
+async function getBusinessByCategory(req, res) {
+  const categoryName = req.params.category;
+  try {
+    // Find the category ID by name
+    const category = await CategoryModel.findOne({ name: categoryName });
+    if (!category) {
+      return res.status(404).json({ message: 'Category does not exist' });
+    }
+    // Use the category ID to find businesses
+    const businesses = await BusinessModel.find({ category: category._id });
+    if (businesses.length > 0) {
+      res.json(businesses);
+    } else {
+      res.status(404).json({ message: 'Businesses with such category do not exist' });
+    }
+  } catch (error) {
+    console.error('Error fetching businesses by category:', error);
+    res.status(500).json({ message: 'Internal server error.' });
   }
 }
 
