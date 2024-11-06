@@ -1,4 +1,4 @@
-const { BusinessModel } = require('../../../db/category-business');
+const { BusinessModel } = require('../../../db/business-model');
 const { CategoryModel } = require('../../../db/category-model');
 
 /*
@@ -72,7 +72,9 @@ async function postBusiness(req, res) {
         });
     }
 
-    const categoryExists = await CategoryModel.findOne({ name: category });
+    const categoryLowerCase = category.toLowerCase();
+    const categories = await CategoryModel.find();
+    const categoryExists = categories.find(cat => cat.name.toLowerCase() === categoryLowerCase);
     if (!categoryExists) {
         return res.status(400).json({
             success: false,
