@@ -1,4 +1,5 @@
-const { businesses, bookings } = require('../../../data/data');
+const { BusinessModel } = require('../../../db/business-model');
+const { BookingModel } = require('../../../db/booking-model');
 
 /*
 http://localhost:3000/api/businesses/:id/bookings/date/:date
@@ -25,23 +26,28 @@ http://localhost:3000/api/businesses/1/bookings/date/2023-10-01
  *         description: A list of bookings
  */
 
-function getBusinessByIdAndDate(req, res) {
+async function getBusinessByIdAndDate(req, res) {
   const businessId = req.params.id;
   const date = req.params.date;
 
   console.log('businessId:', businessId);
   console.log('date:', date);
     
-  const business = businesses.find(business => business.id === parseInt(businessId));
-  if (business) {
-    const bookingsForDate = bookings.filter(booking => booking.businessId === parseInt(businessId) && booking.date === date);
-    if (bookingsForDate.length > 0) {
-      res.json({ business, bookings: bookingsForDate });
+  try {
+    const business = await BusinessModel.findById(businessId);
+    if (business) {
+      const bookingsForDate = await BookingModel.find({ businessId: businessId, date: date });
+      if (bookingsForDate.length > 0) {
+        res.json({ business, bookings: bookingsForDate });
+      } else {
+        res.status(404).json({ message: 'No bookings found for this date' });
+      }
     } else {
-      res.status(404).json({ message: 'No bookings found for this date' });
+      res.status(404).json({ message: 'Business not found' });
     }
-  } else {
-    res.status(404).json({ message: 'Business not found' });
+  } catch (error) {
+    console.error('Error fetching business or bookings:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 }
 
