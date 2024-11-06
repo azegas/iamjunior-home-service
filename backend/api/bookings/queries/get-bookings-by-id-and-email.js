@@ -1,4 +1,4 @@
-const { bookings } = require('../../../data/data');
+const { BookingModel } = require('../../../db/booking-model');
 
 /*
 http://localhost:3000/api/bookings/:businessId/email/:email
@@ -25,15 +25,20 @@ http://localhost:3000/api/bookings/1/email/user@example.com
  *         description: A list of bookings
  */
 
-function getBookingsByIdAndEmail(req, res) {
+async function getBookingsByIdAndEmail(req, res) {
   const businessId = req.params.businessId;
   const email = req.params.email;
   
-  const filteredBookings = bookings.filter(booking => booking.businessId === parseInt(businessId) && booking.userEmail === email);
-  if (filteredBookings.length > 0) {
-    res.json(filteredBookings);
-  } else {
-    res.status(404).json({ message: 'No bookings found for this business and email' });
+  try {
+    const bookings = await BookingModel.find({ businessId: businessId, userEmail: email });
+    if (bookings.length > 0) {
+      res.json(bookings);
+    } else {
+      res.status(404).json({ message: 'No bookings found for this business and email' });
+    }
+  } catch (error) {
+    console.error('Error fetching bookings:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 }
 
