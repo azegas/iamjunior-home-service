@@ -1,5 +1,5 @@
-const { businesses } = require('../../../data/data');
-const { categories } = require('../../../data/data');
+const { BusinessModel } = require('../../../db/category-business');
+const { CategoryModel } = require('../../../db/category-model');
 
 /*
 http://localhost:3000/api/businesses
@@ -8,6 +8,7 @@ http://localhost:3000/api/businesses
     "name": "Fake Business Name",
     "description": "This is a fake business description.",
     "address": "123 Fake Street, Faketown, USA",
+    "worker": "John Doe",
     "category": "cleaning",
     "contactPerson": "John Doe",
     "email": "john.doe@fakebusiness.com",
@@ -34,6 +35,8 @@ http://localhost:3000/api/businesses
  *                 type: string
  *               address:
  *                 type: string
+ *               worker:
+ *                 type: string
  *               category:
  *                 type: string
  *               contactPerson:
@@ -51,11 +54,11 @@ http://localhost:3000/api/businesses
  *         description: Invalid input
  */
 
-function postBusiness(req, res) {
+async function postBusiness(req, res) {
 
-    const { name, description, address, category, contactPerson, email, images } = req.body;
+    const { name, description, address, worker, category, contactPerson, email, images } = req.body;
 
-    if (!name || !description || !address || !category || !contactPerson || !email || !images) {
+    if (!name || !description || !address || !worker || !category || !contactPerson || !email || !images) {
         return res.status(400).json({
             success: false,
             message: 'Required fields: name, description, address, category, contactPerson, email, and images.'
@@ -69,7 +72,7 @@ function postBusiness(req, res) {
         });
     }
 
-    const categoryExists = categories.some(cat => cat.name === category);
+    const categoryExists = await CategoryModel.findOne({ name: category });
     if (!categoryExists) {
         return res.status(400).json({
             success: false,
@@ -77,21 +80,23 @@ function postBusiness(req, res) {
         });
     }
 
-    businesses.push({
-        id: businesses.length + 1,
+    const newBusiness = new BusinessModel({
         name: req.body.name,
         description: req.body.description,
         address: req.body.address,
-        category: req.body.category,
+        worker: req.body.worker,
+        category: categoryExists._id,
         contactPerson: req.body.contactPerson,
         email: req.body.email,
         images: req.body.images
     });
+
+    await newBusiness.save();
     
     res.json({
         success: true,
         message: 'Business created successfully',
-        business: businesses[businesses.length - 1]
+        business: newBusiness
     });
 }
 
