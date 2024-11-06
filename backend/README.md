@@ -30,8 +30,9 @@ npm run server
 ```
 
 To recreate the database, run the following command:
-```
-cd db
+
+```bash
+cd utils
 node recreate-db.js
 ```
 
