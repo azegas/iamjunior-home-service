@@ -1,4 +1,4 @@
-const { BusinessModel } = require('../../../models/Business');
+const { BusinessModel } = require('../model');
 
 /*
 http://localhost:3000/api/businesses/:id

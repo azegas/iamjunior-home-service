@@ -1,4 +1,4 @@
-const { BookingModel } = require('../../../models/Booking');
+const { BookingModel } = require('../model');
 
 /*
 Example API endpoints for deleting a booking by ID:
