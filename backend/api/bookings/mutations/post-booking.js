@@ -1,5 +1,4 @@
 const { BookingModel } = require('../../../db/booking-model');
-const { BusinessModel } = require('../../../db/business-model');
 
 /*
 http://localhost:3000/api/bookings
