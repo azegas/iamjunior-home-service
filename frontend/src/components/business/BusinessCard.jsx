@@ -18,7 +18,7 @@ const BusinessCard = ({ business, onFavoriteClick }) => {
             <Link to={`/business/${business._id}`} className={styles.businessLink}>
                 <img className={styles.image} src={business.images[0]} alt={business.name} />
                 <div className={styles.info}>
-                    <p className={styles.category}>{business.category}</p>
+                    <p className={styles.category}>{business.category.name}</p>
                     <p className={styles.name}>{business.name}</p>
                     <p className={styles.worker}>{business.worker}</p>
                     <p className={styles.address}>{business.address}</p>

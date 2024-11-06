@@ -21,7 +21,7 @@ const BusinessDetail = () => {
             <div className="container">
                 <h1 className="title">{business.name}</h1>
                 <img src={business.images[0]} alt={business.name} className={styles.businessImage} />
-                <p><strong>Category:</strong> {business.category}</p>
+                <p><strong>Category:</strong> {business.category.name}</p>
                 <p><strong>Description:</strong> {business.description}</p>
                 <p><strong>Address:</strong> {business.address}</p>
                 <p><strong>Contact Person:</strong> {business.worker}</p>

@@ -16,7 +16,7 @@ const Search = () => {
 
     useEffect(() => {
         if (businesses) {
-            const filtered = businesses.filter(business => business.category === categoryName);
+            const filtered = businesses.filter(business => business.category.name === categoryName);
             setFilteredBusinesses(filtered);
         } else {
             setFilteredBusinesses([]);
