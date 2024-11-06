@@ -10,7 +10,7 @@ const Favorites = () => {
     const navigate = useNavigate();
     
     const filteredBusinesses = businesses
-    ? businesses.filter(business => favorites.includes(business.id))
+    ? businesses.filter(business => favorites.includes(business._id))
     : [];
 
     if (favorites.length === 0) {

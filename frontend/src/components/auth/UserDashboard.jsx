@@ -11,7 +11,7 @@ const UserDashboard = () => {
     const navigate = useNavigate();
     
     const filteredBusinesses = businesses
-    ? businesses.filter(business => favorites.includes(business.id))
+    ? businesses.filter(business => favorites.includes(business._id))
     : [];
     
     return <div className="container">

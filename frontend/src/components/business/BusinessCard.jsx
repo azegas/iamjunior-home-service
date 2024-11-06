@@ -12,7 +12,7 @@ const BusinessCard = ({ business, onFavoriteClick }) => {
         <div className={styles.businessCard}>
             
             {user && <img className={styles.favoriteButton} 
-            src={favorites.includes(business.id) ? "https://img.icons8.com/?size=100&id=DFU1kReSUccu&format=png&color=000000" : "https://img.icons8.com/?size=100&id=12306&format=png&color=000000"} 
+            src={favorites.includes(business._id) ? "https://img.icons8.com/?size=100&id=DFU1kReSUccu&format=png&color=000000" : "https://img.icons8.com/?size=100&id=12306&format=png&color=000000"} 
             alt="Favorite" onClick={onFavoriteClick} />}
 
             <Link to={`/business/${business._id}`} className={styles.businessLink}>
