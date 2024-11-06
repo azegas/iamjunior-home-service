@@ -7,9 +7,9 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config({ path: '../.env' });
 
-const { CategoryModel } = require('../db/category-model');
-const { BusinessModel } = require('../db/business-model');
-const { BookingModel } = require('../db/booking-model');
+const { CategoryModel } = require('../api/categories/model');
+const { BusinessModel } = require('../api/businesses/model');
+const { BookingModel } = require('../api/bookings/model');
 
 const categories = require('./sample-data').categories;
 const businesses = require('./sample-data').businesses;

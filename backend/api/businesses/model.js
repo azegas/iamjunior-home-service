@@ -33,7 +33,10 @@ const businessSchema = new mongoose.Schema({
     images: [{ 
         type: String, 
         required: true 
-    }]
+    }],
+}, {
+    timestamps: true,
+    versionKey: false
 });
 
 const BusinessModel = mongoose.model('Business', businessSchema);
