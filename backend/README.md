@@ -9,6 +9,8 @@
       - [2. Įmonės](#2-įmonės)
       - [3. Užsakymai](#3-užsakymai)
       - [Papildomos funkcijos, kurias reikia įgyvendinti:](#papildomos-funkcijos-kurias-reikia-įgyvendinti)
+  - [MongoDB ir Mongoose](#mongodb-ir-mongoose)
+  - [Autentifikacija Node.js](#autentifikacija-nodejs)
 
 
 # iamjunior-home-service (backend)
@@ -77,3 +79,13 @@ Sukurti RESTful API naudojant Express.js, skirtą valdyti kategorijas, įmones i
 #### Papildomos funkcijos, kurias reikia įgyvendinti:
 - [x] Error handling: Įgyvendinti išsamią klaidų tvarkymo sistemą, kad būtų aiškiai pateikiami pranešimai apie trūkstamus duomenis, netinkamas operacijas ir nesėkmingus veiksmus.
 - [x] Data check: Užtikrinti, kad visi įvesties duomenys atitiktų tikėtinus formatus ir apribojimus prieš juos apdorojant.
+
+## MongoDB ir Mongoose
+
+- [x] Panaudoti 5 paskaitos kurtus API ir perdaryti juos naudojant MongoDB ir mongoose
+
+## Autentifikacija Node.js
+
+- [x] Pridėti User schemą su atitinkamais laukais
+- [x] Panaudoti autentifikacijos metodus ir apsaugoti reikiamus API
+- [x] Išskaidyti routes į skirtingus failus pvz. routes/bookingRoutes.js, routes/businessRoutes.js, routes/authRoutes.js
