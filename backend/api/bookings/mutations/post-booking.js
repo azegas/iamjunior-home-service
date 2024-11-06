@@ -1,4 +1,5 @@
-const { bookings } = require('../../../data/data');
+const { BookingModel } = require('../../../db/booking-model');
+const { BusinessModel } = require('../../../db/business-model');
 
 /*
 http://localhost:3000/api/bookings
@@ -45,7 +46,7 @@ http://localhost:3000/api/bookings
  *         description: Invalid input
  */
 
-function postBooking(req, res) {
+async function postBooking(req, res) {
 
     const { businessId, date, time, userEmail, userName, status } = req.body;
 
@@ -58,15 +59,22 @@ function postBooking(req, res) {
     }
 
     // Check if fields are of the correct type
-    if (typeof businessId !== 'string' || typeof date !== 'string' || typeof time !== 'string' || typeof userEmail !== 'string' || typeof userName !== 'string' || typeof status !== 'string' || !userEmail.includes('@')) {
+    if (
+        typeof businessId !== 'string' || 
+        typeof date !== 'string' || 
+        typeof time !== 'string' || 
+        typeof userEmail !== 'string' || 
+        typeof userName !== 'string' || 
+        typeof status !== 'string' || 
+        !userEmail.includes('@')
+    ) {
         return res.status(400).json({
             success: false,
             message: 'businessId, date, time, userEmail, userName, and status should be strings, and userEmail should contain @.'
         });
     }
 
-    bookings.push({
-        id: bookings.length + 1,
+    const newBooking = new BookingModel({
         businessId: req.body.businessId,
         date: req.body.date,
         time: req.body.time,
@@ -74,12 +82,18 @@ function postBooking(req, res) {
         userName: req.body.userName,
         status: req.body.status
     });
-    
-    res.json({
-        success: true,
-        message: 'Booking created successfully',
-        booking: bookings[bookings.length - 1]
-    });
+
+    try {
+        await newBooking.save();
+        res.status(201).json({
+            success: true,
+            message: 'Booking created successfully',
+            booking: newBooking
+        });
+    } catch (error) {
+        console.error('Error creating booking:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
 }
 
 module.exports = {
