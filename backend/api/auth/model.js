@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
     username: { 
@@ -21,12 +20,10 @@ const userSchema = new mongoose.Schema({
     versionKey: false
 });
 
-// userSchema.pre('save', async function (next) {
-//     if (this.isModified('password')) {
-//         this.password = await bcrypt.hash(this.password, 10);
-// }
-//     next();
-// });
+// custom method to check if password is correct
+userSchema.methods.isCorrectPassword = function (password) {
+    return password === this.password;
+};
 
 const UserModel = mongoose.model('User', userSchema);
 

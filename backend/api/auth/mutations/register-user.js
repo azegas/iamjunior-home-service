@@ -1,5 +1,13 @@
 const { UserModel } = require('../model');
 
+/*
+{
+  "username": "aze",
+  "email": "aze@gmail.com",
+  "password": "test123"
+}
+*/
+
 /**
  * @swagger
  * /api/auth/register:
@@ -60,11 +68,20 @@ const registerUser = async (req, res) => {
     }
 
     // Check if username already exists
-    const existingUser = await UserModel.findOne({ username });
-    if (existingUser) {
+    const existingUsername = await UserModel.findOne({ username });
+    if (existingUsername) {
         return res.status(409).json({
             success: false,
             message: 'Username already exists.'
+        });
+    }
+
+    // Check if email already exists
+    const existingEmail = await UserModel.findOne({ email });
+    if (existingEmail) {
+        return res.status(409).json({
+            success: false,
+            message: 'Email already exists.'
         });
     }
 

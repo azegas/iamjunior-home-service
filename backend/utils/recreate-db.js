@@ -1,5 +1,5 @@
 // recreate-db.js is used to recreate the database from scratch
-// it deletes all categories, businesses, and bookings and recreates them with sample data
+// it deletes all categories, businesses, bookings, and users and recreates them with sample data
 // useful when developing locally
 // run this file with "node recreate-db.js"
 
@@ -10,10 +10,12 @@ dotenv.config({ path: '../.env' });
 const { CategoryModel } = require('../api/categories/model');
 const { BusinessModel } = require('../api/businesses/model');
 const { BookingModel } = require('../api/bookings/model');
+const { UserModel } = require('../api/auth/model');
 
 const categories = require('./sample-data').categories;
 const businesses = require('./sample-data').businesses;
 const bookings = require('./sample-data').bookings;
+const users = require('./sample-data').users;
 
 async function connectToDB() {
     if (!process.env.DB_CONNECTION_STRING) {
@@ -70,7 +72,7 @@ async function recreateBusinesses(createdCategories) {
     }
 }
 
-async function recreateBookings() {
+async function deleteBookings() {
     try {
         await BookingModel.deleteMany({});
         console.log('Bookings deleted successfully');
@@ -79,11 +81,22 @@ async function recreateBookings() {
     }
 }
 
+async function deleteUsers() {
+    try {
+        await UserModel.deleteMany({});
+        console.log('Users deleted successfully');
+
+    } catch (error) {
+        console.error('Error recreating users:', error);
+    }
+}
+
 async function main() {
     await connectToDB();
     const createdCategories = await recreateCategories();
     await recreateBusinesses(createdCategories);
-    await recreateBookings();
+    await deleteBookings();
+    await deleteUsers();
     await disconnectFromDB();
     process.exit(0); // Exit process when done
 }
