@@ -1,5 +1,5 @@
-const { BusinessModel } = require('../../../db/business-model');
-const { CategoryModel } = require('../../../db/category-model');
+const { BusinessModel } = require('../../../models/Business');
+const { CategoryModel } = require('../../../models/Category');
 
 /*
 http://localhost:3000/api/businesses

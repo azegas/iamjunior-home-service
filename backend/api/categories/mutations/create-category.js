@@ -1,4 +1,4 @@
-const { CategoryModel } = require('../../../db/category-model');
+const { CategoryModel } = require('../../../models/Category');
 
 /*
 http://localhost:3000/api/categories
