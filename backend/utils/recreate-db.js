@@ -6,6 +6,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config({ path: '../.env' });
+const bcrypt = require('bcryptjs');
 
 const { CategoryModel } = require('../api/categories/model');
 const { BusinessModel } = require('../api/businesses/model');
@@ -94,7 +95,13 @@ async function deleteUsers() {
 async function createUsers() {
     try {
         if (users.length > 0) {
-            const createdUsers = await UserModel.insertMany(users);
+            // Encrypt user passwords before inserting, otherwise the passwords will be stored in plain text and when logging in,
+            // the passwords will be attempted to be decrypted with bcryptjs which will fail and throw an error
+            const encryptedUsers = users.map(user => ({
+                ...user,
+                password: bcrypt.hashSync(user.password, 10)
+            }));
+            const createdUsers = await UserModel.insertMany(encryptedUsers);
             console.log(`Users recreated successfully`);
             return createdUsers;
         } else {
