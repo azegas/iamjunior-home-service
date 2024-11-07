@@ -1,5 +1,5 @@
-const express = require("express");
-require("dotenv").config();
+const express = require('express');
+require('dotenv').config();
 const app = express();
 const { swaggerMiddleware } = require('./middlewares/swaggerMiddleware');
 const { globalMiddlewares } = require('./middlewares/globalMiddlewares');
@@ -30,15 +30,15 @@ app.use('/api/auth', authRouter);
 // ----------------------------------------------------------------
 
 const startServer = async () => {
-  try {
-      await connectToDB(); // Connect to the database
-      // if connection is successful, start the server
-      app.listen(process.env.API_PORT, () => {
-          console.log(`Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`);
-      });
-  } catch (error) {
-      console.error('Failed to start the server:', error);
-  }
+    try {
+        await connectToDB(); // Connect to the database
+        // if connection is successful, start the server
+        app.listen(process.env.API_PORT, () => {
+            console.log(`Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`);
+        });
+    } catch (error) {
+        console.error('Failed to start the server:', error);
+    }
 };
 
 startServer();
