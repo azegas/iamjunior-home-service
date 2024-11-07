@@ -1,16 +1,17 @@
--   [iamjunior-home-service (backend)](#iamjunior-home-service-backend)
--   [BONUS tasks](#bonus-tasks)
--   [Uzduotys](#uzduotys)
-    -   [Node.js ir Express pagrindai](#nodejs-ir-express-pagrindai)
-        -   [Home service aplikacijos API](#home-service-aplikacijos-api)
-        -   [Duomenų Modeliai:](#duomenų-modeliai)
-        -   [API kuriuos reikia įgyvendinti:](#api-kuriuos-reikia-įgyvendinti)
-            -   [1. Kategorijos](#1-kategorijos)
-            -   [2. Įmonės](#2-įmonės)
-            -   [3. Užsakymai](#3-užsakymai)
-            -   [Papildomos funkcijos, kurias reikia įgyvendinti:](#papildomos-funkcijos-kurias-reikia-įgyvendinti)
-    -   [MongoDB ir Mongoose](#mongodb-ir-mongoose)
-    -   [Autentifikacija Node.js](#autentifikacija-nodejs)
+- [iamjunior-home-service (backend)](#iamjunior-home-service-backend)
+- [BONUS tasks](#bonus-tasks)
+- [Uzduotys](#uzduotys)
+  - [Node.js ir Express pagrindai](#nodejs-ir-express-pagrindai)
+    - [Home service aplikacijos API](#home-service-aplikacijos-api)
+    - [Duomenų Modeliai:](#duomenų-modeliai)
+    - [API kuriuos reikia įgyvendinti:](#api-kuriuos-reikia-įgyvendinti)
+      - [1. Kategorijos](#1-kategorijos)
+      - [2. Įmonės](#2-įmonės)
+      - [3. Užsakymai](#3-užsakymai)
+      - [Papildomos funkcijos, kurias reikia įgyvendinti:](#papildomos-funkcijos-kurias-reikia-įgyvendinti)
+  - [MongoDB ir Mongoose](#mongodb-ir-mongoose)
+  - [Autentifikacija Node.js](#autentifikacija-nodejs)
+  - [ESlint ir Prettier](#eslint-ir-prettier)
 
 # iamjunior-home-service (backend)
 
@@ -93,3 +94,8 @@ Sukurti RESTful API naudojant Express.js, skirtą valdyti kategorijas, įmones i
 -   [x] Pridėti User schemą su atitinkamais laukais
 -   [x] Panaudoti autentifikacijos metodus ir apsaugoti reikiamus API
 -   [x] Išskaidyti routes į skirtingus failus pvz. routes/bookingRoutes.js, routes/businessRoutes.js, routes/authRoutes.js
+
+## ESlint ir Prettier
+
+-   [x] Integruoti ESlint ir atitikti visus ESlint reikalavimus
+-   [x] Integruoti Prettier ir suformatuoti visus failus
