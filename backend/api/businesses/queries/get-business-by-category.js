@@ -37,8 +37,7 @@ async function getBusinessByCategory(req, res) {
         } else {
             res.status(404).json({ message: 'Businesses with such category do not exist' });
         }
-    } catch (error) {
-        console.error('Error fetching businesses by category:', error);
+    } catch {
         res.status(500).json({ message: 'Internal server error.' });
     }
 }

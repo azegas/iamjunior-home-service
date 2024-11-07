@@ -117,8 +117,7 @@ async function putBusiness(req, res) {
 
         // Return success message with updated business data
         res.json({ message: 'Business updated', business });
-    } catch (error) {
-        console.error('Error updating business:', error);
+    } catch {
         res.status(500).json({ message: 'Internal server error.' });
     }
 }

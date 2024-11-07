@@ -7,9 +7,11 @@ const connectToDB = async () => {
 
     try {
         await mongoose.connect(process.env.DB_CONNECTION_STRING);
+        // eslint-disable-next-line no-console
         console.log('Connected to the database successfully');
     } catch (error) {
-        console.error('Error connecting to the database:', error);
+        // eslint-disable-next-line no-console
+        console.error('Error connecting to the database:');
         throw error; // Rethrow the error to handle it in the main file
     }
 };

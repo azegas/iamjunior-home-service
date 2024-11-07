@@ -54,16 +54,18 @@ http://localhost:3000/api/businesses
  *         description: Invalid input
  */
 
-async function postBusiness(req, res) {
-    const { name, description, address, worker, category, contactPerson, email, images } = req.body;
-
+// Helper function to validate required fields
+const validateRequiredFields = (fields) => {
+    const { name, description, address, worker, category, contactPerson, email, images } = fields;
     if (!name || !description || !address || !worker || !category || !contactPerson || !email || !images) {
-        return res.status(400).json({
-            success: false,
-            message: 'Required fields: name, description, address, category, contactPerson, email, and images.'
-        });
+        return 'Required fields: name, description, address, worker, category, contactPerson, email, and images.';
     }
+    return null;
+};
 
+// Helper function to validate field types
+const validateFieldTypes = (fields) => {
+    const { name, description, address, contactPerson, email, images } = fields;
     if (
         typeof name !== 'string' ||
         typeof description !== 'string' ||
@@ -73,43 +75,61 @@ async function postBusiness(req, res) {
         !email.includes('@') ||
         !Array.isArray(images)
     ) {
-        return res.status(400).json({
-            success: false,
-            message:
-                'Name, description, address, contactPerson, and email should be strings, images should be an array, and email should contain @.'
-        });
+        return 'Name, description, address, contactPerson, and email should be strings, images should be an array, and email should contain @.';
+    }
+    return null;
+};
+
+// Helper function to check if category exists
+const checkCategoryExists = async (categoryName) => {
+    const categories = await CategoryModel.find();
+    return categories.find((cat) => cat.name.toLowerCase() === categoryName.toLowerCase());
+};
+
+// Main function
+const postBusiness = async (req, res) => {
+    const { name, description, address, worker, category, contactPerson, email, images } = req.body;
+
+    // Validate required fields
+    const requiredFieldsError = validateRequiredFields(req.body);
+    if (requiredFieldsError) {
+        return res.status(400).json({ success: false, message: requiredFieldsError });
     }
 
-    const categoryLowerCase = category.toLowerCase();
-    const categories = await CategoryModel.find();
-    const categoryExists = categories.find((cat) => cat.name.toLowerCase() === categoryLowerCase);
+    // Validate field types
+    const fieldTypesError = validateFieldTypes(req.body);
+    if (fieldTypesError) {
+        return res.status(400).json({ success: false, message: fieldTypesError });
+    }
+
+    // Check if category exists
+    const categoryExists = await checkCategoryExists(category);
     if (!categoryExists) {
         return res.status(400).json({
             success: false,
-            message: `Category '${category}' does not exist. Available categories are: ${categories.map((cat) => cat.name).join(', ')}.`
+            message: `Category '${category}' does not exist. Available categories are: ${await CategoryModel.distinct('name').join(', ')}.`
         });
     }
 
+    // Create and save new business
     const newBusiness = new BusinessModel({
-        name: req.body.name,
-        description: req.body.description,
-        address: req.body.address,
-        worker: req.body.worker,
+        name,
+        description,
+        address,
+        worker,
         category: categoryExists._id,
-        contactPerson: req.body.contactPerson,
-        email: req.body.email,
-        images: req.body.images
+        contactPerson,
+        email,
+        images
     });
 
     await newBusiness.save();
 
-    res.json({
+    res.status(201).json({
         success: true,
         message: 'Business created successfully',
         business: newBusiness
     });
-}
-
-module.exports = {
-    postBusiness
 };
+
+module.exports = { postBusiness };

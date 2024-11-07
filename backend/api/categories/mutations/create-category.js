@@ -38,47 +38,66 @@ http://localhost:3000/api/categories
  *         description: Category already exists
  */
 
-async function createCategory(req, res) {
+// Helper function to validate required fields
+const validateRequiredFields = ({ name, color, icon }) => {
+    if (!name || !color || !icon) {
+        return 'Please provide name, color, and icon.';
+    }
+    return null;
+};
+
+// Helper function to validate field types and formats
+const validateFieldTypes = ({ name, color, icon }) => {
+    if (
+        typeof name !== 'string' ||
+        typeof color !== 'string' ||
+        typeof icon !== 'string' ||
+        !icon.startsWith('http')
+    ) {
+        return 'Name, color, and icon should be strings, and icon should start with "http".';
+    }
+    return null;
+};
+
+// Main function to create a category
+const createCategory = async (req, res) => {
     const { name, color, icon } = req.body;
 
-    if (!name || !color || !icon) {
-        return res.status(400).json({ success: false, message: 'Please provide name, color, and icon.' });
+    // Validate required fields
+    const requiredFieldsError = validateRequiredFields(req.body);
+    if (requiredFieldsError) {
+        return res.status(400).json({ success: false, message: requiredFieldsError });
     }
-    if (typeof name !== 'string' || typeof color !== 'string' || typeof icon !== 'string' || !icon.startsWith('http')) {
-        return res
-            .status(400)
-            .json({
-                success: false,
-                message:
-                    'Name should be a string, color should be a string, and icon should be a string starting with http.'
-            });
+
+    // Validate field types and formats
+    const fieldTypesError = validateFieldTypes(req.body);
+    if (fieldTypesError) {
+        return res.status(400).json({ success: false, message: fieldTypesError });
     }
 
     try {
+        // Check for existing category by name
         const existingCategory = await CategoryModel.findOne({ name });
         if (existingCategory) {
             return res.status(409).json({ success: false, message: `Category with name '${name}' already exists.` });
         }
-        const newCategory = new CategoryModel({
-            name,
-            color,
-            icon
-        });
+
+        // Create and save new category
+        const newCategory = new CategoryModel({ name, color, icon });
         const category = await newCategory.save();
+
         res.status(201).json({
             success: true,
             message: 'Category created successfully',
             category
         });
     } catch (error) {
-        // 11000 is a MongoDB-specific error code that indicates a duplicate key error
+        // Handle duplicate key error (MongoDB error code 11000)
         if (error.code === 11000) {
             return res.status(409).json({ success: false, message: 'Category already exists.' });
         }
-        return res.status(500).json({ success: false, message: 'Internal server error.' });
+        res.status(500).json({ success: false, message: 'Internal server error.' });
     }
-}
-
-module.exports = {
-    createCategory
 };
+
+module.exports = { createCategory };

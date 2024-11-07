@@ -15,7 +15,7 @@ const authMiddleware = (req, res, next) => {
         const payload = jwt.verify(token, process.env.JWT_SECRET);
         req.currentUser = payload;
         next(); // move to the next function
-    } catch (error) {
+    } catch {
         res.status(401).json({ message: 'Unauthorized' });
         return;
     }

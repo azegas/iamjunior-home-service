@@ -15,19 +15,21 @@ const { UserModel } = require('../api/auth/model');
 
 const categories = require('./sample-data').categories;
 const businesses = require('./sample-data').businesses;
-const bookings = require('./sample-data').bookings;
 const users = require('./sample-data').users;
 
 async function connectToDB() {
     if (!process.env.DB_CONNECTION_STRING) {
+        // eslint-disable-next-line no-console
         console.error('Error: DB_CONNECTION_STRING environment variable is not set.');
         process.exit(1); // Exit with an error code
     }
 
     try {
         await mongoose.connect(process.env.DB_CONNECTION_STRING);
+        // eslint-disable-next-line no-console
         console.log('Connected to the database successfully');
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error connecting to the database:', error);
         process.exit(1); // Exit with an error code
     }
@@ -36,8 +38,10 @@ async function connectToDB() {
 async function disconnectFromDB() {
     try {
         await mongoose.connection.close();
+        // eslint-disable-next-line no-console
         console.log('Disconnected from the database successfully');
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error disconnecting from the database:', error);
     }
 }
@@ -45,12 +49,15 @@ async function disconnectFromDB() {
 async function recreateCategories() {
     try {
         await CategoryModel.deleteMany({});
+        // eslint-disable-next-line no-console
         console.log('Categories deleted successfully');
 
         const createdCategories = await CategoryModel.insertMany(categories);
+        // eslint-disable-next-line no-console
         console.log('Categories recreated successfully');
         return createdCategories;
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error recreating categories:', error);
     }
 }
@@ -58,6 +65,7 @@ async function recreateCategories() {
 async function recreateBusinesses(createdCategories) {
     try {
         await BusinessModel.deleteMany({});
+        // eslint-disable-next-line no-console
         console.log('Businesses deleted successfully');
 
         // Map the business categories to their corresponding IDs
@@ -67,8 +75,10 @@ async function recreateBusinesses(createdCategories) {
         });
 
         await BusinessModel.insertMany(businessesWithCategoryId);
+        // eslint-disable-next-line no-console
         console.log('Businesses recreated successfully');
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error recreating businesses:', error);
     }
 }
@@ -76,8 +86,10 @@ async function recreateBusinesses(createdCategories) {
 async function deleteBookings() {
     try {
         await BookingModel.deleteMany({});
+        // eslint-disable-next-line no-console
         console.log('Bookings deleted successfully');
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error recreating bookings:', error);
     }
 }
@@ -85,8 +97,10 @@ async function deleteBookings() {
 async function deleteUsers() {
     try {
         await UserModel.deleteMany({});
+        // eslint-disable-next-line no-console
         console.log('Users deleted successfully');
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error recreating users:', error);
     }
 }
@@ -101,12 +115,15 @@ async function createUsers() {
                 password: bcrypt.hashSync(user.password, 10)
             }));
             const createdUsers = await UserModel.insertMany(encryptedUsers);
+            // eslint-disable-next-line no-console
             console.log(`Users recreated successfully`);
             return createdUsers;
         } else {
+            // eslint-disable-next-line no-console
             console.error('No user data found to create users');
         }
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error creating users:', error);
     }
 }
@@ -120,6 +137,7 @@ async function createRandomBookingsForUsers() {
             // Fetch all businesses from the database
             const businesses = await BusinessModel.find();
             if (!businesses.length) {
+                // eslint-disable-next-line no-console
                 console.error('No businesses found in the database to create bookings for.');
                 return;
             }
@@ -143,11 +161,14 @@ async function createRandomBookingsForUsers() {
                     await randomBooking.save();
                 }
             }
+            // eslint-disable-next-line no-console
             console.log('Bookings created successfully');
         } else {
+            // eslint-disable-next-line no-console
             console.error('No users found to create random bookings');
         }
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error creating random bookings:', error);
     }
 }

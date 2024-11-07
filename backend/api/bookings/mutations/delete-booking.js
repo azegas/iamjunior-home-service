@@ -40,8 +40,7 @@ async function deleteBooking(req, res) {
         }
 
         res.status(200).json({ success: true, message: 'Booking deleted successfully.' });
-    } catch (error) {
-        console.error('Error deleting booking:', error);
+    } catch {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 }

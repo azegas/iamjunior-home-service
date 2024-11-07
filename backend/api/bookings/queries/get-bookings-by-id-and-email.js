@@ -36,8 +36,7 @@ async function getBookingsByIdAndEmail(req, res) {
         } else {
             res.status(404).json({ message: 'No bookings found for this business and email' });
         }
-    } catch (error) {
-        console.error('Error fetching bookings:', error);
+    } catch {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 }

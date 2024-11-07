@@ -73,8 +73,7 @@ const loginUser = async (req, res) => {
             token,
             user: existingUser
         });
-    } catch (error) {
-        console.error('Error logging in user:', error);
+    } catch {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };

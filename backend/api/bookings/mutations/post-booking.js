@@ -13,6 +13,8 @@ http://localhost:3000/api/bookings
 }
 */
 
+// TODO user should be from available users, not random
+
 /**
  * @swagger
  * /api/bookings:
@@ -45,42 +47,48 @@ http://localhost:3000/api/bookings
  *         description: Invalid input
  */
 
-async function postBooking(req, res) {
-    const { businessId, date, time, userEmail, userName, status } = req.body;
-
-    // Check if all required fields are provided
+const validateRequiredFields = (fields) => {
+    const { businessId, date, time, userEmail, userName, status } = fields;
     if (!businessId || !date || !time || !userEmail || !userName || !status) {
-        return res.status(400).json({
-            success: false,
-            message: 'Required fields: businessId, date, time, userEmail, userName, and status.'
-        });
+        return 'Required fields: businessId, date, time, userEmail, userName, and status.';
     }
+    return null;
+};
 
-    // Check if fields are of the correct type
+const validateFieldTypes = (fields) => {
+    const { businessId, date, time, userEmail, userName, status } = fields;
     if (
         typeof businessId !== 'string' ||
         typeof date !== 'string' ||
         typeof time !== 'string' ||
         typeof userEmail !== 'string' ||
         typeof userName !== 'string' ||
-        typeof status !== 'string' ||
-        !userEmail.includes('@')
+        typeof status !== 'string'
     ) {
-        return res.status(400).json({
-            success: false,
-            message:
-                'businessId, date, time, userEmail, userName, and status should be strings, and userEmail should contain @.'
-        });
+        return 'All fields should be strings.';
+    }
+    if (!userEmail.includes('@')) {
+        return 'userEmail should contain @.';
+    }
+    return null;
+};
+
+const postBooking = async (req, res) => {
+    const { businessId, date, time, userEmail, userName, status } = req.body;
+
+    // Validate required fields
+    const requiredFieldsError = validateRequiredFields(req.body);
+    if (requiredFieldsError) {
+        return res.status(400).json({ success: false, message: requiredFieldsError });
     }
 
-    const newBooking = new BookingModel({
-        businessId: req.body.businessId,
-        date: req.body.date,
-        time: req.body.time,
-        userEmail: req.body.userEmail,
-        userName: req.body.userName,
-        status: req.body.status
-    });
+    // Validate field types
+    const fieldTypesError = validateFieldTypes(req.body);
+    if (fieldTypesError) {
+        return res.status(400).json({ success: false, message: fieldTypesError });
+    }
+
+    const newBooking = new BookingModel({ businessId, date, time, userEmail, userName, status });
 
     try {
         await newBooking.save();
@@ -89,12 +97,9 @@ async function postBooking(req, res) {
             message: 'Booking created successfully',
             booking: newBooking
         });
-    } catch (error) {
-        console.error('Error creating booking:', error);
+    } catch {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
-}
-
-module.exports = {
-    postBooking
 };
+
+module.exports = { postBooking };

@@ -30,9 +30,6 @@ async function getBusinessByIdAndDate(req, res) {
     const businessId = req.params.id;
     const date = req.params.date;
 
-    console.log('businessId:', businessId);
-    console.log('date:', date);
-
     try {
         const business = await BusinessModel.findById(businessId);
         if (business) {
@@ -45,8 +42,7 @@ async function getBusinessByIdAndDate(req, res) {
         } else {
             res.status(404).json({ message: 'Business not found' });
         }
-    } catch (error) {
-        console.error('Error fetching business or bookings:', error);
+    } catch {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 }

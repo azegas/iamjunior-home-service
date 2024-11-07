@@ -24,8 +24,7 @@ async function getBookings(req, res) {
             return res.status(404).json({ success: false, message: 'No bookings found.' });
         }
         res.json(bookings);
-    } catch (error) {
-        console.error('Error fetching bookings:', error);
+    } catch {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 }
