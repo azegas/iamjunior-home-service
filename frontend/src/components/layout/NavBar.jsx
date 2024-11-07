@@ -18,17 +18,19 @@ const Navbar = () => {
             <nav className={styles.navbar}>
                 <div className={styles.left}>
                 <div className={styles.logo}>
-                    <img src={Logo} alt="Home Service Logo" onClick={() => navigate('/')} />
+                    <img className={styles.logo} src={Logo} alt="Home Service Logo" onClick={() => navigate('/')} />
                 </div>
                 <div className={styles.links}>
                     <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>Home Service</NavLink>
                     <NavLink to="/services" className={({ isActive }) => isActive ? "active" : ""}>Services</NavLink>
                     <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>About</NavLink>
                     <NavLink to="/contact" className={({ isActive }) => isActive ? "active" : ""}>Contact</NavLink>
-                    {user && <NavLink to="/favorites" className={({ isActive }) => isActive ? "active" : ""}>Favorites ({favorites.length})</NavLink>}
                 </div>
             </div>
             <div className={styles.right}>
+                <NavLink to="/favorites">
+                    <img className={styles.favoriteIcon} src="https://img.icons8.com/?id=DFU1kReSUccu&format=png&color=000000" alt="Favorites Icon" />
+                </NavLink>
                 
                 {user ? (
                     <>
