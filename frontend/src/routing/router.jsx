@@ -14,6 +14,7 @@ import Dashboard from '../pages/Dashboard';
 import BusinessDetail from '../components/business/BusinessDetail';
 import Favorites from '../pages/Favorites';
 import { Outlet } from 'react-router-dom';
+import routes from './routes';
 
 // Define the Root component
 const Root = () => {
@@ -28,20 +29,20 @@ const Root = () => {
 // Define the routes
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: routes.home,
         element: <Root />,
         children: [
             { path: '', element: <Home /> },
-            { path: 'services', element: <Services /> },
-            { path: 'contact', element: <Contact /> },
-            { path: 'about', element: <About /> },
-            { path: 'login', element: <Login /> },
-            { path: 'register', element: <Register /> },
-            { path: 'search/:categoryName', element: <Search /> },
-            { path: '*', element: <Page404 /> },
-            { path: 'business/:id', element: <BusinessDetail /> },
-            { path: 'favorites', element: <Favorites /> },
-            { path: 'dashboard', element: <Dashboard /> }
+            { path: routes.services, element: <Services /> },
+            { path: routes.contact, element: <Contact /> },
+            { path: routes.about, element: <About /> },
+            { path: routes.login, element: <Login /> },
+            { path: routes.register, element: <Register /> },
+            { path: routes.search(':categoryName'), element: <Search /> },
+            { path: routes.page404, element: <Page404 /> },
+            { path: routes.business(':id'), element: <BusinessDetail /> },
+            { path: routes.favorites, element: <Favorites /> },
+            { path: routes.dashboard, element: <Dashboard /> }
         ]
     }
 ]);

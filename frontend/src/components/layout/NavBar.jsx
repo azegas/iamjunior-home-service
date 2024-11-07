@@ -6,12 +6,13 @@ import { useUser } from '../../context/UserContext';
 import { useFavorite } from '../../context/FavoriteContext';
 import { toast } from 'react-toastify';
 import Container from '../common/Container';
+import routes from '../../routing/routes';
 
 const menuItemsLeft = [
-    { link: '/', title: 'Home Service' },
-    { link: '/services', title: 'Services' },
-    { link: '/about', title: 'About' },
-    { link: '/contact', title: 'Contact' }
+    { link: routes.home, title: 'Home Service' },
+    { link: routes.services, title: 'Services' },
+    { link: routes.about, title: 'About' },
+    { link: routes.contact, title: 'Contact' }
 ];
 
 const Navbar = () => {
