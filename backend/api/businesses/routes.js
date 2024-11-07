@@ -7,7 +7,7 @@ const { getBusinessByCategory } = require('./queries/get-business-by-category');
 const { putBusiness } = require('./mutations/put-business-by-id');
 const { getBusinessByIdAndDate } = require('./queries/get-business-bookings-by-id-and-booking-date');
 
-const { authMiddleware } = require('../../middlewares/auth-middleware');
+const { authMiddleware } = require('../../middlewares/authMiddleware');
 
 const businessesRouter = express.Router();
 

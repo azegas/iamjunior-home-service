@@ -1,36 +1,12 @@
 const express = require("express");
-const path = require("path");
-const morgan = require("morgan");
 require("dotenv").config();
 const app = express();
-const cors = require("cors");
-const mongoose = require('mongoose');
-const { swaggerMiddleware } = require('./middlewares/swagger-middleware');
+const { swaggerMiddleware } = require('./middlewares/swaggerMiddleware');
+const { globalMiddlewares } = require('./middlewares/globalMiddlewares');
 const { connectToDB } = require('./utils/db');
 
-// ----------------------------------------------------------------
-// GLOBAL MIDDLEWARES 
-// ----------------------------------------------------------------
-
+globalMiddlewares(app);
 swaggerMiddleware(app);
-
-// middleware - cors (allow requests from the frontend, all ips. CHANGE THIS IN PROD)
-app.use(cors());
-
-app.use(express.static(path.join(__dirname, '../public')));
-
-// middleware - custom middleware before processing requests
-app.use((req, res, next) => {
-    // console.log('hello from custom middleware');
-    next();
-});
-
-// middleware - parses(decrypts, decompresses) JSON bodies
-app.use(express.json());
-
-// middleware - logs request details
-app.use(morgan('common'));
-
 
 // ----------------------------------------------------------------
 // ROUTES
