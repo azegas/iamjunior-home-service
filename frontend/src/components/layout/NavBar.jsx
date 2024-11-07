@@ -41,6 +41,7 @@ const Navbar = () => {
                             src="https://img.icons8.com/?id=DFU1kReSUccu&format=png&color=000000"
                             alt="Favorites Icon"
                         />
+                        <span>{favorites.length}</span>
                     </NavLink>
 
                     {user ? (

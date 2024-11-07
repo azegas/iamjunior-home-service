@@ -28,7 +28,7 @@ const useFetch = () => {
                 }
 
                 setIsLoading(false); // Stop loading regardless of success or errors
-            } catch (error) {
+            } catch {
                 setErrors([{ message: 'Failed to fetch data' }]);
                 setIsLoading(false);
             }
