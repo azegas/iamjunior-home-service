@@ -6,7 +6,7 @@ import '../../styles/global.scss';
 import { toast } from 'react-toastify';
 
 const RegisterForm = () => {
-    const { saveUser } = useUser();
+    const { saveUserToContext } = useUser();
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -41,11 +41,10 @@ const RegisterForm = () => {
             const data = await response.json();
 
             if (response.ok) {
-                saveUser(data.user); // Assuming the API returns the user object
+                saveUserToContext(data.user);
                 toast.success(`Registered successfully, hello ${username}!`);
                 navigate('/');
             } else {
-                // Handle errors from the API
                 if (data.message) {
                     toast.error(data.message);
                 }

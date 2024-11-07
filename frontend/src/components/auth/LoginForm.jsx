@@ -6,7 +6,7 @@ import '../../styles/global.scss';
 import { toast } from 'react-toastify';
 
 const LoginForm = () => {
-    const { saveUser } = useUser();
+    const { saveUserToContext } = useUser();
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -34,7 +34,7 @@ const LoginForm = () => {
             const data = await response.json();
 
             if (response.ok) {
-                saveUser(data.user); // Assuming the API returns the user object
+                saveUserToContext(data.user); // Assuming the API returns the user object
                 toast.success(`Login successful, hello ${data.user.username}! You can now add businesses to your favorites.`);
                 navigate('/');
             } else {

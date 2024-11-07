@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { user, clearUser } = useUser();
+    const { user, clearUserFromContext } = useUser();
     const { favorites } = useFavorite();
     
     return (
@@ -36,7 +36,7 @@ const Navbar = () => {
                             <NavLink to="/dashboard" className={({ isActive }) => isActive ? "active" : ""}>{user.username} Dashboard!</NavLink>
                         </div>
                         <button onClick={() => {
-                            clearUser();
+                            clearUserFromContext();
                             toast.success(`Logged out successfully, bye ${user.username}!`);
                             navigate('/');
                         }}>Logout</button>

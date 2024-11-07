@@ -8,18 +8,18 @@ export const UserProvider = ({ children }) => {
         return savedUser ? JSON.parse(savedUser) : null;
     });
 
-    const saveUser = (userData) => {
+    const saveUserToContext = (userData) => {
         setUser(userData);
         localStorage.setItem('user', JSON.stringify(userData));
     };
 
-    const clearUser = () => {
+    const clearUserFromContext = () => {
         setUser(null);
         localStorage.removeItem('user');
     };
 
     return (
-        <UserContext.Provider value={{ user, saveUser, clearUser }}>
+        <UserContext.Provider value={{ user, saveUserToContext, clearUserFromContext }}>
             {children}
         </UserContext.Provider>
     );
