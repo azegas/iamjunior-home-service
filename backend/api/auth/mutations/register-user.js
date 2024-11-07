@@ -48,11 +48,7 @@ const registerUser = async (req, res) => {
     }
 
     // Check if fields are of the correct type
-    if (
-        typeof username !== 'string' || 
-        typeof email !== 'string' || 
-        typeof password !== 'string'
-    ) {
+    if (typeof username !== 'string' || typeof email !== 'string' || typeof password !== 'string') {
         return res.status(400).json({
             success: false,
             message: 'username, email, and password should be strings.'
@@ -96,6 +92,6 @@ const registerUser = async (req, res) => {
         console.error('Error registering user:', error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
-}
+};
 
 module.exports = { registerUser };

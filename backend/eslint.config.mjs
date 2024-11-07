@@ -2,7 +2,7 @@
 
 Eslint = Linter
 
-Eslint linter CAN contain stylistic rules, but then it might conflict with Prettier.
+Eslint linter CAN contain stylistic rules, but then it might conflict with Prettier (.prettierrc).
 
 That is why we will use eslint for code quality rules, and Prettier for stylistic rules.
 
@@ -16,7 +16,8 @@ Open a FOLDER, not a REPOSITORY in which the .vscode folder is for eslint to wor
 install ESLint package
 then in .vscode/settings.json tell eslint plugin to make changes on save
 
-To run eslint manually - run npm run lint
+To run eslint manually - npm run lint
+To run prettier manually - npm run format
 */
 
 import globals from 'globals';

@@ -13,5 +13,5 @@ bookingsRouter.post('/', postBooking);
 bookingsRouter.delete('/:id', deleteBooking);
 
 module.exports = {
-  bookingsRouter,
-}
+    bookingsRouter
+};

@@ -38,10 +38,7 @@ const loginUser = async (req, res) => {
     }
 
     // Check if fields are of the correct type
-    if (
-        typeof email !== 'string' || 
-        typeof password !== 'string'
-    ) {
+    if (typeof email !== 'string' || typeof password !== 'string') {
         return res.status(400).json({
             success: false,
             message: 'email and password should be strings.'
@@ -80,8 +77,8 @@ const loginUser = async (req, res) => {
         console.error('Error logging in user:', error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
-}
+};
 
-module.exports = { 
-    loginUser 
+module.exports = {
+    loginUser
 };

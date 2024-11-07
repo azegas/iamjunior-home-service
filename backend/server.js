@@ -34,7 +34,9 @@ const startServer = async () => {
         await connectToDB(); // Connect to the database
         // if connection is successful, start the server
         app.listen(process.env.API_PORT, () => {
-            console.log(`Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`);
+            console.log(
+                `Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`
+            );
         });
     } catch (error) {
         console.error('Failed to start the server:', error);

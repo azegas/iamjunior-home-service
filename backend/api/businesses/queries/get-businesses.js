@@ -16,19 +16,19 @@ http://localhost:3000/api/businesses
  */
 
 async function getBusinesses(req, res) {
-  try {
-    // populate basically means "expand" the category field to include ALL the fields in the Category model. Without it - we would only get the category id
-    const businesses = await BusinessModel.find().populate('category');
-    if (businesses.length === 0) {
-      return res.status(404).json({ success: false, message: 'No businesses found.' });
+    try {
+        // populate basically means "expand" the category field to include ALL the fields in the Category model. Without it - we would only get the category id
+        const businesses = await BusinessModel.find().populate('category');
+        if (businesses.length === 0) {
+            return res.status(404).json({ success: false, message: 'No businesses found.' });
+        }
+        res.json(businesses);
+    } catch (error) {
+        console.error('Error fetching businesses:', error);
+        res.status(500).json({ success: false, message: 'Internal server error.' });
     }
-    res.json(businesses);
-  } catch (error) {
-    console.error('Error fetching businesses:', error);
-    res.status(500).json({ success: false, message: 'Internal server error.' });
-  }
 }
 
 module.exports = {
-  getBusinesses
-}
+    getBusinesses
+};

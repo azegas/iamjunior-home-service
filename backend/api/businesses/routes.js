@@ -19,5 +19,5 @@ businessesRouter.put('/:id', authMiddleware, putBusiness);
 businessesRouter.get('/:id/bookings/date/:date', getBusinessByIdAndDate);
 
 module.exports = {
-  businessesRouter,
-}
+    businessesRouter
+};

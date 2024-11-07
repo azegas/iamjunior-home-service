@@ -46,7 +46,6 @@ http://localhost:3000/api/bookings
  */
 
 async function postBooking(req, res) {
-
     const { businessId, date, time, userEmail, userName, status } = req.body;
 
     // Check if all required fields are provided
@@ -59,17 +58,18 @@ async function postBooking(req, res) {
 
     // Check if fields are of the correct type
     if (
-        typeof businessId !== 'string' || 
-        typeof date !== 'string' || 
-        typeof time !== 'string' || 
-        typeof userEmail !== 'string' || 
-        typeof userName !== 'string' || 
-        typeof status !== 'string' || 
+        typeof businessId !== 'string' ||
+        typeof date !== 'string' ||
+        typeof time !== 'string' ||
+        typeof userEmail !== 'string' ||
+        typeof userName !== 'string' ||
+        typeof status !== 'string' ||
         !userEmail.includes('@')
     ) {
         return res.status(400).json({
             success: false,
-            message: 'businessId, date, time, userEmail, userName, and status should be strings, and userEmail should contain @.'
+            message:
+                'businessId, date, time, userEmail, userName, and status should be strings, and userEmail should contain @.'
         });
     }
 
@@ -97,4 +97,4 @@ async function postBooking(req, res) {
 
 module.exports = {
     postBooking
-}
+};

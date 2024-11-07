@@ -20,9 +20,8 @@ const globalMiddlewares = (app) => {
 
     // middleware - logs request details
     app.use(morgan('common'));
-}
+};
 
 module.exports = {
     globalMiddlewares
-}
-
+};

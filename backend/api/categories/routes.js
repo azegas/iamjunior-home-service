@@ -9,5 +9,5 @@ categoriesRouter.get('/', getCategories);
 categoriesRouter.post('/', createCategory);
 
 module.exports = {
-  categoriesRouter,
-}
+    categoriesRouter
+};

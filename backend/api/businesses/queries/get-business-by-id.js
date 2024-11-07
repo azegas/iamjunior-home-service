@@ -22,20 +22,20 @@ http://localhost:3000/api/businesses/1
  */
 
 async function getBusinessById(req, res) {
-  const businessId = req.params.id;
-  try {
-    const business = await BusinessModel.findById(businessId);
-    if (business) {
-      res.json(business);
-    } else {
-      res.status(404).json({ message: 'Business not found' });
+    const businessId = req.params.id;
+    try {
+        const business = await BusinessModel.findById(businessId);
+        if (business) {
+            res.json(business);
+        } else {
+            res.status(404).json({ message: 'Business not found' });
+        }
+    } catch (error) {
+        console.error('Error fetching business:', error);
+        res.status(500).json({ message: 'Internal server error.' });
     }
-  } catch (error) {
-    console.error('Error fetching business:', error);
-    res.status(500).json({ message: 'Internal server error.' });
-  }
 }
 
 module.exports = {
-  getBusinessById
-}
+    getBusinessById
+};

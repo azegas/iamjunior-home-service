@@ -16,13 +16,13 @@ http://localhost:3000/api/categories
  */
 
 async function getCategories(req, res) {
-  const categories = await CategoryModel.find();
-  if (categories.length === 0) {
-    return res.status(404).json({ success: false, message: 'No categories found.' });
-  }
-  res.json(categories);
+    const categories = await CategoryModel.find();
+    if (categories.length === 0) {
+        return res.status(404).json({ success: false, message: 'No categories found.' });
+    }
+    res.json(categories);
 }
 
 module.exports = {
-  getCategories
-}
+    getCategories
+};

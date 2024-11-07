@@ -61,8 +61,8 @@ async function recreateBusinesses(createdCategories) {
         console.log('Businesses deleted successfully');
 
         // Map the business categories to their corresponding IDs
-        const businessesWithCategoryId = businesses.map(business => {
-            const category = createdCategories.find(category => category.name === business.category);
+        const businessesWithCategoryId = businesses.map((business) => {
+            const category = createdCategories.find((category) => category.name === business.category);
             return { ...business, category: category._id };
         });
 
@@ -86,7 +86,6 @@ async function deleteUsers() {
     try {
         await UserModel.deleteMany({});
         console.log('Users deleted successfully');
-
     } catch (error) {
         console.error('Error recreating users:', error);
     }
@@ -97,7 +96,7 @@ async function createUsers() {
         if (users.length > 0) {
             // Encrypt user passwords before inserting, otherwise the passwords will be stored in plain text and when logging in,
             // the passwords will be attempted to be decrypted with bcryptjs which will fail and throw an error
-            const encryptedUsers = users.map(user => ({
+            const encryptedUsers = users.map((user) => ({
                 ...user,
                 password: bcrypt.hashSync(user.password, 10)
             }));
@@ -133,11 +132,11 @@ async function createRandomBookingsForUsers() {
                     // Create a new booking
                     const randomBooking = new BookingModel({
                         businessId: randomBusiness._id, // MongoDB ID of the business
-                        date: `2023-01-0${i + 1}`,      // Generate dates as '2023-01-01', '2023-01-02', etc.
-                        time: '10:00',                  // Sample booking time
+                        date: `2023-01-0${i + 1}`, // Generate dates as '2023-01-01', '2023-01-02', etc.
+                        time: '10:00', // Sample booking time
                         userEmail: user.email,
                         userName: user.username,
-                        status: 'pending'               // Default status
+                        status: 'pending' // Default status
                     });
 
                     // Save the booking to the database

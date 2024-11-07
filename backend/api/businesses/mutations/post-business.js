@@ -55,7 +55,6 @@ http://localhost:3000/api/businesses
  */
 
 async function postBusiness(req, res) {
-
     const { name, description, address, worker, category, contactPerson, email, images } = req.body;
 
     if (!name || !description || !address || !worker || !category || !contactPerson || !email || !images) {
@@ -65,20 +64,29 @@ async function postBusiness(req, res) {
         });
     }
 
-    if (typeof name !== 'string' || typeof description !== 'string' || typeof address !== 'string' || typeof contactPerson !== 'string' || typeof email !== 'string' || !email.includes('@') || !Array.isArray(images)) {
+    if (
+        typeof name !== 'string' ||
+        typeof description !== 'string' ||
+        typeof address !== 'string' ||
+        typeof contactPerson !== 'string' ||
+        typeof email !== 'string' ||
+        !email.includes('@') ||
+        !Array.isArray(images)
+    ) {
         return res.status(400).json({
             success: false,
-            message: 'Name, description, address, contactPerson, and email should be strings, images should be an array, and email should contain @.'
+            message:
+                'Name, description, address, contactPerson, and email should be strings, images should be an array, and email should contain @.'
         });
     }
 
     const categoryLowerCase = category.toLowerCase();
     const categories = await CategoryModel.find();
-    const categoryExists = categories.find(cat => cat.name.toLowerCase() === categoryLowerCase);
+    const categoryExists = categories.find((cat) => cat.name.toLowerCase() === categoryLowerCase);
     if (!categoryExists) {
         return res.status(400).json({
             success: false,
-            message: `Category '${category}' does not exist. Available categories are: ${categories.map(cat => cat.name).join(', ')}.`
+            message: `Category '${category}' does not exist. Available categories are: ${categories.map((cat) => cat.name).join(', ')}.`
         });
     }
 
@@ -94,7 +102,7 @@ async function postBusiness(req, res) {
     });
 
     await newBusiness.save();
-    
+
     res.json({
         success: true,
         message: 'Business created successfully',
@@ -104,4 +112,4 @@ async function postBusiness(req, res) {
 
 module.exports = {
     postBusiness
-}
+};

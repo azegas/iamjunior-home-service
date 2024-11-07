@@ -18,8 +18,8 @@ const getUsers = async (req, res) => {
         return res.status(404).json({ message: 'No users found' });
     }
     res.status(200).json(users);
-}
+};
 
-module.exports = { 
-    getUsers 
+module.exports = {
+    getUsers
 };

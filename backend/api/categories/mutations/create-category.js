@@ -45,7 +45,13 @@ async function createCategory(req, res) {
         return res.status(400).json({ success: false, message: 'Please provide name, color, and icon.' });
     }
     if (typeof name !== 'string' || typeof color !== 'string' || typeof icon !== 'string' || !icon.startsWith('http')) {
-        return res.status(400).json({ success: false, message: 'Name should be a string, color should be a string, and icon should be a string starting with http.' });
+        return res
+            .status(400)
+            .json({
+                success: false,
+                message:
+                    'Name should be a string, color should be a string, and icon should be a string starting with http.'
+            });
     }
 
     try {
@@ -75,4 +81,4 @@ async function createCategory(req, res) {
 
 module.exports = {
     createCategory
-}
+};

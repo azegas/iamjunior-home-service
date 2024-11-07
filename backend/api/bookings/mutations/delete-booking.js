@@ -6,7 +6,6 @@ Example API endpoints for deleting a booking by ID:
   - http://localhost:3000/api/bookings/1
 */
 
-
 /**
  * @swagger
  * /api/bookings/{id}:
@@ -33,7 +32,7 @@ async function deleteBooking(req, res) {
     try {
         // Find and delete the booking with the specified 'id'
         const result = await BookingModel.findByIdAndDelete(id);
-        
+
         // Check if the booking with the specified id exists
         if (!result) {
             // If not found, return a 404 Not Found error with a message
@@ -47,6 +46,6 @@ async function deleteBooking(req, res) {
     }
 }
 
-module.exports = { 
-    deleteBooking 
+module.exports = {
+    deleteBooking
 };

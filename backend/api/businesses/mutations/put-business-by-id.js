@@ -59,7 +59,7 @@ http://localhost:3000/api/businesses/1
 
 async function putBusiness(req, res) {
     const businessId = req.params.id;
-    
+
     try {
         const business = await BusinessModel.findById(businessId);
         if (!business) {
@@ -70,7 +70,7 @@ async function putBusiness(req, res) {
 
         // Extract fields from req.body and separate known from unknown
         const providedFields = Object.keys(req.body);
-        const unknownFields = providedFields.filter(field => !allowedFields.includes(field));
+        const unknownFields = providedFields.filter((field) => !allowedFields.includes(field));
 
         // Check for any unknown fields
         if (unknownFields.length > 0) {
@@ -78,26 +78,26 @@ async function putBusiness(req, res) {
         }
 
         // Check if there’s at least one valid field to update
-        const hasValidFields = providedFields.some(field => allowedFields.includes(field) && req.body[field]);
+        const hasValidFields = providedFields.some((field) => allowedFields.includes(field) && req.body[field]);
         if (!hasValidFields) {
             return res.status(400).json({ message: 'Please provide at least one valid field to update' });
         }
 
         // Validate category against existing categories
         const categories = await CategoryModel.find();
-        const validCategories = categories.map(category => category._id.toString());
+        const validCategories = categories.map((category) => category._id.toString());
         if (req.body.category && !validCategories.includes(req.body.category)) {
             return res.status(400).json({ message: 'Invalid category provided' });
         }
 
         // Update business fields only if they are provided and of the correct type
-        allowedFields.forEach(field => {
+        allowedFields.forEach((field) => {
             if (req.body[field] !== undefined) {
                 if (field === 'images') {
                     if (!Array.isArray(req.body[field])) {
                         return res.status(400).json({ message: 'Images should be an array' });
                     }
-                    if (!req.body[field].every(image => typeof image === 'string')) {
+                    if (!req.body[field].every((image) => typeof image === 'string')) {
                         return res.status(400).json({ message: 'All images should be strings' });
                     }
                 } else {
