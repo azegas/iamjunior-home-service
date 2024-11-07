@@ -1,14 +1,14 @@
--   [iamjunior-home-service (frontend)](#iamjunior-home-service-frontend)
--   [Run frontend](#run-frontend)
--   [React part](#react-part)
-    -   [DONE BONUS features](#done-bonus-features)
-    -   [TODO BONUS features](#todo-bonus-features)
-    -   [Actual project requirements](#actual-project-requirements)
-        -   [React ekosistema, JSX sintaksė ir state valdymas](#react-ekosistema-jsx-sintaksė-ir-state-valdymas)
-        -   [Komponento gyvavimo ciklai ir react-router-dom](#komponento-gyvavimo-ciklai-ir-react-router-dom)
-        -   [Custom Hooks](#custom-hooks)
-        -   [React Context ir zustand](#react-context-ir-zustand)
-    -   [Known bugs](#known-bugs)
+- [iamjunior-home-service (frontend)](#iamjunior-home-service-frontend)
+- [Run frontend](#run-frontend)
+- [React part](#react-part)
+  - [DONE BONUS features](#done-bonus-features)
+  - [TODO BONUS features](#todo-bonus-features)
+  - [Actual project requirements](#actual-project-requirements)
+    - [React ekosistema, JSX sintaksė ir state valdymas](#react-ekosistema-jsx-sintaksė-ir-state-valdymas)
+    - [Komponento gyvavimo ciklai ir react-router-dom](#komponento-gyvavimo-ciklai-ir-react-router-dom)
+    - [Custom Hooks](#custom-hooks)
+    - [React Context ir zustand](#react-context-ir-zustand)
+  - [Known bugs](#known-bugs)
 
 # iamjunior-home-service (frontend)
 
@@ -69,6 +69,7 @@ npm run dev
 -   [ ] pagination (100 businesses)
 -   [ ] absolute paths instead of ../../
 -   [ ] dark mode - https://usehooks-ts.com/react-hook/use-dark-mode
+-   [ ] make favorites to be stored in the db(different for each user), not in local storage
 
 ## Actual project requirements
 

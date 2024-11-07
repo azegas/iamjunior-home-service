@@ -1,6 +1,5 @@
 import styles from './SearchInput.module.scss';
 
-// TODO implement search functionality
 const SearchInput = () => {
     const handleChange = (e) => {
         onSearch(e.target.value);

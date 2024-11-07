@@ -3,8 +3,6 @@ import { toast } from 'react-toastify';
 
 const FavoriteContext = createContext();
 
-// TODO make favorites to be stored in the db(different for each user), not in local storage
-
 export const FavoriteProvider = ({ children }) => {
     const [favorites, setFavorites] = useState(() => {
         const savedFavorites = localStorage.getItem('favorites');
