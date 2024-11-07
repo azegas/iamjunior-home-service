@@ -48,12 +48,7 @@ const validateRequiredFields = ({ name, color, icon }) => {
 
 // Helper function to validate field types and formats
 const validateFieldTypes = ({ name, color, icon }) => {
-    if (
-        typeof name !== 'string' ||
-        typeof color !== 'string' ||
-        typeof icon !== 'string' ||
-        !icon.startsWith('http')
-    ) {
+    if (typeof name !== 'string' || typeof color !== 'string' || typeof icon !== 'string' || !icon.startsWith('http')) {
         return 'Name, color, and icon should be strings, and icon should start with "http".';
     }
     return null;
