@@ -1,0 +1,11 @@
+// Prettier - formatter
+// Eslint - linter
+// Inside of this file we will configure Prettier - formatter - style rules, not code quality rules
+// To run prettier manually - npm run format
+
+{
+    "printWidth": 120,
+    "tabWidth": 4,
+    "singleQuote": true,
+    "trailingComma": "none"
+}

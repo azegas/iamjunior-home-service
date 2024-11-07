@@ -1,4 +1,13 @@
 /*
+
+Eslint = Linter
+
+Eslint linter CAN contain stylistic rules, but then it might conflict with Prettier.
+
+That is why we will use eslint for code quality rules, and Prettier for stylistic rules.
+
+----------------------------------------------------------------
+
 npm init @eslint/config@latest (commonjs, no react, node(not browser))
 configure eslint rules (all eslint rules - https://eslint.org/docs/latest/rules/)
 
@@ -6,6 +15,8 @@ Open a FOLDER, not a REPOSITORY in which the .vscode folder is for eslint to wor
 
 install ESLint package
 then in .vscode/settings.json tell eslint plugin to make changes on save
+
+To run eslint manually - run npm run lint
 */
 
 import globals from 'globals';
@@ -19,11 +30,9 @@ export default [
   {
     rules: {
       'no-console': 'warn',
-      complexity: ['warn', 10],
-      quotes: ['warn', 'single'],
-      'eol-last': ['error', 'always'],
-      'no-multiple-empty-lines': ['error', { max: 1 }],
-      'no-trailing-spaces': ['error', { skipBlankLines: true }]
+      'no-unused-vars': 'warn',
+      'no-unreachable': 'warn',
+      complexity: ['warn', 10]
     }
   }
 ];
