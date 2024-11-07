@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import useFetch from '../../hooks/use-fetch';
+import useFetchBusiness from '../../hooks/use-fetch-business';
 import Loading from '../common/Loading';
 import Error from '../common/Error';
 import styles from './BusinessDetail.module.scss';
@@ -7,14 +7,11 @@ import '../../styles/global.scss';
 
 const BusinessDetail = () => {
     const { id } = useParams();
-    const { businesses, error } = useFetch();
+    const { business, errorsBusiness, isLoadingBusiness } = useFetchBusiness(id);
 
-    if (!businesses) return <Loading />;
+    if (isLoadingBusiness) return <Loading />;
 
-    if (error) return <Error message={error} />;
-
-    // Find the specific business by id
-    const business = businesses ? businesses.find((b) => b._id === id) : null;
+    if (errorsBusiness) return <Error message={errorsBusiness} />;
 
     if (business) {
         return (

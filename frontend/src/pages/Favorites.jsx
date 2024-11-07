@@ -1,12 +1,12 @@
 import BusinessList from '../components/business/BusinessList';
-import useFetch from '../hooks/use-fetch';
+import useFetchBusinesses from '../hooks/use-fetch-businesses';
 import { useFavorite } from '../context/FavoriteContext';
 import { useUser } from '../context/UserContext';
 import '../styles/global.scss';
 import { useNavigate } from 'react-router-dom';
 
 const Favorites = () => {
-    const { businesses } = useFetch();
+    const { businesses } = useFetchBusinesses();
     const { favorites } = useFavorite();
     const { user } = useUser();
     const navigate = useNavigate();

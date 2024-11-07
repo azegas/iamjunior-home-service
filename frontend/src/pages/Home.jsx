@@ -2,22 +2,25 @@ import Hero from '../components/common/Hero';
 import Loading from '../components/common/Loading';
 import BusinessList from '../components/business/BusinessList';
 import Error from '../components/common/Error';
-import useFetch from '../hooks/use-fetch';
+import useFetchCategories from '../hooks/use-fetch-categories';
+import useFetchBusinesses from '../hooks/use-fetch-businesses';
 
 const Home = () => {
-    const { categories, businesses, errors, isLoading } = useFetch();
+    const { categories, errorsCategories, isLoadingCategories } = useFetchCategories();
+    const { businesses, errorsBusinesses, isLoadingBusinesses } = useFetchBusinesses();
 
     return (
         <>
             {/* Show error message if there is an error */}
-            {errors && errors.map((error, index) => <Error key={index} message={error.message} />)}
+            {errorsCategories && errorsCategories.map((error, index) => <Error key={index} message={error.message} />)}
+            {errorsBusinesses && errorsBusinesses.map((error, index) => <Error key={index} message={error.message} />)}
 
             {/* Show loading component while fetching data */}
-            {isLoading && <Loading />}
+            {(isLoadingCategories || isLoadingBusinesses) && <Loading />}
 
             {/* Show hero and business list components only if data is fetched */}
-            {!isLoading && categories && <Hero categories={categories} />}
-            {!isLoading && businesses && <BusinessList businesses={businesses} />}
+            {!isLoadingCategories && categories && <Hero categories={categories} />}
+            {!isLoadingBusinesses && businesses && <BusinessList businesses={businesses} />}
         </>
     );
 };

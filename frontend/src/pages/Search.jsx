@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import useFetch from '../hooks/use-fetch';
+import useFetchCategories from '../hooks/use-fetch-categories';
+import useFetchBusinesses from '../hooks/use-fetch-businesses';
 import Loading from '../components/common/Loading';
 import Error from '../components/common/Error';
 import BusinessList from '../components/business/BusinessList';
@@ -10,7 +11,8 @@ import styles from '../components/common/Search.module.scss';
 
 const Search = () => {
     const { categoryName } = useParams();
-    const { categories, businesses, errors, isLoading } = useFetch();
+    const { categories, errorsCategories, isLoadingCategories } = useFetchCategories();
+    const { businesses, errorsBusinesses, isLoadingBusinesses } = useFetchBusinesses();
     const [filteredBusinesses, setFilteredBusinesses] = useState([]);
 
     useEffect(() => {
@@ -25,13 +27,14 @@ const Search = () => {
     return (
         <>
             {/* Show error message if there is an error */}
-            {errors && errors.map((error, index) => <Error key={index} message={error.message} />)}
+            {errorsCategories && errorsCategories.map((error, index) => <Error key={index} message={error.message} />)}
+            {errorsBusinesses && errorsBusinesses.map((error, index) => <Error key={index} message={error.message} />)}
 
             {/* Show loading component while fetching data */}
-            {isLoading && <Loading />}
+            {(isLoadingCategories || isLoadingBusinesses) && <Loading />}
 
             {/* Show search container only if data is fetched and loading is stopped */}
-            {!isLoading && (
+            {!isLoadingCategories && !isLoadingBusinesses && (
                 <div className="container">
                     <div className={styles.searchContainer}>
                         <div className={styles.searchSidebar}>
