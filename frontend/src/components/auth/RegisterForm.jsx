@@ -12,7 +12,6 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [usernameError, setUsernameError] = useState('');
-    const [emailError, setEmailError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,12 +19,8 @@ const RegisterForm = () => {
             setUsernameError('Username must be at least 3 characters long.');
             return;
         }
-        if (!email.includes('@')) {
-            setEmailError('Invalid email format.');
-            return;
-        }
+
         setUsernameError('');
-        setEmailError('');
 
         const userData = { username, password, email };
 
@@ -73,7 +68,6 @@ const RegisterForm = () => {
                 <div>
                     <label htmlFor="email">Email:</label>
                     <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                    {emailError && <div style={{ color: 'red' }}>{emailError}</div>}
                 </div>
                 <div>
                     <label htmlFor="password">Password:</label>
