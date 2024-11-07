@@ -1,12 +1,13 @@
 import BusinessCard from './BusinessCard';
 import styles from './BusinessList.module.scss';
 import { useFavorite } from '../../context/FavoriteContext';
+import Container from '../common/Container';
 
 const BusinessList = ({ businesses, categoryName }) => {
     const { handleFavorite } = useFavorite();
 
     return (
-        <div className="container">
+        <Container>
             <h1 className="titleSmaller">{categoryName}</h1>
             <div className={styles.businessList}>
                 {businesses.map((business) => (
@@ -15,7 +16,7 @@ const BusinessList = ({ businesses, categoryName }) => {
                     </div>
                 ))}
             </div>
-        </div>
+        </Container>
     );
 };
 

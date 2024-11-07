@@ -5,6 +5,7 @@ import { clearLocalStorage } from '../../utils/utils';
 import { useUser } from '../../context/UserContext';
 import { useFavorite } from '../../context/FavoriteContext';
 import { toast } from 'react-toastify';
+import Container from '../common/Container';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Navbar = () => {
 
     return (
         // TODO fix order, so that container is INSIDE in navbar, not other way around. same for rest. sot html source is readable
-        <div className="container">
+        <Container>
             <nav className={styles.navbar}>
                 <div className={styles.left}>
                     <div className={styles.logo}>
@@ -72,7 +73,7 @@ const Navbar = () => {
                     />
                 </div>
             </nav>
-        </div>
+        </Container>
     );
 };
 

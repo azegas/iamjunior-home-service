@@ -4,6 +4,7 @@ import Loading from '../common/Loading';
 import Error from '../common/Error';
 import styles from './BusinessDetail.module.scss';
 import '../../styles/global.scss';
+import Container from '../common/Container';
 
 const BusinessDetail = () => {
     const { id } = useParams();
@@ -15,7 +16,7 @@ const BusinessDetail = () => {
 
     if (business) {
         return (
-            <div className="container">
+            <Container>
                 <h1 className="title">{business.name}</h1>
                 <img src={business.images[0]} alt={business.name} className={styles.businessImage} />
                 <p>
@@ -30,7 +31,7 @@ const BusinessDetail = () => {
                 <p>
                     <strong>Contact Person:</strong> {business.worker}
                 </p>
-            </div>
+            </Container>
         );
     }
 

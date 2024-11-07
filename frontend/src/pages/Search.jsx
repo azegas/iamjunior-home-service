@@ -8,6 +8,7 @@ import BusinessList from '../components/business/BusinessList';
 import CategoryList from '../components/category/CategoryList';
 import '../styles/global.scss';
 import styles from '../components/common/Search.module.scss';
+import Container from '../components/common/Container';
 
 const Search = () => {
     const { categoryName } = useParams();
@@ -35,7 +36,7 @@ const Search = () => {
 
             {/* Show search container only if data is fetched and loading is stopped */}
             {!isLoadingCategories && !isLoadingBusinesses && (
-                <div className="container">
+                <Container>
                     <div className={styles.searchContainer}>
                         <div className={styles.searchSidebar}>
                             <h1 className="title">Categories</h1>
@@ -53,7 +54,7 @@ const Search = () => {
                             <BusinessList businesses={filteredBusinesses} categoryName={categoryName} />
                         )}
                     </div>
-                </div>
+                </Container>
             )}
         </>
     );
