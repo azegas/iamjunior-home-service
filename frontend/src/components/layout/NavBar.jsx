@@ -7,73 +7,79 @@ import { useFavorite } from '../../context/FavoriteContext';
 import { toast } from 'react-toastify';
 import Container from '../common/Container';
 
+const menuItemsLeft = [
+    { link: '/', title: 'Home Service' },
+    { link: '/services', title: 'Services' },
+    { link: '/about', title: 'About' },
+    { link: '/contact', title: 'Contact' }
+];
+
 const Navbar = () => {
     const navigate = useNavigate();
     const { user, clearUserFromContext } = useUser();
     const { favorites } = useFavorite();
 
     return (
-        // TODO fix order, so that container is INSIDE in navbar, not other way around. same for rest. sot html source is readable
-        <Container>
-            <nav className={styles.navbar}>
-                <div className={styles.left}>
-                    <div className={styles.logo}>
-                        <img className={styles.logo} src={Logo} alt="Home Service Logo" onClick={() => navigate('/')} />
-                    </div>
-                    <div className={styles.links}>
-                        <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
-                            Home Service
-                        </NavLink>
-                        <NavLink to="/services" className={({ isActive }) => (isActive ? 'active' : '')}>
-                            Services
-                        </NavLink>
-                        <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : '')}>
-                            About
-                        </NavLink>
-                        <NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : '')}>
-                            Contact
-                        </NavLink>
-                    </div>
-                </div>
-                <div className={styles.right}>
-                    <NavLink to="/favorites">
-                        <img
-                            className={styles.favoriteIcon}
-                            src="https://img.icons8.com/?id=DFU1kReSUccu&format=png&color=000000"
-                            alt="Favorites Icon"
-                        />
-                        <span>{favorites.length}</span>
-                    </NavLink>
-
-                    {user ? (
-                        <>
-                            <div className={styles.links}>
-                                <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
-                                    {user.username} Dashboard!
+        <nav>
+            <Container>
+                <div className={styles.navbar}>
+                    <div className={styles.left}>
+                        <div className={styles.logo}>
+                            <img
+                                className={styles.logo}
+                                src={Logo}
+                                alt="Home Service Logo"
+                                onClick={() => navigate('/')}
+                            />
+                        </div>
+                        <div className={styles.links}>
+                            {menuItemsLeft.map(({ link, title }) => (
+                                <NavLink key={link} to={link}>
+                                    {title}
                                 </NavLink>
-                            </div>
-                            <button
-                                onClick={() => {
-                                    clearUserFromContext();
-                                    toast.success(`Logged out successfully, bye ${user.username}!`);
-                                    navigate('/');
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </>
-                    ) : (
-                        <button onClick={() => navigate('/login')}>Login/Signup</button>
-                    )}
+                            ))}
+                        </div>
+                    </div>
+                    <div className={styles.right}>
+                        <NavLink to="/favorites">
+                            <img
+                                className={styles.favoriteIcon}
+                                src="https://img.icons8.com/?id=DFU1kReSUccu&format=png&color=000000"
+                                alt="Favorites Icon"
+                            />
+                            <span>{favorites.length}</span>
+                        </NavLink>
 
-                    <img
-                        style={{ width: '30px' }}
-                        onClick={clearLocalStorage}
-                        src="https://img.icons8.com/?size=100&id=cGxj6HzPbSdJ&format=png&color=000000"
-                    />
+                        {user ? (
+                            <>
+                                <div className={styles.links}>
+                                    <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
+                                        {user.username} Dashboard!
+                                    </NavLink>
+                                </div>
+                                <button
+                                    onClick={() => {
+                                        clearUserFromContext();
+                                        toast.success(`Logged out successfully, bye ${user.username}!`);
+                                        navigate('/');
+                                    }}
+                                >
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <button onClick={() => navigate('/login')}>Login/Signup</button>
+                        )}
+
+                        <img
+                            style={{ width: '30px' }}
+                            onClick={clearLocalStorage}
+                            src="https://img.icons8.com/?size=100&id=cGxj6HzPbSdJ&format=png&color=000000"
+                        />
+                    </div>
                 </div>
-            </nav>
-        </Container>
+            </Container>
+        </nav>
     );
 };
 
