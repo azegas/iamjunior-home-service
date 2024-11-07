@@ -7,7 +7,7 @@ const Contact = () => {
 
     return (
         <Container>
-            <h1 className="title">Contact Us, {user ? user.username : ''}</h1>
+            <h1 className="title">Contact Us, {user?.username || ''}</h1>
             <p className="text">Details about how to contact us.</p>
         </Container>
     );
