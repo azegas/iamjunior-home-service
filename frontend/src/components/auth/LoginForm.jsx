@@ -29,8 +29,7 @@ const LoginForm = () => {
             });
             const data = await response.json();
             handleLoginResponse(response, data);
-        } catch (error) {
-            console.error('Error during login:', error);
+        } catch {
             toast.error('An error occurred during login. Please try again.');
         }
     };
@@ -57,6 +56,7 @@ const LoginForm = () => {
                     label="Email:"
                     type="email"
                     id="email"
+                    name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -65,6 +65,7 @@ const LoginForm = () => {
                     label="Password:"
                     type="password"
                     id="password"
+                    name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required

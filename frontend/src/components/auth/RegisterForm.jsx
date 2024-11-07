@@ -64,6 +64,7 @@ const RegisterForm = () => {
                     label="Username:"
                     type="text"
                     id="username"
+                    name="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
@@ -74,6 +75,7 @@ const RegisterForm = () => {
                     label="Email:"
                     type="email"
                     id="email"
+                    name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -82,6 +84,7 @@ const RegisterForm = () => {
                     label="Password:"
                     type="password"
                     id="password"
+                    name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
