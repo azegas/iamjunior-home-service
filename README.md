@@ -12,10 +12,10 @@ git clone https://github.com/azegas/iamjunior-home-service
 cd iamjunior-home-service
 ```
 
-# Run backend
-
-Check out backend/README.md for more information.
-
 # Run frontend
 
-Check out frontend/README.md for more information.
+Check out [frontend/README.md](https://github.com/azegas/iamjunior-home-service/tree/node/frontend#readme) for more information.
+
+# Run backend
+
+Check out [backend/README.md](https://github.com/azegas/iamjunior-home-service/tree/node/backend#readme) for more information.
