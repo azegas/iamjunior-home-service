@@ -235,9 +235,22 @@ const bookings = [
     }
 ];
 
+const users = [
+    {
+        username: "dev",
+        email: "dev@gmail.com",
+        password: "hello"
+    },
+    {
+        username: "user",
+        email: "user@gmail.com",
+        password: "hello"
+    }
+];
 
 module.exports = {
     categories,
     businesses,
-    bookings
+    bookings,
+    users
 }

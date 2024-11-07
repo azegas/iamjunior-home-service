@@ -91,12 +91,69 @@ async function deleteUsers() {
     }
 }
 
+async function createUsers() {
+    try {
+        if (users.length > 0) {
+            const createdUsers = await UserModel.insertMany(users);
+            console.log(`Users recreated successfully`);
+            return createdUsers;
+        } else {
+            console.error('No user data found to create users');
+        }
+    } catch (error) {
+        console.error('Error creating users:', error);
+    }
+}
+
+async function createRandomBookingsForUsers() {
+    try {
+        // Fetch all created users from the database
+        const createdUsers = await UserModel.find();
+
+        if (createdUsers.length) {
+            // Fetch all businesses from the database
+            const businesses = await BusinessModel.find();
+            if (!businesses.length) {
+                console.error('No businesses found in the database to create bookings for.');
+                return;
+            }
+
+            for (const user of createdUsers) {
+                for (let i = 0; i < 5; i++) {
+                    // Select a random business
+                    const randomBusiness = businesses[Math.floor(Math.random() * businesses.length)];
+
+                    // Create a new booking
+                    const randomBooking = new BookingModel({
+                        businessId: randomBusiness._id, // MongoDB ID of the business
+                        date: `2023-01-0${i + 1}`,      // Generate dates as '2023-01-01', '2023-01-02', etc.
+                        time: '10:00',                  // Sample booking time
+                        userEmail: user.email,
+                        userName: user.username,
+                        status: 'pending'               // Default status
+                    });
+
+                    // Save the booking to the database
+                    await randomBooking.save();
+                }
+            }
+            console.log('Bookings created successfully');
+        } else {
+            console.error('No users found to create random bookings');
+        }
+    } catch (error) {
+        console.error('Error creating random bookings:', error);
+    }
+}
+
 async function main() {
     await connectToDB();
     const createdCategories = await recreateCategories();
     await recreateBusinesses(createdCategories);
     await deleteBookings();
     await deleteUsers();
+    await createUsers();
+    await createRandomBookingsForUsers();
     await disconnectFromDB();
     process.exit(0); // Exit process when done
 }
