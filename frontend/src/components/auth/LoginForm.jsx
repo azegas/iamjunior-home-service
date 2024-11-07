@@ -8,21 +8,45 @@ import { toast } from 'react-toastify';
 const LoginForm = () => {
     const { saveUser } = useUser();
     const navigate = useNavigate();
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [usernameError, setUsernameError] = useState('');
+    const [emailError, setEmailError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (username.length < 3) {
-            setUsernameError('Username must be at least 3 characters long.');
+        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            setEmailError('Invalid email format.');
             return;
         }
-        setUsernameError('');
-        const userData = { username, password };
-        saveUser(userData);
-        toast.success(`Login successful, hello ${username}! You can now add businesses to your favorites.`);
-        navigate('/');
+        setEmailError('');
+
+        const userData = { email, password };
+
+        try {
+            const response = await fetch('http://localhost:3000/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                saveUser(data.user); // Assuming the API returns the user object
+                toast.success(`Login successful, hello ${data.user.username}! You can now add businesses to your favorites.`);
+                navigate('/');
+            } else {
+                // Handle errors from the API
+                if (data.message) {
+                    toast.error(data.message);
+                }
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            toast.error('An error occurred during login. Please try again.');
+        }
     };
 
     return (
@@ -30,15 +54,15 @@ const LoginForm = () => {
             <h1 className="title">Login</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="username">Username:</label>
+                    <label htmlFor="email">Email:</label>
                     <input
-                        type="text"
-                        id="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    {usernameError && <div style={{ color: 'red' }}>{usernameError}</div>}
+                    {emailError && <div style={{ color: 'red' }}>{emailError}</div>}
                 </div>
                 <div>
                     <label htmlFor="password">Password:</label>

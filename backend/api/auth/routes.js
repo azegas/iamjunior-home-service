@@ -8,7 +8,7 @@ const { getUsers } = require('./queries/get-users');
 const { loginUser } = require('./mutations/login-user');
 
 authRouter.post('/register', registerUser);
-authRouter.get('/users', authMiddleware, getUsers);
+authRouter.get('/users', getUsers);
 authRouter.post('/login', loginUser);
 
 module.exports = {

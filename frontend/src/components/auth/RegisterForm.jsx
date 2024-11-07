@@ -14,7 +14,7 @@ const RegisterForm = () => {
     const [usernameError, setUsernameError] = useState('');
     const [emailError, setEmailError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (username.length < 3) {
             setUsernameError('Username must be at least 3 characters long.');
@@ -26,10 +26,34 @@ const RegisterForm = () => {
         }
         setUsernameError('');
         setEmailError('');
+
         const userData = { username, password, email };
-        saveUser(userData);
-        toast.success(`Registered successfully, hello ${username}!`);
-        navigate('/');
+
+        try {
+            const response = await fetch('http://localhost:3000/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                saveUser(data.user); // Assuming the API returns the user object
+                toast.success(`Registered successfully, hello ${username}!`);
+                navigate('/');
+            } else {
+                // Handle errors from the API
+                if (data.message) {
+                    toast.error(data.message);
+                }
+            }
+        } catch (error) {
+            console.error('Error during registration:', error);
+            toast.error('An error occurred during registration. Please try again.');
+        }
     };
 
     return (
