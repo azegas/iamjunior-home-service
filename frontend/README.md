@@ -8,30 +8,8 @@
     - [Komponento gyvavimo ciklai ir react-router-dom](#komponento-gyvavimo-ciklai-ir-react-router-dom)
     - [Custom Hooks](#custom-hooks)
     - [React Context ir zustand](#react-context-ir-zustand)
-  - [Known bugs](#known-bugs)
 
 # iamjunior-home-service (frontend)
-
-LIVE frontendapp - https://iamjunior-home-service.vercel.app/
-
-Homepage:
-![home](./src/assets/home.png)
-Search:
-![search](./src/assets/search.png)
-Single page:  
-![single_page](./src/assets/single_page.png)
-Favorites:
-![favorites](./src/assets/favorites.png)
-Login:
-![login](./src/assets/login.png)
-Register:
-![register](./src/assets/register.png)
-User dashboard:
-![user_dashboard](./src/assets/user_dashboard.png)
-Contact:
-![contact](./src/assets/contact.png)
-404:
-![404](./src/assets/404.png)
 
 # Run frontend
 
@@ -61,7 +39,7 @@ npm run dev
 -   [x] Allow user to add favorites only if they are logged in
 -   [x] Navigation menu displays favorites only if the user is logged in
 -   [x] login/logout/register info messages
--   [ ] If no favorites in the favorites page, display a message and a button to go back to the main page to add some
+-   [x] If no favorites in the favorites page, display a message and a button to go back to the main page to add some
 
 ## TODO BONUS features
 
@@ -101,8 +79,3 @@ npm run dev
 2. [x] Redirect: Suvedus inputus ir paspaudus Login mygtuką išsaugoti userio informaciją su useContext ir localStorage bei redirectint į pagrindinį / route
 3. [x] Topbar komponentas: Atnaujinti komponento state kai asmuo yra prisijungęs
 4. [x] Register (optional): Įgyvendinti /register route ir savo norimą dizainą
-
-## Known bugs
-
--   [x] when in favorites, clicking a favorite button - does not remove the favorite from the favorites immeaditelly, a refresh is needed
--   [ ] page is not responsive
