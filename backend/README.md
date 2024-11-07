@@ -1,17 +1,17 @@
--   [iamjunior-home-service (backend)](#iamjunior-home-service-backend)
--   [BONUS tasks](#bonus-tasks)
--   [Uzduotys](#uzduotys)
-    -   [Node.js ir Express pagrindai](#nodejs-ir-express-pagrindai)
-        -   [Home service aplikacijos API](#home-service-aplikacijos-api)
-        -   [Duomenų Modeliai:](#duomenų-modeliai)
-        -   [API kuriuos reikia įgyvendinti:](#api-kuriuos-reikia-įgyvendinti)
-            -   [1. Kategorijos](#1-kategorijos)
-            -   [2. Įmonės](#2-įmonės)
-            -   [3. Užsakymai](#3-užsakymai)
-            -   [Papildomos funkcijos, kurias reikia įgyvendinti:](#papildomos-funkcijos-kurias-reikia-įgyvendinti)
-    -   [MongoDB ir Mongoose](#mongodb-ir-mongoose)
-    -   [Autentifikacija Node.js](#autentifikacija-nodejs)
-    -   [ESlint ir Prettier](#eslint-ir-prettier)
+- [iamjunior-home-service (backend)](#iamjunior-home-service-backend)
+- [BONUS tasks](#bonus-tasks)
+- [Uzduotys](#uzduotys)
+  - [Node.js ir Express pagrindai](#nodejs-ir-express-pagrindai)
+    - [Home service aplikacijos API](#home-service-aplikacijos-api)
+    - [Duomenų Modeliai:](#duomenų-modeliai)
+    - [API kuriuos reikia įgyvendinti:](#api-kuriuos-reikia-įgyvendinti)
+      - [1. Kategorijos](#1-kategorijos)
+      - [2. Įmonės](#2-įmonės)
+      - [3. Užsakymai](#3-užsakymai)
+      - [Papildomos funkcijos, kurias reikia įgyvendinti:](#papildomos-funkcijos-kurias-reikia-įgyvendinti)
+  - [MongoDB ir Mongoose](#mongodb-ir-mongoose)
+  - [Autentifikacija Node.js](#autentifikacija-nodejs)
+  - [ESlint ir Prettier](#eslint-ir-prettier)
 
 # iamjunior-home-service (backend)
 
@@ -22,14 +22,18 @@ Database is in MongoDB over at - https://www.mongodb.com (accessed from all ips 
 To start the API server, run the following commands:
 
 ```bash
-# set the environment variables
-cp backend/.env_template backend/.env
 cd backend
+# set the environment variables to .env file
+cp .env_template .env
 npm i
 npm run server
-# open http://localhost:3000/api-docs/ in your browser to preview the swagger docs
-# open http://localhost:3000/api/<name_of_endpoint> in your browser to preview the chosen endpoint
 ```
+
+When site has been launched:
+
+-   Index page - http://localhost:3000/
+-   Swagger API docs - http://localhost:3000/api-docs/
+-   To preview the chosen endpoint - http://localhost:3000/api/categories (or other endpoint)
 
 To recreate the database, run the following command:
 
@@ -41,8 +45,19 @@ node recreate-db.js
 # BONUS tasks
 
 -   [x] Swagger API docs - https://www.youtube.com/watch?v=eiSem0cqaN0&ab_channel=KrisFoster
--   [ ] dont allow to create categories/businesses with curse words in it
 -   [x] Automatically recreate database data from scratch
+
+Swagger API docs screenshot:
+![alt text](assets/swagger.png)
+
+Recreate database screenshot:
+![alt text](assets/recreate-db.png)
+
+Api endpoint screenshot:
+![alt text](assets/api-endpoint.png)
+
+MongoDB database screenshot:
+![alt text](assets/mongodb.png)
 
 # Uzduotys
 
