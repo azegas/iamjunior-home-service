@@ -26,16 +26,18 @@ const LoginForm = () => {
             const response = await fetch('http://localhost:3000/api/auth/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(userData),
+                body: JSON.stringify(userData)
             });
 
             const data = await response.json();
 
             if (response.ok) {
                 saveUserToContext(data.user); // Assuming the API returns the user object
-                toast.success(`Login successful, hello ${data.user.username}! You can now add businesses to your favorites.`);
+                toast.success(
+                    `Login successful, hello ${data.user.username}! You can now add businesses to your favorites.`
+                );
                 navigate('/');
             } else {
                 // Handle errors from the API
@@ -55,13 +57,7 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     {emailError && <div style={{ color: 'red' }}>{emailError}</div>}
                 </div>
                 <div>

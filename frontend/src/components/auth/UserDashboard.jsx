@@ -9,17 +9,24 @@ const UserDashboard = () => {
     const { favorites } = useFavorite();
     const { businesses } = useFetch();
     const navigate = useNavigate();
-    
-    const filteredBusinesses = businesses
-    ? businesses.filter(business => favorites.includes(business._id))
-    : [];
-    
-    return <div className="container">
-        <h1 className="title">User Dashboard</h1>
-        <p><b>Username:</b> {user.username}</p>
-        <p><b>Password:</b> {user.password}</p>
-        <p><b>Favorites:</b> {favorites.length}. <button onClick={() => navigate('/favorites')}>View favorites</button></p>
-    </div>;
-}
+
+    const filteredBusinesses = businesses ? businesses.filter((business) => favorites.includes(business._id)) : [];
+
+    return (
+        <div className="container">
+            <h1 className="title">User Dashboard</h1>
+            <p>
+                <b>Username:</b> {user.username}
+            </p>
+            <p>
+                <b>Password:</b> {user.password}
+            </p>
+            <p>
+                <b>Favorites:</b> {favorites.length}.{' '}
+                <button onClick={() => navigate('/favorites')}>View favorites</button>
+            </p>
+        </div>
+    );
+};
 
 export default UserDashboard;

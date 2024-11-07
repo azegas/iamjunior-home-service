@@ -1,7 +1,6 @@
 import styles from './SearchInput.module.scss';
 
 const SearchInput = () => {
-
     const handleChange = (e) => {
         onSearch(e.target.value);
     };

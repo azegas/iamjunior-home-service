@@ -7,15 +7,15 @@ const BusinessList = ({ businesses, categoryName }) => {
 
     return (
         <div className="container">
-                <h1 className="titleSmaller">{categoryName}</h1>
-                <div className={styles.businessList}>
-                    {businesses.map((business) => (
-                        <div key={business._id}>
-                            <BusinessCard business={business} onFavoriteClick={() => handleFavorite(business._id)} />
-                        </div>
-                    ))}
-                </div>
-            </div>  
+            <h1 className="titleSmaller">{categoryName}</h1>
+            <div className={styles.businessList}>
+                {businesses.map((business) => (
+                    <div key={business._id}>
+                        <BusinessCard business={business} onFavoriteClick={() => handleFavorite(business._id)} />
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 };
 

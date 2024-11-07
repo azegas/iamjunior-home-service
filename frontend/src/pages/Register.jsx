@@ -1,5 +1,5 @@
 import RegisterForm from '../components/auth/RegisterForm';
-import '../styles/global.scss';  
+import '../styles/global.scss';
 
 const Register = () => {
     return (
@@ -7,6 +7,6 @@ const Register = () => {
             <RegisterForm />
         </div>
     );
-}
+};
 
 export default Register;

@@ -17,5 +17,5 @@ export const getFromLocalStorage = (key) => {
 
 export const clearLocalStorage = () => {
     localStorage.clear();
-    alert("Local Storage has been cleared.");
+    alert('Local Storage has been cleared.');
 };

@@ -3,6 +3,6 @@ import UserDashboard from '../components/auth/UserDashboard';
 
 const Dashboard = () => {
     return <UserDashboard />;
-}
+};
 
 export default Dashboard;

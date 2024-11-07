@@ -17,7 +17,7 @@ export const FavoriteProvider = ({ children }) => {
         // Check if the favoriteId is already in the favorites array
         if (favorites.includes(favoriteId)) {
             // If it is, filter it out to remove it from the favorites
-            updatedFavorites = favorites.filter(id => id !== favoriteId);
+            updatedFavorites = favorites.filter((id) => id !== favoriteId);
             toast.error('Removed from favorites');
         } else {
             // If it's not, add it to the favorites array
@@ -30,11 +30,7 @@ export const FavoriteProvider = ({ children }) => {
         localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     };
 
-    return (
-        <FavoriteContext.Provider value={{ favorites, handleFavorite }}>
-            {children}
-        </FavoriteContext.Provider>
-    );
+    return <FavoriteContext.Provider value={{ favorites, handleFavorite }}>{children}</FavoriteContext.Provider>;
 };
 
 export const useFavorite = () => useContext(FavoriteContext);

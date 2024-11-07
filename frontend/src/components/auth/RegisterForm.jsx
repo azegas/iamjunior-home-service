@@ -33,9 +33,9 @@ const RegisterForm = () => {
             const response = await fetch('http://localhost:3000/api/auth/register', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(userData),
+                body: JSON.stringify(userData)
             });
 
             const data = await response.json();
@@ -72,13 +72,7 @@ const RegisterForm = () => {
                 </div>
                 <div>
                     <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     {emailError && <div style={{ color: 'red' }}>{emailError}</div>}
                 </div>
                 <div>

@@ -7,7 +7,9 @@ const Hero = ({ categories }) => {
         <>
             <div className={styles.hero}>
                 <div className={styles.heroTitle}>
-                    <h1>Find Home <span>Service/Repair</span> Near You</h1>
+                    <h1>
+                        Find Home <span>Service/Repair</span> Near You
+                    </h1>
                 </div>
                 <div className={styles.heroSubtitle}>
                     <p>Explore the best home services in your area</p>

@@ -7,6 +7,6 @@ const About = () => {
             <p className="text">Details about who we are.</p>
         </div>
     );
-}
+};
 
 export default About;

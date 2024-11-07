@@ -7,29 +7,37 @@ import '../../styles/global.scss';
 
 const BusinessDetail = () => {
     const { id } = useParams();
-    const { businesses, error} = useFetch();
+    const { businesses, error } = useFetch();
 
     if (!businesses) return <Loading />;
 
     if (error) return <Error message={error} />;
 
     // Find the specific business by id
-    const business = businesses ? businesses.find(b => b._id === id) : null;
+    const business = businesses ? businesses.find((b) => b._id === id) : null;
 
     if (business) {
         return (
             <div className="container">
                 <h1 className="title">{business.name}</h1>
                 <img src={business.images[0]} alt={business.name} className={styles.businessImage} />
-                <p><strong>Category:</strong> {business.category.name}</p>
-                <p><strong>Description:</strong> {business.description}</p>
-                <p><strong>Address:</strong> {business.address}</p>
-                <p><strong>Contact Person:</strong> {business.worker}</p>
+                <p>
+                    <strong>Category:</strong> {business.category.name}
+                </p>
+                <p>
+                    <strong>Description:</strong> {business.description}
+                </p>
+                <p>
+                    <strong>Address:</strong> {business.address}
+                </p>
+                <p>
+                    <strong>Contact Person:</strong> {business.worker}
+                </p>
             </div>
         );
     }
 
     return null;
-}
+};
 
 export default BusinessDetail;

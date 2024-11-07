@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const useFetch = () => {
     const [categories, setCategories] = useState(null);
@@ -16,20 +16,20 @@ const useFetch = () => {
                 const businessesData = await businessesResponse.json();
 
                 if (!categoriesData) {
-                    setErrors([{message: "Categories not found"}]);
+                    setErrors([{ message: 'Categories not found' }]);
                 } else {
                     setCategories(categoriesData);
                 }
 
                 if (!businessesData) {
-                    setErrors([{message: "Businesses not found"}]);
+                    setErrors([{ message: 'Businesses not found' }]);
                 } else {
                     setBusinesses(businessesData);
                 }
 
                 setIsLoading(false); // Stop loading regardless of success or errors
             } catch (error) {
-                setErrors([{message: "Failed to fetch data"}]);
+                setErrors([{ message: 'Failed to fetch data' }]);
                 setIsLoading(false);
             }
         };

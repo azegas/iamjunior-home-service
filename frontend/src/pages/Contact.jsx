@@ -10,6 +10,6 @@ const Contact = () => {
             <p className="text">Details about how to contact us.</p>
         </div>
     );
-}
+};
 
 export default Contact;

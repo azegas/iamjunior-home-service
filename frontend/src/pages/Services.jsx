@@ -7,6 +7,6 @@ const Services = () => {
             <p className="text">Details about the services we offer.</p>
         </div>
     );
-}
+};
 
 export default Services;
