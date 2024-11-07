@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useUser } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import InputField from '../common/InputField';
 import styles from './RegisterForm.module.scss';
 import '../../styles/global.scss';
 import { toast } from 'react-toastify';
@@ -15,15 +16,10 @@ const RegisterForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (username.length < 3) {
-            setUsernameError('Username must be at least 3 characters long.');
-            return;
-        }
-
-        setUsernameError('');
+        validateUsername();
+        if (usernameError) return;
 
         const userData = { username, password, email };
-
         try {
             const response = await fetch('http://localhost:3000/api/auth/register', {
                 method: 'POST',
@@ -34,19 +30,29 @@ const RegisterForm = () => {
             });
 
             const data = await response.json();
-
-            if (response.ok) {
-                saveUserToContext(data.user);
-                toast.success(`Registered successfully, hello ${username}!`);
-                navigate('/');
-            } else {
-                if (data.message) {
-                    toast.error(data.message);
-                }
-            }
-        } catch (error) {
-            console.error('Error during registration:', error);
+            handleRegistrationResponse(response, data);
+        } catch {
             toast.error('An error occurred during registration. Please try again.');
+        }
+    };
+
+    const validateUsername = () => {
+        if (username.length < 3) {
+            setUsernameError('Username must be at least 3 characters long.');
+        } else {
+            setUsernameError('');
+        }
+    };
+
+    const handleRegistrationResponse = (response, data) => {
+        if (response.ok) {
+            saveUserToContext(data.user);
+            toast.success(`Registered successfully, hello ${username}!`);
+            navigate('/');
+        } else {
+            if (data.message) {
+                toast.error(data.message);
+            }
         }
     };
 
@@ -54,31 +60,32 @@ const RegisterForm = () => {
         <div className={styles.register}>
             <h1 className="title">Register</h1>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                        type="text"
-                        id="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                    {usernameError && <div style={{ color: 'red' }}>{usernameError}</div>}
-                </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
+                <InputField
+                    label="Username:"
+                    type="text"
+                    id="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                    error={usernameError}
+                    errorMessage={usernameError}
+                />
+                <InputField
+                    label="Email:"
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <InputField
+                    label="Password:"
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
                 <button type="submit">Register</button>
             </form>
         </div>
