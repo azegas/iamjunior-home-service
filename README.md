@@ -10,6 +10,7 @@
   - [Setup deployment](#setup-deployment)
     - [Deploy backend (Node/Express)](#deploy-backend-nodeexpress)
     - [Deploy frontend (Vite/React)](#deploy-frontend-vitereact)
+    - [CORS](#cors)
 
 # Run project
 
@@ -340,3 +341,11 @@ cd frontend
 vercel login
 npm run deploy
 ```
+
+### CORS
+
+Database server is open to all ips (0.0.0.0/0) - configured on mongo atlas side.
+
+Backend server is open to - ?????????
+
+Frontend server is open to - ?????????
