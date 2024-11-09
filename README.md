@@ -1,3 +1,5 @@
+- [About project](#about-project)
+- [Live site](#live-site)
 - [Run project](#run-project)
   - [Clone the project](#clone-the-project)
   - [Run backend](#run-backend)
@@ -12,11 +14,19 @@
     - [Deploy frontend (Vite/React)](#deploy-frontend-vitereact)
     - [CORS](#cors)
 
+# About project
+
+https://www.iamjunior.lt/front-end-akceleratorius-javascript course task.
+
+Frontend and backend, both have separate READMEs with more info about what has to be done.
+
+# Live site
+
+Frontend - https://frontend-one-mu-96.vercel.app/
+
+Backend - https://backend-eta-sable-64.vercel.app/
+
 # Run project
-
-Main task that was done during iamjunior course - https://www.iamjunior.lt/front-end-akceleratorius-javascript
-
-Frontend and backend, both have separate READMEs.
 
 ## Clone the project
 
