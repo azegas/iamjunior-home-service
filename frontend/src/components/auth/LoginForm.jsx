@@ -19,8 +19,12 @@ const LoginForm = () => {
 
   const loginAttempt = async () => {
     const userData = { email, password };
+    // check if we are in production or development, and set the api url accordingly (from .env file)
+    const isProd = import.meta.env.VITE_PROD === 'true';
+
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
+      const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/auth/login`;
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

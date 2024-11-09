@@ -20,8 +20,12 @@ const RegisterForm = () => {
     if (usernameError) return;
 
     const userData = { username, password, email };
+    // check if we are in production or development, and set the api url accordingly (from .env file)
+    const isProd = import.meta.env.VITE_PROD === 'true';
+
     try {
-      const response = await fetch('http://localhost:3000/api/auth/register', {
+      const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/auth/register`;
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

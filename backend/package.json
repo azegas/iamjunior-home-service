@@ -6,7 +6,8 @@
   "scripts": {
     "server": "nodemon src/server.js",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "vercel --prod"
   },
   "keywords": [],
   "author": "",

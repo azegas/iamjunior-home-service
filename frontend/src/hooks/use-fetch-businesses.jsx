@@ -9,10 +9,12 @@ const useFetchBusinesses = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // check if we are in production or development, and set the api url accordingly (from .env file)
+      const isProd = import.meta.env.VITE_PROD === 'true';
+
       try {
-        const businessesResponse = await fetch(
-          'http://localhost:3000/api/businesses',
-        );
+        const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/businesses`;
+        const businessesResponse = await fetch(apiUrl);
         const businessesData = await businessesResponse.json();
 
         if (!businessesData) {

@@ -7,10 +7,12 @@ const useFetchCategories = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
+      // check if we are in production or development, and set the api url accordingly (from .env file)
+      const isProd = import.meta.env.VITE_PROD === 'true';
+
       try {
-        const categoriesResponse = await fetch(
-          'http://localhost:3000/api/categories',
-        );
+        const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/categories`;
+        const categoriesResponse = await fetch(apiUrl);
         const categoriesData = await categoriesResponse.json();
 
         if (!categoriesData) {

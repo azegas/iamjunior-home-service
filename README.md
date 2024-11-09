@@ -212,6 +212,10 @@ vercel login
 
 ## Deploy backend (Node/Express)
 
+You will notice that we don't need to "build" the backend.
+
+Environment variables can be used in the backend code, they don't need to have any prefix, can be reached with `process.env.VARIABLE_NAME`.
+
 Make sure you are in the main/master branch.
 
 ```bash
@@ -251,10 +255,66 @@ Create `backend/vercel.json`:
 }
 ```
 
+`Package.json` add deploy commands:
+
+```json
+"scripts": {
+    "deploy": "vercel --prod"
+}
+```
+
 ```bash
 cd backend
+vercel login
+npm run deploy
+```
+
+## Deploy frontend (Vite/React)
+
+You will notice that we need to "build" the frontend.
+
+Environment variables can be used in the frontend code, but they need to be prefixed with `VITE_`, can be reached with `import.meta.env.VITE_VARIABLE_NAME`.
+
+Make sure you are in the main/master branch.
+
+```bash
+cd frontend
 vercel login
 vercel
 ```
 
-## Deploy frontend (Vite/React)
+Make sure all the `http://localhost:3000/api/...` endpoints are changed to use backend vercel url. Don't place it directly in the code, but in `.env` file instead. The trick is to use `import.meta.env.VITE_SERVER_URL_PROD` in the frontend code instead of `process.env.SERVER_URL`.
+
+> import.meta.env: In Vite, you use import.meta.env to access environment variables instead of process.env.
+>
+> Prefix with VITE*: Vite requires all environment variables to be prefixed with VITE* to expose them in the client code.
+
+Package.json add deploy commands:
+
+```json
+"scripts": {
+    "deploy": "npm run build && vercel --prod"
+}
+```
+
+Create `frontend/vercel.json`:
+
+When deploying to production with `npm run deploy`, the `VITE_PROD` environment variable will always be forced to be `true` (as a consequence backend server will be used instead of localhost). Locally we can set it to `false` by changing the value in `.env` file.
+
+```json
+{
+  "build": {
+    "env": {
+      "VITE_PROD": "true"
+    }
+  }
+}
+```
+
+Deploy frontend:
+
+```bash
+cd frontend
+vercel login
+npm run deploy
+```
