@@ -354,6 +354,10 @@ npm run deploy
 
 ### CORS
 
+Add frontend url to backend cors config.
+
+Redeploy backend.
+
 Database server is open to all ips (0.0.0.0/0) - configured on mongo atlas side.
 
 Backend server is open to - ?????????
