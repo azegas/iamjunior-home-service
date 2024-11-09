@@ -8,14 +8,14 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-    return (
-        <UserProvider>
-            <FavoriteProvider>
-                <RouterProvider router={router} />
-                <ToastContainer />
-            </FavoriteProvider>
-        </UserProvider>
-    );
+  return (
+    <UserProvider>
+      <FavoriteProvider>
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </FavoriteProvider>
+    </UserProvider>
+  );
 };
 
 export default App;

@@ -3,16 +3,16 @@ import { useUser } from '../../context/UserContext';
 import Container from '../common/Container';
 
 const UserDashboard = () => {
-    const { user } = useUser();
+  const { user } = useUser();
 
-    return (
-        <Container>
-            <h1 className="title">User Dashboard</h1>
-            <p>
-                <b>Username:</b> {user.username}
-            </p>
-        </Container>
-    );
+  return (
+    <Container>
+      <h1 className="title">User Dashboard</h1>
+      <p>
+        <b>Username:</b> {user.username}
+      </p>
+    </Container>
+  );
 };
 
 export default UserDashboard;

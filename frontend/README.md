@@ -14,29 +14,29 @@
 
 ## DONE BONUS features
 
--   [x] Mimicking loading functionality - fetching what is "static" quickly, fetching businesses with setTimeout to imitate loading, so the user is aware, that he will get some information soon. Not having a long initial loading screen.
--   [x] json server to to mimic and provide fake data
--   [x] active class both in menu and in service search
--   [x] loading effect faked in useFetch hook by adding setTimeout
--   [x] catch error in useFetch hook and display it in the component
--   [x] go to individual business pages
--   [x] 404 page
--   [x] favicon
--   [x] deployed to vercel
--   [x] toast notifications
--   [x] user dashboard
--   [x] Allow user to add favorites only if they are logged in
--   [x] Navigation menu displays favorites only if the user is logged in
--   [x] login/logout/register info messages
--   [x] If no favorites in the favorites page, display a message and a button to go back to the main page to add some
+- [x] Mimicking loading functionality - fetching what is "static" quickly, fetching businesses with setTimeout to imitate loading, so the user is aware, that he will get some information soon. Not having a long initial loading screen.
+- [x] json server to to mimic and provide fake data
+- [x] active class both in menu and in service search
+- [x] loading effect faked in useFetch hook by adding setTimeout
+- [x] catch error in useFetch hook and display it in the component
+- [x] go to individual business pages
+- [x] 404 page
+- [x] favicon
+- [x] deployed to vercel
+- [x] toast notifications
+- [x] user dashboard
+- [x] Allow user to add favorites only if they are logged in
+- [x] Navigation menu displays favorites only if the user is logged in
+- [x] login/logout/register info messages
+- [x] If no favorites in the favorites page, display a message and a button to go back to the main page to add some
 
 ## TODO BONUS features
 
--   [ ] Functional search in homepage
--   [ ] pagination (100 businesses)
--   [ ] absolute paths instead of ../../
--   [ ] dark mode - https://usehooks-ts.com/react-hook/use-dark-mode
--   [ ] make favorites to be stored in the db(different for each user), not in local storage
+- [ ] Functional search in homepage
+- [ ] pagination (100 businesses)
+- [ ] absolute paths instead of ../../
+- [ ] dark mode - https://usehooks-ts.com/react-hook/use-dark-mode
+- [ ] make favorites to be stored in the db(different for each user), not in local storage
 
 ## Actual project requirements
 

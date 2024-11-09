@@ -30,19 +30,19 @@ app.use('/api/auth', authRouter);
 // ----------------------------------------------------------------
 
 const startServer = async () => {
-    try {
-        await connectToDB(); // Connect to the database
-        // if connection is successful, start the server
-        app.listen(process.env.API_PORT, () => {
-            // eslint-disable-next-line no-console
-            console.log(
-                `Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`
-            );
-        });
-    } catch {
-        // eslint-disable-next-line no-console
-        console.error('Failed to start the server:');
-    }
+  try {
+    await connectToDB(); // Connect to the database
+    // if connection is successful, start the server
+    app.listen(process.env.API_PORT, () => {
+      // eslint-disable-next-line no-console
+      console.log(
+        `Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`,
+      );
+    });
+  } catch {
+    // eslint-disable-next-line no-console
+    console.error('Failed to start the server:');
+  }
 };
 
 startServer();

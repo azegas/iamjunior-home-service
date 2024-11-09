@@ -63,11 +63,11 @@ This step is totally optional, but recommended for development experience.
 
 Both frontend and backend folders have their own linting/formatting rules, separate configuration files also.
 
-### Linting
-
 `Eslint` linter **CAN** contain stylistic rules, but then it might conflict with `Prettier` (.prettierrc).
 
-That is why we will use eslint for code quality rules, and Prettier for stylistic rules.
+That is why we will use eslint for code **quality rules**, and Prettier for **stylistic** rules.
+
+### Linting
 
 Install needed dependencies (frontend/backend):
 
@@ -135,7 +135,9 @@ npm run lint
 
 ### Formatting
 
-`Prettier` is used for formatting()
+`Prettier` is used for formatting().
+
+Prettier already contains some rules, but we can add more/override existing ones by creating a configurations file. More about it later.
 
 Install needed dependencies (frontend/backend):
 
@@ -158,15 +160,11 @@ Setup needed files (frontend/backend):
 
 `.prettierrc` or something similar file should be setup already in your chosen folder by the previous command. One for frontend and one for backend.
 
-Example `.prettierrc` file:
+Example `.prettierrc` file (try not to add rules you dont understand):
 
 ```json
 {
-  "printWidth": 120,
-  "tabWidth": 2,
-  "useTabs": false,
-  "singleQuote": true,
-  "trailingComma": "none"
+  "singleQuote": true
 }
 ```
 
