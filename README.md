@@ -8,8 +8,8 @@
     - [Linting](#linting)
     - [Formatting](#formatting)
   - [Setup deployment](#setup-deployment)
-  - [Deploy backend (Node/Express)](#deploy-backend-nodeexpress)
-  - [Deploy frontend (Vite/React)](#deploy-frontend-vitereact)
+    - [Deploy backend (Node/Express)](#deploy-backend-nodeexpress)
+    - [Deploy frontend (Vite/React)](#deploy-frontend-vitereact)
 
 # Run project
 
@@ -65,6 +65,28 @@ npm run dev
 # Guides
 
 ## Setup database
+
+MongoDB is used for the database - https://www.mongodb.com/
+
+Register/login, etc.
+
+Create a new project, choose a free tier.
+
+Create a cluster.
+
+Take the connection string, it will look something like this:
+
+```
+mongodb+srv://<username>:<password>@<cluster-address>/<dbname>?retryWrites=true&w=majority
+```
+
+Add the connection string to the `.env` file in the `backend` folder. Use .env_template as a template.
+
+Create a DB connecting function, use it when server is starting.
+
+Then create models, whenever (tables in the db will be created automatically when you connect to the db).
+
+Then when you are saving data, use the models to write/edit/delete entries to the db.
 
 ## Setup linting/formatting
 
@@ -210,7 +232,7 @@ npm i -g vercel
 vercel login
 ```
 
-## Deploy backend (Node/Express)
+### Deploy backend (Node/Express)
 
 You will notice that we don't need to "build" the backend.
 
@@ -269,7 +291,7 @@ vercel login
 npm run deploy
 ```
 
-## Deploy frontend (Vite/React)
+### Deploy frontend (Vite/React)
 
 You will notice that we need to "build" the frontend.
 
