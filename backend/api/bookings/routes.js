@@ -1,7 +1,9 @@
 const express = require('express');
 
 const { getBookings } = require('./queries/get-bookings');
-const { getBookingsByIdAndEmail } = require('./queries/get-bookings-by-id-and-email');
+const {
+  getBookingsByIdAndEmail,
+} = require('./queries/get-bookings-by-id-and-email');
 const { postBooking } = require('./mutations/post-booking');
 const { deleteBooking } = require('./mutations/delete-booking');
 
@@ -13,5 +15,5 @@ bookingsRouter.post('/', postBooking);
 bookingsRouter.delete('/:id', deleteBooking);
 
 module.exports = {
-    bookingsRouter
+  bookingsRouter,
 };

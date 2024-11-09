@@ -23,28 +23,32 @@ Example API endpoints for deleting a booking by ID:
  */
 
 async function deleteBooking(req, res) {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    if (!id) {
-        return res.status(400).json({ success: false, message: 'Id is required.' });
+  if (!id) {
+    return res.status(400).json({ success: false, message: 'Id is required.' });
+  }
+
+  try {
+    // Find and delete the booking with the specified 'id'
+    const result = await BookingModel.findByIdAndDelete(id);
+
+    // Check if the booking with the specified id exists
+    if (!result) {
+      // If not found, return a 404 Not Found error with a message
+      return res
+        .status(404)
+        .json({ success: false, message: 'Booking not found.' });
     }
 
-    try {
-        // Find and delete the booking with the specified 'id'
-        const result = await BookingModel.findByIdAndDelete(id);
-
-        // Check if the booking with the specified id exists
-        if (!result) {
-            // If not found, return a 404 Not Found error with a message
-            return res.status(404).json({ success: false, message: 'Booking not found.' });
-        }
-
-        res.status(200).json({ success: true, message: 'Booking deleted successfully.' });
-    } catch {
-        res.status(500).json({ success: false, message: 'Internal Server Error' });
-    }
+    res
+      .status(200)
+      .json({ success: true, message: 'Booking deleted successfully.' });
+  } catch {
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
 }
 
 module.exports = {
-    deleteBooking
+  deleteBooking,
 };

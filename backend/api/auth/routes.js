@@ -11,5 +11,5 @@ authRouter.get('/users', getUsers);
 authRouter.post('/login', loginUser);
 
 module.exports = {
-    authRouter
+  authRouter,
 };

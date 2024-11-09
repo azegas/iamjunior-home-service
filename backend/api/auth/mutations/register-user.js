@@ -37,60 +37,70 @@ const { UserModel } = require('../model');
  */
 
 const validateFields = (username, email, password) => {
-    if (!username || !email || !password) {
-        return 'Required fields: username, email, and password.';
-    }
-    if (typeof username !== 'string' || typeof email !== 'string' || typeof password !== 'string') {
-        return 'username, email, and password should be strings.';
-    }
-    return null;
+  if (!username || !email || !password) {
+    return 'Required fields: username, email, and password.';
+  }
+  if (
+    typeof username !== 'string' ||
+    typeof email !== 'string' ||
+    typeof password !== 'string'
+  ) {
+    return 'username, email, and password should be strings.';
+  }
+  return null;
 };
 
 const isValidEmail = (email) => email.includes('@');
 
 const checkExistingUsername = async (username) => {
-    return await UserModel.findOne({ username });
+  return await UserModel.findOne({ username });
 };
 
 const checkExistingEmail = async (email) => {
-    return await UserModel.findOne({ email });
+  return await UserModel.findOne({ email });
 };
 
 const registerUser = async (req, res) => {
-    const { username, email, password } = req.body;
+  const { username, email, password } = req.body;
 
-    // Validate fields
-    const fieldError = validateFields(username, email, password);
-    if (fieldError) {
-        return res.status(400).json({ success: false, message: fieldError });
+  // Validate fields
+  const fieldError = validateFields(username, email, password);
+  if (fieldError) {
+    return res.status(400).json({ success: false, message: fieldError });
+  }
+
+  // Validate email format
+  if (!isValidEmail(email)) {
+    return res
+      .status(400)
+      .json({ success: false, message: 'Invalid email format.' });
+  }
+
+  try {
+    // Check for existing username
+    if (await checkExistingUsername(username)) {
+      return res
+        .status(409)
+        .json({ success: false, message: 'Username already exists.' });
     }
 
-    // Validate email format
-    if (!isValidEmail(email)) {
-        return res.status(400).json({ success: false, message: 'Invalid email format.' });
+    // Check for existing email
+    if (await checkExistingEmail(email)) {
+      return res
+        .status(409)
+        .json({ success: false, message: 'Email already exists.' });
     }
 
-    try {
-        // Check for existing username
-        if (await checkExistingUsername(username)) {
-            return res.status(409).json({ success: false, message: 'Username already exists.' });
-        }
-
-        // Check for existing email
-        if (await checkExistingEmail(email)) {
-            return res.status(409).json({ success: false, message: 'Email already exists.' });
-        }
-
-        // Create new user
-        const newUser = await UserModel.create({ username, email, password });
-        res.status(201).json({
-            success: true,
-            message: 'User registered successfully',
-            user: newUser
-        });
-    } catch {
-        res.status(500).json({ success: false, message: 'Internal Server Error' });
-    }
+    // Create new user
+    const newUser = await UserModel.create({ username, email, password });
+    res.status(201).json({
+      success: true,
+      message: 'User registered successfully',
+      user: newUser,
+    });
+  } catch {
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
 };
 
 module.exports = { registerUser };

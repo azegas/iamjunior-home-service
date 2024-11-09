@@ -13,13 +13,13 @@ const { UserModel } = require('../model');
  */
 
 const getUsers = async (req, res) => {
-    const users = await UserModel.find();
-    if (users.length === 0) {
-        return res.status(404).json({ message: 'No users found' });
-    }
-    res.status(200).json(users);
+  const users = await UserModel.find();
+  if (users.length === 0) {
+    return res.status(404).json({ message: 'No users found' });
+  }
+  res.status(200).json(users);
 };
 
 module.exports = {
-    getUsers
+  getUsers,
 };

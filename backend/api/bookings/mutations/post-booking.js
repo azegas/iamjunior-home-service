@@ -48,58 +48,67 @@ http://localhost:3000/api/bookings
  */
 
 const validateRequiredFields = (fields) => {
-    const { businessId, date, time, userEmail, userName, status } = fields;
-    if (!businessId || !date || !time || !userEmail || !userName || !status) {
-        return 'Required fields: businessId, date, time, userEmail, userName, and status.';
-    }
-    return null;
+  const { businessId, date, time, userEmail, userName, status } = fields;
+  if (!businessId || !date || !time || !userEmail || !userName || !status) {
+    return 'Required fields: businessId, date, time, userEmail, userName, and status.';
+  }
+  return null;
 };
 
 const validateFieldTypes = (fields) => {
-    const { businessId, date, time, userEmail, userName, status } = fields;
-    if (
-        typeof businessId !== 'string' ||
-        typeof date !== 'string' ||
-        typeof time !== 'string' ||
-        typeof userEmail !== 'string' ||
-        typeof userName !== 'string' ||
-        typeof status !== 'string'
-    ) {
-        return 'All fields should be strings.';
-    }
-    if (!userEmail.includes('@')) {
-        return 'userEmail should contain @.';
-    }
-    return null;
+  const { businessId, date, time, userEmail, userName, status } = fields;
+  if (
+    typeof businessId !== 'string' ||
+    typeof date !== 'string' ||
+    typeof time !== 'string' ||
+    typeof userEmail !== 'string' ||
+    typeof userName !== 'string' ||
+    typeof status !== 'string'
+  ) {
+    return 'All fields should be strings.';
+  }
+  if (!userEmail.includes('@')) {
+    return 'userEmail should contain @.';
+  }
+  return null;
 };
 
 const postBooking = async (req, res) => {
-    const { businessId, date, time, userEmail, userName, status } = req.body;
+  const { businessId, date, time, userEmail, userName, status } = req.body;
 
-    // Validate required fields
-    const requiredFieldsError = validateRequiredFields(req.body);
-    if (requiredFieldsError) {
-        return res.status(400).json({ success: false, message: requiredFieldsError });
-    }
+  // Validate required fields
+  const requiredFieldsError = validateRequiredFields(req.body);
+  if (requiredFieldsError) {
+    return res
+      .status(400)
+      .json({ success: false, message: requiredFieldsError });
+  }
 
-    // Validate field types
-    const fieldTypesError = validateFieldTypes(req.body);
-    if (fieldTypesError) {
-        return res.status(400).json({ success: false, message: fieldTypesError });
-    }
+  // Validate field types
+  const fieldTypesError = validateFieldTypes(req.body);
+  if (fieldTypesError) {
+    return res.status(400).json({ success: false, message: fieldTypesError });
+  }
 
-    const newBooking = new BookingModel({ businessId, date, time, userEmail, userName, status });
+  const newBooking = new BookingModel({
+    businessId,
+    date,
+    time,
+    userEmail,
+    userName,
+    status,
+  });
 
-    try {
-        await newBooking.save();
-        res.status(201).json({
-            success: true,
-            message: 'Booking created successfully',
-            booking: newBooking
-        });
-    } catch {
-        res.status(500).json({ success: false, message: 'Internal Server Error' });
-    }
+  try {
+    await newBooking.save();
+    res.status(201).json({
+      success: true,
+      message: 'Booking created successfully',
+      booking: newBooking,
+    });
+  } catch {
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
 };
 
 module.exports = { postBooking };
