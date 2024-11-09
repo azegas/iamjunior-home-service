@@ -77,11 +77,26 @@ const Navbar = () => {
               <button onClick={() => navigate('/login')}>Login/Signup</button>
             )}
 
-            <img
-              style={{ width: '30px' }}
-              onClick={clearLocalStorage}
-              src="https://img.icons8.com/?size=100&id=cGxj6HzPbSdJ&format=png&color=000000"
-            />
+            {import.meta.env.VITE_PROD === 'false' && (
+              <>
+                <img
+                  style={{ width: '30px' }}
+                  onClick={clearLocalStorage}
+                  src="https://img.icons8.com/?size=100&id=cGxj6HzPbSdJ&format=png&color=000000"
+                />
+                <span
+                  style={{
+                    color: 'white',
+                    fontWeight: 'bold',
+                    backgroundColor: 'red',
+                    padding: '5px',
+                    borderRadius: '5px',
+                  }}
+                >
+                  DEV
+                </span>
+              </>
+            )}
           </div>
         </div>
       </Container>
