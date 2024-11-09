@@ -7,7 +7,7 @@ const Spinner = () => {
   return (
     <div>
       <img className={styles.spinner} src={svg} alt="spinner" />
-      <p>Fake loading effect</p>
+      <p>Loading...</p>
     </div>
   );
 };
