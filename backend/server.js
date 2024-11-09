@@ -33,13 +33,17 @@ const startServer = async () => {
   try {
     await connectToDB(); // Connect to the database
     // if connection is successful, start the server
-    app.listen(process.env.API_PORT, () => {
+    const host =
       process.env.NODE_ENV === 'production'
-        ? console.log(`Server is running on ${process.env.API_HOST_PROD}`)
-        : console.log(
-            `Server is running on ${process.env.API_PROTOCOL_LOCAL}://${process.env.API_HOST_LOCAL}:${process.env.API_PORT_LOCAL}`,
-          );
-    });
+        ? process.env.API_HOST_PROD
+        : `${process.env.API_PROTOCOL_LOCAL}://${process.env.API_HOST_LOCAL}:${process.env.API_PORT_LOCAL}`;
+    app.listen(
+      // if production, listen on port 0 to let the cloud provider choose the port
+      process.env.NODE_ENV === 'production' ? 0 : process.env.API_PORT_LOCAL,
+      () => {
+        console.log(`Server is running on ${host}`);
+      },
+    );
   } catch {
     // eslint-disable-next-line no-console
     console.error('Failed to start the server:');
