@@ -34,7 +34,7 @@
 
 - [ ] Functional search in homepage
 - [ ] pagination (100 businesses)
-- [ ] absolute paths instead of ../../
+- [x] absolute paths instead of ../../
 - [ ] dark mode - https://usehooks-ts.com/react-hook/use-dark-mode
 - [ ] make favorites to be stored in the db(different for each user), not in local storage
 

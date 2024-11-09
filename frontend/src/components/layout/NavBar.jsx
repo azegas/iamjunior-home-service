@@ -1,12 +1,12 @@
-import Logo from '../../assets/logo.png';
+import Logo from '@/assets/logo.png';
 import { useNavigate, NavLink } from 'react-router-dom';
 import styles from './NavBar.module.scss';
-import { clearLocalStorage } from '../../utils/utils';
-import { useUser } from '../../context/UserContext';
-import { useFavorite } from '../../context/FavoriteContext';
+import { clearLocalStorage } from '@/utils/utils';
+import { useUser } from '@/context/UserContext';
+import { useFavorite } from '@/context/FavoriteContext';
 import { toast } from 'react-toastify';
-import Container from '../common/Container';
-import routes from '../../routing/routes';
+import Container from '@/components/common/Container';
+import routes from '@/routing/routes';
 
 const menuItemsLeft = [
   { link: routes.home, title: 'Home Service' },

@@ -1,7 +1,7 @@
 import styles from './BusinessCard.module.scss';
 import { Link } from 'react-router-dom';
-import { useUser } from '../../context/UserContext';
-import { useFavorite } from '../../context/FavoriteContext';
+import { useUser } from '@/context/UserContext';
+import { useFavorite } from '@/context/FavoriteContext';
 
 const BusinessCard = ({ business, onFavoriteClick }) => {
   const { user } = useUser();

@@ -1,5 +1,5 @@
-import '../../styles/global.scss';
-import Spinner from './Spinner';
+import '@/styles/global.scss';
+import Spinner from '@/components/common/Spinner';
 
 const Loading = () => {
   return (

@@ -1,6 +1,6 @@
-import '../../styles/global.scss';
-import { useUser } from '../../context/UserContext';
-import Container from '../common/Container';
+import '@/styles/global.scss';
+import { useUser } from '@/context/UserContext';
+import Container from '@/components/common/Container';
 
 const UserDashboard = () => {
   const { user } = useUser();

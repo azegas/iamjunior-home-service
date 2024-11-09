@@ -1,6 +1,6 @@
 import styles from './Hero.module.scss';
-import CategoryList from '../category/CategoryList';
-import SearchInput from './SearchInput';
+import CategoryList from '@/components/category/CategoryList';
+import SearchInput from '@/components/common/SearchInput';
 
 const Hero = ({ categories }) => {
   return (

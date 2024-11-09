@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useUser } from '../../context/UserContext';
+import { useUser } from '@/context/UserContext';
 import { useNavigate } from 'react-router-dom';
-import InputField from '../common/InputField';
+import InputField from '@/components/common/InputField';
 import styles from './RegisterForm.module.scss';
-import '../../styles/global.scss';
+import '@/styles/global.scss';
 import { toast } from 'react-toastify';
 
 const RegisterForm = () => {

@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
-import useFetchBusiness from '../../hooks/use-fetch-business';
-import Loading from '../common/Loading';
-import Error from '../common/Error';
+import useFetchBusiness from '@/hooks/use-fetch-business';
+import Loading from '@/components/common/Loading';
+import Error from '@/components/common/Error';
 import styles from './BusinessDetail.module.scss';
-import '../../styles/global.scss';
-import Container from '../common/Container';
+import '@/styles/global.scss';
+import Container from '@/components/common/Container';
 
 const BusinessDetail = () => {
   const { id } = useParams();

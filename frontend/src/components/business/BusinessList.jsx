@@ -1,6 +1,6 @@
 import BusinessCard from './BusinessCard';
 import styles from './BusinessList.module.scss';
-import { useFavorite } from '../../context/FavoriteContext';
+import { useFavorite } from '@/context/FavoriteContext';
 import Container from '../common/Container';
 
 const BusinessList = ({ businesses, categoryName }) => {
