@@ -1,12 +1,17 @@
-- [iamjunior-home-service](#iamjunior-home-service)
+- [Run project](#run-project)
   - [Clone the project](#clone-the-project)
   - [Run backend](#run-backend)
   - [Run frontend](#run-frontend)
+- [Guides](#guides)
+  - [Setup database](#setup-database)
   - [Setup linting/formatting](#setup-lintingformatting)
     - [Linting](#linting)
     - [Formatting](#formatting)
+  - [Setup deployment](#setup-deployment)
+  - [Deploy backend (Node/Express)](#deploy-backend-nodeexpress)
+  - [Deploy frontend (Vite/React)](#deploy-frontend-vitereact)
 
-# iamjunior-home-service
+# Run project
 
 Main task that was done during iamjunior course - https://www.iamjunior.lt/front-end-akceleratorius-javascript
 
@@ -56,6 +61,10 @@ npm i
 npm run dev
 # open http://localhost:5173/ in your browser to preview the site
 ```
+
+# Guides
+
+## Setup database
 
 ## Setup linting/formatting
 
@@ -191,3 +200,61 @@ Run formatting manually for all the files in the folder (frontend/backend):
 ```bash
 npm run format
 ```
+
+## Setup deployment
+
+Install vercel GLOBALLY:
+
+```bash
+npm i -g vercel
+vercel login
+```
+
+## Deploy backend (Node/Express)
+
+Make sure you are in the main/master branch.
+
+```bash
+cd backend
+```
+
+Make sure to have:
+
+```js
+...
+import path from "path";
+
+const app = express();
+app.use(express.static(path.join(__dirname, "../", "public")));
+```
+
+Also have `index.html` file in the public folder.
+
+Create `backend/vercel.json`:
+
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node",
+      "config": { "includeFiles": ["./**"] }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ]
+}
+```
+
+```bash
+cd backend
+vercel login
+vercel
+```
+
+## Deploy frontend (Vite/React)
