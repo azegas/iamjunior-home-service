@@ -15,32 +15,7 @@
 
 # iamjunior-home-service (backend)
 
-To know how the initial backend node project was built(simply the api), check out this repo - https://github.com/azegas/iamjunior-nodejs
-
-Database is in MongoDB over at - https://www.mongodb.com (accessed from all ips (0.0.0.0/0) - configured on mongo atlas side)
-
-To start the API server, run the following commands:
-
-```bash
-cd backend
-# set the environment variables to .env file
-cp .env_template .env
-npm i
-npm run server
-```
-
-When site has been launched:
-
--   Index page - http://localhost:3000/
--   Swagger API docs - http://localhost:3000/api-docs/
--   To preview the chosen endpoint - http://localhost:3000/api/categories (or other endpoint)
-
-To recreate the database, run the following command:
-
-```bash
-cd utils
-node recreate-db.js
-```
+To know how the initial backend node project was built(simply the api, but can see the commit history), check out this repo - https://github.com/azegas/iamjunior-nodejs
 
 # BONUS tasks
 
