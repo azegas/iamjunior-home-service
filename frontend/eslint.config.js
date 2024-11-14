@@ -4,7 +4,7 @@ import pluginReact from 'eslint-plugin-react';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { files: ['**/*.{js,mjs,cjs,jsx}'] },
+  { files: ['**/*.{js,mjs,cjs,jsx,ts,tsx}'] },
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   pluginReact.configs.flat.recommended,
@@ -14,7 +14,6 @@ export default [
         version: 'detect',
       },
     },
-    // TODO: po convertativmo i ts eslint nebeveikia
     rules: {
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
