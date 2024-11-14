@@ -12,4 +12,6 @@ const routes = {
   page404: '*',
 };
 
+console.log('hello');
+
 export default routes;

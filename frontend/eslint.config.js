@@ -14,6 +14,7 @@ export default [
         version: 'detect',
       },
     },
+    // TODO: po convertativmo i ts eslint nebeveikia
     rules: {
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
