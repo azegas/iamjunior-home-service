@@ -1,6 +1,5 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
-import pluginReact from 'eslint-plugin-react';
 import pluginTypeScript from '@typescript-eslint/eslint-plugin';
 import parserTypeScript from '@typescript-eslint/parser';
 
@@ -22,10 +21,7 @@ export default [
     },
     rules: {
       ...pluginJs.configs.recommended.rules,
-      ...pluginReact.configs.flat.recommended.rules,
       ...pluginTypeScript.configs.recommended.rules,
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
       'no-console': 'error',
     },
   },
