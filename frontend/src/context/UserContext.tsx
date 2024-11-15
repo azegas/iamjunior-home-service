@@ -1,14 +1,21 @@
 import React, { createContext, useContext, useState } from 'react';
+import { User } from '@/components/auth/types';
 
-const UserContext = createContext();
+type UserContextProps = {
+  user: User | null;
+  saveUserToContext: (userData: User) => void;
+  clearUserFromContext: () => void;
+};
 
-export const UserProvider = ({ children }) => {
+const UserContext = createContext<UserContextProps | undefined>(undefined);
+
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem('user');
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  const saveUserToContext = (userData) => {
+  const saveUserToContext = (userData: User) => {
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
   };
@@ -19,9 +26,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider
-      value={{ user, saveUserToContext, clearUserFromContext }}
-    >
+    <UserContext.Provider value={{ user, saveUserToContext, clearUserFromContext }}>
       {children}
     </UserContext.Provider>
   );

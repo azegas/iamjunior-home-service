@@ -1,8 +1,9 @@
 import styles from './Hero.module.scss';
 import CategoryList from '@/components/category/CategoryList';
 import SearchInput from '@/components/common/SearchInput';
+import { Category } from '@/components/category/types';
 
-const Hero = ({ categories }) => {
+const Hero = ({ categories }: { categories: Category[] }) => {
   return (
     <>
       <div className={styles.hero}>
@@ -15,11 +16,13 @@ const Hero = ({ categories }) => {
           <p>Explore the best home services in your area</p>
         </div>
 
-        <SearchInput />
+        <SearchInput onSearch={() => {}} />
         <CategoryList
           categories={categories}
-          className={styles.categoryList}
+          classNameList={styles.categoryList}
+          classNameCard={styles.categoryCard}
           showCount={false}
+          businesses={[]}
         />
         <hr />
       </div>

@@ -4,11 +4,15 @@ import { useFavorite } from '../context/FavoriteContext';
 import { useUser } from '../context/UserContext';
 import '../styles/global.scss';
 import { useNavigate } from 'react-router-dom';
+import { User } from '../components/auth/types';
+import { Business } from '../components/business/types';
 
 const Favorites = () => {
-  const { businesses } = useFetchBusinesses();
-  const { favorites } = useFavorite();
-  const { user } = useUser();
+  const { businesses }: { businesses: Business[] | null } = useFetchBusinesses();
+  const favoriteContext = useFavorite();
+  const userContext = useUser();
+  const favorites: string[] = favoriteContext?.favorites || [];
+  const user: User | undefined = userContext?.user ?? undefined;
   const navigate = useNavigate();
 
   const filteredBusinesses = businesses
@@ -19,9 +23,7 @@ const Favorites = () => {
     return user ? (
       <div className="container middleOfPage">
         No favorites yet. Visit homepage to discover businesses!{' '}
-        <button onClick={() => navigate('/')}>
-          Show me all the businesses
-        </button>
+        <button onClick={() => navigate('/')}>Show me all the businesses</button>
       </div>
     ) : (
       <div className="container middleOfPage">
@@ -31,9 +33,7 @@ const Favorites = () => {
     );
   }
 
-  return (
-    <BusinessList businesses={filteredBusinesses} categoryName="Favorites" />
-  );
+  return <BusinessList businesses={filteredBusinesses} categoryName="Favorites" />;
 };
 
 export default Favorites;

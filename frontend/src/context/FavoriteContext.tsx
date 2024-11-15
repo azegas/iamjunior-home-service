@@ -1,21 +1,26 @@
 import React, { createContext, useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 
-const FavoriteContext = createContext();
+type FavoriteContextProps = {
+  favorites: string[];
+  handleFavorite: (favoriteId: string) => void;
+};
 
-export const FavoriteProvider = ({ children }) => {
+const FavoriteContext = createContext<FavoriteContextProps | undefined>(undefined);
+
+export const FavoriteProvider = ({ children }: { children: React.ReactNode }) => {
   const [favorites, setFavorites] = useState(() => {
     const savedFavorites = localStorage.getItem('favorites');
     return savedFavorites ? JSON.parse(savedFavorites) : [];
   });
 
-  const handleFavorite = (favoriteId) => {
+  const handleFavorite = (favoriteId: string) => {
     // Initialize updatedFavorites variable
     let updatedFavorites;
     // Check if the favoriteId is already in the favorites array
     if (favorites.includes(favoriteId)) {
       // If it is, filter it out to remove it from the favorites
-      updatedFavorites = favorites.filter((id) => id !== favoriteId);
+      updatedFavorites = favorites.filter((id: string) => id !== favoriteId);
       toast.error('Removed from favorites');
     } else {
       // If it's not, add it to the favorites array

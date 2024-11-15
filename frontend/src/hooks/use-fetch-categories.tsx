@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
+import { Category } from '@/components/category/types';
 
-const useFetchCategories = () => {
-  const [categories, setCategories] = useState(null);
-  const [errorsCategories, setErrorsCategories] = useState([]);
-  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+type UseFetchCategoriesReturn = {
+  categories: Category[] | null;
+  errorsCategories: { message: string }[];
+  isLoadingCategories: boolean;
+};
+
+const useFetchCategories = (): UseFetchCategoriesReturn => {
+  const [categories, setCategories] = useState<Category[] | null>(null);
+  const [errorsCategories, setErrorsCategories] = useState<{ message: string }[]>([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -13,12 +20,12 @@ const useFetchCategories = () => {
       try {
         const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/categories`;
         const categoriesResponse = await fetch(apiUrl);
-        const categoriesData = await categoriesResponse.json();
+        const categoriesData: Category[] = await categoriesResponse.json();
 
         if (!categoriesData) {
           setErrorsCategories([{ message: 'Categories not found' }]);
         } else {
-          setCategories(categoriesData);
+          setCategories(categoriesData as Category[]);
         }
 
         setIsLoadingCategories(false); // Stop loading regardless of success or errors

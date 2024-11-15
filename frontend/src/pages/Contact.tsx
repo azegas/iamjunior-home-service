@@ -1,9 +1,11 @@
 import '../styles/global.scss';
 import { useUser } from '../context/UserContext';
 import Container from '../components/common/Container';
+import { User } from '../components/auth/types';
 
 const Contact = () => {
-  const { user } = useUser();
+  const userContext = useUser();
+  const user: User | undefined = userContext?.user ?? undefined;
 
   return (
     <Container>

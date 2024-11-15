@@ -1,11 +1,18 @@
 import { useState, useEffect } from 'react';
+import { Business } from '@/components/business/types';
 
-const useFetchBusinesses = () => {
-  const [businesses, setBusinesses] = useState(null);
-  const [errorsBusinesses, setErrorsBusinesses] = useState([]);
-  const [isLoadingBusinesses, setIsLoadingBusinesses] = useState(true);
+type UseFetchBusinessesReturn = {
+  businesses: Business[] | null;
+  errorsBusinesses: { message: string }[];
+  isLoadingBusinesses: boolean;
+};
 
-  // TODO make a separate hook to fetch one business by id. For business detail page for example, why fetch all businesses?
+const useFetchBusinesses = (): UseFetchBusinessesReturn => {
+  const [businesses, setBusinesses] = useState<Business[] | null>(null);
+  const [errorsBusinesses, setErrorsBusinesses] = useState<
+    { message: string }[]
+  >([]);
+  const [isLoadingBusinesses, setIsLoadingBusinesses] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {

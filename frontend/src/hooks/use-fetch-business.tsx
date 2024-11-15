@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
+import { Business } from '@/components/business/types';
 
-const useFetchBusiness = (id) => {
-  const [business, setBusiness] = useState(null);
-  const [errorsBusiness, setErrorsBusiness] = useState();
-  const [isLoadingBusiness, setIsLoadingBusiness] = useState(true);
+type UseFetchBusinessReturn = {
+  business: Business | null;
+  errorsBusiness: { message: string }[];
+  isLoadingBusiness: boolean;
+};
+
+const useFetchBusiness = (id: string): UseFetchBusinessReturn => {
+  const [business, setBusiness] = useState<Business | null>(null);
+  const [errorsBusiness, setErrorsBusiness] = useState<{ message: string }[]>([]);
+  const [isLoadingBusiness, setIsLoadingBusiness] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,12 +19,14 @@ const useFetchBusiness = (id) => {
       try {
         const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/businesses/${id}`;
         const businessResponse = await fetch(apiUrl);
-        const businessData = await businessResponse.json();
+
+        // partial type checking allows to have some but not necessarily all Business properties, preventing TypeScript errors if some fields are missing
+        const businessData: Partial<Business> = await businessResponse.json();
 
         if (!businessData) {
           setErrorsBusiness([{ message: 'Business not found' }]);
         } else {
-          setBusiness(businessData);
+          setBusiness(businessData as Business);
         }
 
         setIsLoadingBusiness(false); // Stop loading regardless of success or errors

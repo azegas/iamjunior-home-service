@@ -5,14 +5,15 @@ import InputField from '@/components/common/InputField';
 import styles from './LoginForm.module.scss';
 import '@/styles/global.scss';
 import { toast } from 'react-toastify';
+import { LoginResponse } from './types';
 
 const LoginForm = () => {
-  const { saveUserToContext } = useUser();
+  const { saveUserToContext } = useUser() ?? {};
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await loginAttempt();
   };
@@ -38,9 +39,9 @@ const LoginForm = () => {
     }
   };
 
-  const handleLoginResponse = (response, data) => {
+  const handleLoginResponse = (response: Response, data: LoginResponse) => {
     if (response.ok) {
-      saveUserToContext(data.user);
+      saveUserToContext?.(data.user);
       toast.success(
         `Login successful, hello ${data.user.username}! You can now add businesses to your favorites.`,
       );
@@ -64,6 +65,8 @@ const LoginForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          error={false}
+          errorMessage=""
         />
         <InputField
           label="Password:"
@@ -73,6 +76,8 @@ const LoginForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          error={false}
+          errorMessage=""
         />
         <button type="submit">Login</button>
       </form>

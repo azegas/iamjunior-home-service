@@ -5,16 +5,17 @@ import InputField from '@/components/common/InputField';
 import styles from './RegisterForm.module.scss';
 import '@/styles/global.scss';
 import { toast } from 'react-toastify';
+import { LoginResponse } from './types';
 
 const RegisterForm = () => {
-  const { saveUserToContext } = useUser();
+  const { saveUserToContext } = useUser() ?? {};
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [usernameError, setUsernameError] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     validateUsername();
     if (usernameError) return;
@@ -48,9 +49,9 @@ const RegisterForm = () => {
     }
   };
 
-  const handleRegistrationResponse = (response, data) => {
+  const handleRegistrationResponse = (response: Response, data: LoginResponse) => {
     if (response.ok) {
-      saveUserToContext(data.user);
+      saveUserToContext?.(data.user);
       toast.success(`Registered successfully, hello ${username}!`);
       navigate('/');
     } else {
@@ -72,7 +73,8 @@ const RegisterForm = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          error={usernameError}
+          // !! true if usernameError is a non-empty string (truthy).
+          error={!!usernameError}
           errorMessage={usernameError}
         />
         <InputField
@@ -83,6 +85,8 @@ const RegisterForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          error={false}
+          errorMessage=""
         />
         <InputField
           label="Password:"
@@ -92,6 +96,8 @@ const RegisterForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          error={false}
+          errorMessage=""
         />
         <button type="submit">Register</button>
       </form>

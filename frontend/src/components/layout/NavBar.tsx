@@ -8,7 +8,12 @@ import { toast } from 'react-toastify';
 import Container from '@/components/common/Container';
 import routes from '@/routing/routes';
 
-const menuItemsLeft = [
+interface MenuItem {
+  link: string;
+  title: string;
+}
+
+const menuItemsLeft: MenuItem[] = [
   { link: routes.home, title: 'Home Service' },
   { link: routes.services, title: 'Services' },
   { link: routes.about, title: 'About' },
@@ -17,8 +22,8 @@ const menuItemsLeft = [
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { user, clearUserFromContext } = useUser();
-  const { favorites } = useFavorite();
+  const { user, clearUserFromContext } = useUser() ?? {};
+  const { favorites } = useFavorite() ?? {};
 
   return (
     <nav>
@@ -42,31 +47,26 @@ const Navbar = () => {
             </div>
           </div>
           <div className={styles.right}>
-            <NavLink to="/favorites">
-              <img
-                className={styles.favoriteIcon}
-                src="https://img.icons8.com/?id=DFU1kReSUccu&format=png&color=000000"
-                alt="Favorites Icon"
-              />
-              <span>{favorites.length}</span>
-            </NavLink>
-
             {user ? (
               <>
+                <NavLink to="/favorites">
+                  <img
+                    className={styles.favoriteIcon}
+                    src="https://img.icons8.com/?id=DFU1kReSUccu&format=png&color=000000"
+                    alt="Favorites Icon"
+                  />
+                  <span>{favorites?.length}</span>
+                </NavLink>
+
                 <div className={styles.links}>
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) => (isActive ? 'active' : '')}
-                  >
+                  <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
                     {user.username} Dashboard!
                   </NavLink>
                 </div>
                 <button
                   onClick={() => {
-                    clearUserFromContext();
-                    toast.success(
-                      `Logged out successfully, bye ${user.username}!`,
-                    );
+                    clearUserFromContext?.();
+                    toast.success(`Logged out successfully, bye ${user.username}!`);
                     navigate('/');
                   }}
                 >
