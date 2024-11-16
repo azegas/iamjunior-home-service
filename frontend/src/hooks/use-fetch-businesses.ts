@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Business } from '@/components/business/types';
+import { formatErrorMessage } from '@/utils/utils';
 
 type UseFetchBusinessesReturn = {
   businesses: Business[] | null;
@@ -9,9 +10,7 @@ type UseFetchBusinessesReturn = {
 
 const useFetchBusinesses = (): UseFetchBusinessesReturn => {
   const [businesses, setBusinesses] = useState<Business[] | null>(null);
-  const [errorsBusinesses, setErrorsBusinesses] = useState<
-    { message: string }[]
-  >([]);
+  const [errorsBusinesses, setErrorsBusinesses] = useState<{ message: string }[]>([]);
   const [isLoadingBusinesses, setIsLoadingBusinesses] = useState<boolean>(true);
 
   useEffect(() => {
@@ -22,17 +21,21 @@ const useFetchBusinesses = (): UseFetchBusinessesReturn => {
       try {
         const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/businesses`;
         const businessesResponse = await fetch(apiUrl);
-        const businessesData = await businessesResponse.json();
+        if (!businessesResponse.ok) {
+          throw new Error(`HTTP error! status: ${businessesResponse.status}`);
+        }
+        const businessesData: Partial<Business>[] = await businessesResponse.json();
 
         if (!businessesData) {
           setErrorsBusinesses([{ message: 'Businesses not found' }]);
         } else {
-          setBusinesses(businessesData);
+          setBusinesses(businessesData as Business[]);
         }
 
-        setIsLoadingBusinesses(false); // Stop loading regardless of success or errors
-      } catch {
-        setErrorsBusinesses([{ message: 'Failed to fetch data' }]);
+        setIsLoadingBusinesses(false);
+      } catch (err) {
+        const errorMessage = formatErrorMessage(err);
+        setErrorsBusinesses([{ message: errorMessage }]);
         setIsLoadingBusinesses(false);
       }
     };

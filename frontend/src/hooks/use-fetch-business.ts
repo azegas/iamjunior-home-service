@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Business } from '@/components/business/types';
+import { formatErrorMessage } from '@/utils/utils';
 
 type UseFetchBusinessReturn = {
   business: Business | null;
@@ -20,6 +21,10 @@ const useFetchBusiness = (id: string): UseFetchBusinessReturn => {
         const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/businesses/${id}`;
         const businessResponse = await fetch(apiUrl);
 
+        if (!businessResponse.ok) {
+          throw new Error(`HTTP error! status: ${businessResponse.status}`);
+        }
+
         // partial type checking allows to have some but not necessarily all Business properties, preventing TypeScript errors if some fields are missing
         const businessData: Partial<Business> = await businessResponse.json();
 
@@ -30,8 +35,9 @@ const useFetchBusiness = (id: string): UseFetchBusinessReturn => {
         }
 
         setIsLoadingBusiness(false); // Stop loading regardless of success or errors
-      } catch {
-        setErrorsBusiness([{ message: 'Failed to fetch data' }]);
+      } catch (err) {
+        const errorMessage = formatErrorMessage(err);
+        setErrorsBusiness([{ message: errorMessage }]);
         setIsLoadingBusiness(false);
       }
     };

@@ -1,11 +1,7 @@
 import React from 'react';
 import styles from './SearchInput.module.scss';
 
-type SearchInputProps = {
-  onSearch: (value: string) => void;
-};
-
-const SearchInput = ({ onSearch }: SearchInputProps) => {
+const SearchInput = (onSearch: (value: string) => void) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onSearch(e.target.value);
   };

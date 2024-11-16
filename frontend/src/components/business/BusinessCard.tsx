@@ -4,13 +4,14 @@ import { useUser } from '@/context/UserContext';
 import { useFavorite } from '@/context/FavoriteContext';
 import { Business } from './types';
 
-type BusinessCardProps = {
+// The onFavoriteClick function is a void function, meaning it does not return any value.
+const BusinessCard = ({
+  business,
+  onFavoriteClick,
+}: {
   business: Business;
-  // The onFavoriteClick function is a void function, meaning it does not return any value.
   onFavoriteClick: () => void;
-};
-
-const BusinessCard = ({ business, onFavoriteClick }: BusinessCardProps) => {
+}) => {
   const { user } = useUser() ?? {};
   const { favorites } = useFavorite() ?? {};
 
@@ -39,10 +40,10 @@ const BusinessCard = ({ business, onFavoriteClick }: BusinessCardProps) => {
           alt={business.name}
         />
         <div className={styles.info}>
-          <p className={styles.category}>{business.category.name}</p>
-          <p className={styles.name}>{business.name}</p>
-          <p className={styles.worker}>{business.worker}</p>
-          <p className={styles.address}>{business.address}</p>
+          <p className={styles.category}>{business.category?.name || 'Category not available'}</p>
+          <p className={styles.name}>{business.name || 'Name not available'}</p>
+          <p className={styles.worker}>{business.worker || 'Worker not available'}</p>
+          <p className={styles.address}>{business.address || 'Address not available'}</p>
         </div>
         <button className={styles.bookButton}>Book Now</button>
       </Link>

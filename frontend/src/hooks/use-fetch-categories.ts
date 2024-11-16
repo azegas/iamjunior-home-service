@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Category } from '@/components/category/types';
+import { formatErrorMessage } from '@/utils/utils';
 
 type UseFetchCategoriesReturn = {
   categories: Category[] | null;
@@ -20,6 +21,9 @@ const useFetchCategories = (): UseFetchCategoriesReturn => {
       try {
         const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/categories`;
         const categoriesResponse = await fetch(apiUrl);
+        if (!categoriesResponse.ok) {
+          throw new Error(`HTTP error! status: ${categoriesResponse.status}`);
+        }
         const categoriesData: Category[] = await categoriesResponse.json();
 
         if (!categoriesData) {
@@ -29,8 +33,9 @@ const useFetchCategories = (): UseFetchCategoriesReturn => {
         }
 
         setIsLoadingCategories(false); // Stop loading regardless of success or errors
-      } catch {
-        setErrorsCategories([{ message: 'Failed to fetch data' }]);
+      } catch (err) {
+        const errorMessage = formatErrorMessage(err);
+        setErrorsCategories([{ message: errorMessage }]);
         setIsLoadingCategories(false);
       }
     };

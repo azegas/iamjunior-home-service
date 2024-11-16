@@ -30,16 +30,16 @@ const BusinessDetail = () => {
           className={styles.businessImage}
         />
         <p>
-          <strong>Category:</strong> {business.category.name}
+          <strong>Category:</strong> {business.category?.name || 'Category not available'}
         </p>
         <p>
-          <strong>Description:</strong> {business.description}
+          <strong>Description:</strong> {business.description || 'Description not available'}
         </p>
         <p>
-          <strong>Address:</strong> {business.address}
+          <strong>Address:</strong> {business.address || 'Address not available'}
         </p>
         <p>
-          <strong>Contact Person:</strong> {business.worker}
+          <strong>Contact Person:</strong> {business.worker || 'Contact person not available'}
         </p>
       </Container>
     );

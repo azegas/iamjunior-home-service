@@ -15,3 +15,9 @@ export const clearLocalStorage = () => {
   localStorage.clear();
   alert('Local Storage has been cleared.');
 };
+
+export function formatErrorMessage(error: unknown) {
+  if (error instanceof Error) return error.message;
+  if (typeof error === 'string') return error;
+  return 'An unexpected error occured';
+}
