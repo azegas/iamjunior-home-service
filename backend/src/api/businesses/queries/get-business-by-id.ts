@@ -1,4 +1,4 @@
-const { BusinessModel } = require('../model');
+import { BusinessModel } from '../model';
 
 /*
 http://localhost:3000/api/businesses/:id
@@ -35,6 +35,4 @@ async function getBusinessById(req, res) {
   }
 }
 
-module.exports = {
-  getBusinessById,
-};
+export { getBusinessById };

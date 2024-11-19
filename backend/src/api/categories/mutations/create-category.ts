@@ -1,4 +1,6 @@
-const { CategoryModel } = require('../model');
+import { CategoryModel } from '../model';
+import { Request, Response } from 'express';
+import { Category } from '../types';
 
 /*
 http://localhost:3000/api/categories
@@ -39,7 +41,8 @@ http://localhost:3000/api/categories
  */
 
 // Helper function to validate required fields
-const validateRequiredFields = ({ name, color, icon }) => {
+// (partial makes all properties optional. This avoids TypeScript errors when dealing with partially defined objects during validation.)
+const validateRequiredFields = ({ name, color, icon }: Partial<Category>): string | null => {
   if (!name || !color || !icon) {
     return 'Please provide name, color, and icon.';
   }
@@ -47,7 +50,7 @@ const validateRequiredFields = ({ name, color, icon }) => {
 };
 
 // Helper function to validate field types and formats
-const validateFieldTypes = ({ name, color, icon }) => {
+const validateFieldTypes = ({ name, color, icon }: Partial<Category>): string | null => {
   if (
     typeof name !== 'string' ||
     typeof color !== 'string' ||
@@ -60,15 +63,13 @@ const validateFieldTypes = ({ name, color, icon }) => {
 };
 
 // Main function to create a category
-const createCategory = async (req, res) => {
-  const { name, color, icon } = req.body;
+const createCategory = async (req: Request, res: Response): Promise<Response> => {
+  const { name, color, icon } = req.body as Category;
 
   // Validate required fields
   const requiredFieldsError = validateRequiredFields(req.body);
   if (requiredFieldsError) {
-    return res
-      .status(400)
-      .json({ success: false, message: requiredFieldsError });
+    return res.status(400).json({ success: false, message: requiredFieldsError });
   }
 
   // Validate field types and formats
@@ -81,32 +82,28 @@ const createCategory = async (req, res) => {
     // Check for existing category by name
     const existingCategory = await CategoryModel.findOne({ name });
     if (existingCategory) {
-      return res
-        .status(409)
-        .json({
-          success: false,
-          message: `Category with name '${name}' already exists.`,
-        });
+      return res.status(409).json({
+        success: false,
+        message: `Category with name '${name}' already exists.`,
+      });
     }
 
     // Create and save new category
     const newCategory = new CategoryModel({ name, color, icon });
     const category = await newCategory.save();
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: 'Category created successfully',
       category,
     });
-  } catch (error) {
+  } catch (error: any) {
     // Handle duplicate key error (MongoDB error code 11000)
     if (error.code === 11000) {
-      return res
-        .status(409)
-        .json({ success: false, message: 'Category already exists.' });
+      return res.status(409).json({ success: false, message: 'Category already exists.' });
     }
-    res.status(500).json({ success: false, message: 'Internal server error.' });
+    return res.status(500).json({ success: false, message: 'Internal server error.' });
   }
 };
 
-module.exports = { createCategory };
+export { createCategory };

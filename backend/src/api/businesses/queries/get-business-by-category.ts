@@ -1,5 +1,5 @@
-const { BusinessModel } = require('../model');
-const { CategoryModel } = require('../../categories/model');
+import { BusinessModel } from '../model';
+import { CategoryModel } from '../../categories/model';
 
 /*
 http://localhost:3000/api/businesses/category/:category
@@ -35,15 +35,11 @@ async function getBusinessByCategory(req, res) {
     if (businesses.length > 0) {
       res.json(businesses);
     } else {
-      res
-        .status(404)
-        .json({ message: 'Businesses with such category do not exist' });
+      res.status(404).json({ message: 'Businesses with such category do not exist' });
     }
   } catch {
     res.status(500).json({ message: 'Internal server error.' });
   }
 }
 
-module.exports = {
-  getBusinessByCategory,
-};
+export { getBusinessByCategory };

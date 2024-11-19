@@ -1,16 +1,14 @@
-const express = require('express');
+import express from 'express';
 
-const { getBusinesses } = require('./queries/get-businesses');
-const { postBusiness } = require('./mutations/post-business');
-const { getBusinessById } = require('./queries/get-business-by-id');
-const { getBusinessByCategory } = require('./queries/get-business-by-category');
-const { putBusiness } = require('./mutations/put-business-by-id');
-const {
-  getBusinessByIdAndDate,
-} = require('./queries/get-business-bookings-by-id-and-booking-date');
+import { getBusinesses } from './queries/get-businesses';
+import { postBusiness } from './mutations/post-business';
+import { getBusinessById } from './queries/get-business-by-id';
+import { getBusinessByCategory } from './queries/get-business-by-category';
+import { putBusiness } from './mutations/put-business-by-id';
+import { getBusinessByIdAndDate } from './queries/get-business-bookings-by-id-and-booking-date';
 
 // can use authMiddleware to make so that certain endpoints are only usable by authenticated users
-// const { authMiddleware } = require('../../middlewares/authMiddleware');
+// import { authMiddleware } from '../../middlewares/authMiddleware';
 
 const businessesRouter = express.Router();
 
@@ -21,6 +19,4 @@ businessesRouter.get('/category/:category', getBusinessByCategory);
 businessesRouter.put('/:id', putBusiness);
 businessesRouter.get('/:id/bookings/date/:date', getBusinessByIdAndDate);
 
-module.exports = {
-  businessesRouter,
-};
+export { businessesRouter };

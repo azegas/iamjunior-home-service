@@ -1,5 +1,5 @@
-const { BusinessModel } = require('../model');
-const { CategoryModel } = require('../../categories/model');
+import { BusinessModel } from '../model';
+import { CategoryModel } from '../../categories/model';
 
 /*
 http://localhost:3000/api/businesses/:id
@@ -63,9 +63,7 @@ async function putBusiness(req, res) {
   try {
     const business = await BusinessModel.findById(businessId);
     if (!business) {
-      return res
-        .status(404)
-        .json({ message: 'Business with such id does not exist' });
+      return res.status(404).json({ message: 'Business with such id does not exist' });
     }
 
     const allowedFields = [
@@ -80,15 +78,11 @@ async function putBusiness(req, res) {
 
     // Extract fields from req.body and separate known from unknown
     const providedFields = Object.keys(req.body);
-    const unknownFields = providedFields.filter(
-      (field) => !allowedFields.includes(field),
-    );
+    const unknownFields = providedFields.filter((field) => !allowedFields.includes(field));
 
     // Check for any unknown fields
     if (unknownFields.length > 0) {
-      return res
-        .status(400)
-        .json({ message: 'Unknown fields provided', unknownFields });
+      return res.status(400).json({ message: 'Unknown fields provided', unknownFields });
     }
 
     // Check if there’s at least one valid field to update
@@ -96,16 +90,12 @@ async function putBusiness(req, res) {
       (field) => allowedFields.includes(field) && req.body[field],
     );
     if (!hasValidFields) {
-      return res
-        .status(400)
-        .json({ message: 'Please provide at least one valid field to update' });
+      return res.status(400).json({ message: 'Please provide at least one valid field to update' });
     }
 
     // Validate category against existing categories
     const categories = await CategoryModel.find();
-    const validCategories = categories.map((category) =>
-      category._id.toString(),
-    );
+    const validCategories = categories.map((category) => category._id.toString());
     if (req.body.category && !validCategories.includes(req.body.category)) {
       return res.status(400).json({ message: 'Invalid category provided' });
     }
@@ -115,23 +105,17 @@ async function putBusiness(req, res) {
       if (req.body[field] !== undefined) {
         if (field === 'images') {
           if (!Array.isArray(req.body[field])) {
-            return res
-              .status(400)
-              .json({ message: 'Images should be an array' });
+            return res.status(400).json({ message: 'Images should be an array' });
           }
           if (!req.body[field].every((image) => typeof image === 'string')) {
-            return res
-              .status(400)
-              .json({ message: 'All images should be strings' });
+            return res.status(400).json({ message: 'All images should be strings' });
           }
         } else {
           if (field === 'email' && !req.body[field].includes('@')) {
             return res.status(400).json({ message: 'Email should contain @' });
           }
           if (typeof req.body[field] !== 'string') {
-            return res
-              .status(400)
-              .json({ message: `${field} should be a string` });
+            return res.status(400).json({ message: `${field} should be a string` });
           }
         }
         business[field] = req.body[field];
@@ -148,6 +132,4 @@ async function putBusiness(req, res) {
   }
 }
 
-module.exports = {
-  putBusiness,
-};
+export { putBusiness };

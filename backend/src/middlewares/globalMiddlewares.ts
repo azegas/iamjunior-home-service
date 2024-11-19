@@ -1,9 +1,10 @@
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-const path = require('path');
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import path from 'path';
+import { Express } from 'express';
 
-const globalMiddlewares = (app) => {
+const globalMiddlewares = (app: Express) => {
   // middleware - cors (allow requests from the frontend, all ips. CHANGE THIS IN PROD)
   app.use(cors());
 
@@ -22,6 +23,4 @@ const globalMiddlewares = (app) => {
   app.use(morgan('common'));
 };
 
-module.exports = {
-  globalMiddlewares,
-};
+export { globalMiddlewares };

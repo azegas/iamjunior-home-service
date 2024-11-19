@@ -1,5 +1,5 @@
-const { BusinessModel } = require('../model');
-const { BookingModel } = require('../../bookings/model');
+import { BusinessModel } from '../model';
+import { BookingModel } from '../../bookings/model';
 
 /*
 http://localhost:3000/api/businesses/:id/bookings/date/:date
@@ -50,6 +50,4 @@ async function getBusinessByIdAndDate(req, res) {
   }
 }
 
-module.exports = {
-  getBusinessByIdAndDate,
-};
+export { getBusinessByIdAndDate };

@@ -1,5 +1,5 @@
-const { BusinessModel } = require('../model');
-const { CategoryModel } = require('../../categories/model');
+import { BusinessModel } from '../model';
+import { CategoryModel } from '../../categories/model';
 
 /*
 http://localhost:3000/api/businesses
@@ -56,16 +56,7 @@ http://localhost:3000/api/businesses
 
 // Helper function to validate required fields
 const validateRequiredFields = (fields) => {
-  const {
-    name,
-    description,
-    address,
-    worker,
-    category,
-    contactPerson,
-    email,
-    images,
-  } = fields;
+  const { name, description, address, worker, category, contactPerson, email, images } = fields;
   if (
     !name ||
     !description ||
@@ -101,30 +92,17 @@ const validateFieldTypes = (fields) => {
 // Helper function to check if category exists
 const checkCategoryExists = async (categoryName) => {
   const categories = await CategoryModel.find();
-  return categories.find(
-    (cat) => cat.name.toLowerCase() === categoryName.toLowerCase(),
-  );
+  return categories.find((cat) => cat.name.toLowerCase() === categoryName.toLowerCase());
 };
 
 // Main function
 const postBusiness = async (req, res) => {
-  const {
-    name,
-    description,
-    address,
-    worker,
-    category,
-    contactPerson,
-    email,
-    images,
-  } = req.body;
+  const { name, description, address, worker, category, contactPerson, email, images } = req.body;
 
   // Validate required fields
   const requiredFieldsError = validateRequiredFields(req.body);
   if (requiredFieldsError) {
-    return res
-      .status(400)
-      .json({ success: false, message: requiredFieldsError });
+    return res.status(400).json({ success: false, message: requiredFieldsError });
   }
 
   // Validate field types
@@ -163,4 +141,4 @@ const postBusiness = async (req, res) => {
   });
 };
 
-module.exports = { postBusiness };
+export { postBusiness };

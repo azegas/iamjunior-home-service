@@ -1,9 +1,9 @@
-const express = require('express');
-require('dotenv').config();
+import express from 'express';
+import 'dotenv/config';
 const app = express();
-const { swaggerMiddleware } = require('./middlewares/swaggerMiddleware');
-const { globalMiddlewares } = require('./middlewares/globalMiddlewares');
-const { connectToDB } = require('./utils/db');
+import { swaggerMiddleware } from './middlewares/swaggerMiddleware';
+import { globalMiddlewares } from './middlewares/globalMiddlewares';
+import { connectToDB } from './utils/db';
 
 globalMiddlewares(app);
 swaggerMiddleware(app);

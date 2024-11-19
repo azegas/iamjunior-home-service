@@ -1,4 +1,5 @@
-const { CategoryModel } = require('../model');
+import { Request, Response } from 'express';
+import { CategoryModel } from '../model';
 
 /*
 http://localhost:3000/api/categories
@@ -15,7 +16,7 @@ http://localhost:3000/api/categories
  *         description: A list of categories
  */
 
-async function getCategories(req, res) {
+async function getCategories(req: Request, res: Response) {
   const categories = await CategoryModel.find();
   if (categories.length === 0) {
     return res
@@ -25,6 +26,4 @@ async function getCategories(req, res) {
   res.json(categories);
 }
 
-module.exports = {
-  getCategories,
-};
+export { getCategories };

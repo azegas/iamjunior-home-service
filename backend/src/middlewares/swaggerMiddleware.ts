@@ -1,5 +1,6 @@
-const swaggerUi = require('swagger-ui-express');
-const swaggerJsDoc = require('swagger-jsdoc');
+import { Express } from 'express';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsDoc from 'swagger-jsdoc';
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -23,10 +24,9 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
-const swaggerMiddleware = (app) => {
+const swaggerMiddleware = (app: Express) => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 };
 
-module.exports = {
-  swaggerMiddleware,
-};
+// why this helps?? https://stackoverflow.com/questions/35758584/cannot-redeclare-block-scoped-variable
+export { swaggerMiddleware };
