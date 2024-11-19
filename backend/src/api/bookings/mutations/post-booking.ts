@@ -1,4 +1,4 @@
-const { BookingModel } = require('../model');
+import { BookingModel } from '../model';
 
 /*
 http://localhost:3000/api/bookings
@@ -79,9 +79,7 @@ const postBooking = async (req, res) => {
   // Validate required fields
   const requiredFieldsError = validateRequiredFields(req.body);
   if (requiredFieldsError) {
-    return res
-      .status(400)
-      .json({ success: false, message: requiredFieldsError });
+    return res.status(400).json({ success: false, message: requiredFieldsError });
   }
 
   // Validate field types
@@ -111,4 +109,4 @@ const postBooking = async (req, res) => {
   }
 };
 
-module.exports = { postBooking };
+export { postBooking };

@@ -1,4 +1,4 @@
-const { UserModel } = require('../model');
+import { UserModel } from '../model';
 /**
  * @swagger
  * /api/auth/users:
@@ -20,6 +20,4 @@ const getUsers = async (req, res) => {
   res.status(200).json(users);
 };
 
-module.exports = {
-  getUsers,
-};
+export { getUsers };

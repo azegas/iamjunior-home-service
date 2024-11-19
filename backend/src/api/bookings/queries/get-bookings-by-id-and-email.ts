@@ -1,4 +1,4 @@
-const { BookingModel } = require('../model');
+import { BookingModel } from '../model';
 
 /*
 http://localhost:3000/api/bookings/:businessId/email/:email
@@ -37,15 +37,11 @@ async function getBookingsByIdAndEmail(req, res) {
     if (bookings.length > 0) {
       res.json(bookings);
     } else {
-      res
-        .status(404)
-        .json({ message: 'No bookings found for this business and email' });
+      res.status(404).json({ message: 'No bookings found for this business and email' });
     }
   } catch {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 }
 
-module.exports = {
-  getBookingsByIdAndEmail,
-};
+export { getBookingsByIdAndEmail };

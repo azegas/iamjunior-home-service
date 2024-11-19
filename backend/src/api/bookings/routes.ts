@@ -1,19 +1,15 @@
-const express = require('express');
+import express from 'express';
 
-const { getBookings } = require('./queries/get-bookings');
-const {
-  getBookingsByIdAndEmail,
-} = require('./queries/get-bookings-by-id-and-email');
-const { postBooking } = require('./mutations/post-booking');
-const { deleteBooking } = require('./mutations/delete-booking');
+import { getBookings } from './queries/get-bookings';
+import { getBookingsByIdAndEmail } from './queries/get-bookings-by-id-and-email';
+import { postBooking } from './mutations/post-booking';
+import { deleteBooking } from './mutations/delete-booking';
 
 const bookingsRouter = express.Router();
 
-bookingsRouter.get('/', getBookings);
-bookingsRouter.get('/:businessId/email/:email', getBookingsByIdAndEmail);
-bookingsRouter.post('/', postBooking);
-bookingsRouter.delete('/:id', deleteBooking);
+// bookingsRouter.get('/', getBookings);
+// bookingsRouter.get('/:businessId/email/:email', getBookingsByIdAndEmail);
+// bookingsRouter.post('/', postBooking);
+// bookingsRouter.delete('/:id', deleteBooking);
 
-module.exports = {
-  bookingsRouter,
-};
+export { bookingsRouter };

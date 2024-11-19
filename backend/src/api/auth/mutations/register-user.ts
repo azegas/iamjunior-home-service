@@ -1,4 +1,4 @@
-const { UserModel } = require('../model');
+import { UserModel } from '../model';
 
 /*
 {
@@ -40,11 +40,7 @@ const validateFields = (username, email, password) => {
   if (!username || !email || !password) {
     return 'Required fields: username, email, and password.';
   }
-  if (
-    typeof username !== 'string' ||
-    typeof email !== 'string' ||
-    typeof password !== 'string'
-  ) {
+  if (typeof username !== 'string' || typeof email !== 'string' || typeof password !== 'string') {
     return 'username, email, and password should be strings.';
   }
   return null;
@@ -71,24 +67,18 @@ const registerUser = async (req, res) => {
 
   // Validate email format
   if (!isValidEmail(email)) {
-    return res
-      .status(400)
-      .json({ success: false, message: 'Invalid email format.' });
+    return res.status(400).json({ success: false, message: 'Invalid email format.' });
   }
 
   try {
     // Check for existing username
     if (await checkExistingUsername(username)) {
-      return res
-        .status(409)
-        .json({ success: false, message: 'Username already exists.' });
+      return res.status(409).json({ success: false, message: 'Username already exists.' });
     }
 
     // Check for existing email
     if (await checkExistingEmail(email)) {
-      return res
-        .status(409)
-        .json({ success: false, message: 'Email already exists.' });
+      return res.status(409).json({ success: false, message: 'Email already exists.' });
     }
 
     // Create new user
@@ -103,4 +93,4 @@ const registerUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser };
+export { registerUser };

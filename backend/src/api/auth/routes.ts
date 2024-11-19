@@ -1,15 +1,13 @@
-const express = require('express');
+import express from 'express';
 
 const authRouter = express.Router();
 
-const { registerUser } = require('./mutations/register-user');
-const { getUsers } = require('./queries/get-users');
-const { loginUser } = require('./mutations/login-user');
+import { registerUser } from './mutations/register-user';
+import { getUsers } from './queries/get-users';
+import { loginUser } from './mutations/login-user';
 
-authRouter.post('/register', registerUser);
-authRouter.get('/users', getUsers);
-authRouter.post('/login', loginUser);
+// authRouter.post('/register', registerUser);
+// authRouter.get('/users', getUsers);
+// authRouter.post('/login', loginUser);
 
-module.exports = {
-  authRouter,
-};
+export { authRouter };

@@ -1,4 +1,4 @@
-const { BookingModel } = require('../model');
+import { BookingModel } from '../model';
 
 /*
 Example API endpoints for deleting a booking by ID:
@@ -36,19 +36,13 @@ async function deleteBooking(req, res) {
     // Check if the booking with the specified id exists
     if (!result) {
       // If not found, return a 404 Not Found error with a message
-      return res
-        .status(404)
-        .json({ success: false, message: 'Booking not found.' });
+      return res.status(404).json({ success: false, message: 'Booking not found.' });
     }
 
-    res
-      .status(200)
-      .json({ success: true, message: 'Booking deleted successfully.' });
+    res.status(200).json({ success: true, message: 'Booking deleted successfully.' });
   } catch {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 }
 
-module.exports = {
-  deleteBooking,
-};
+export { deleteBooking };

@@ -1,5 +1,5 @@
-const { UserModel } = require('../model');
-const { generateToken } = require('../password');
+import { UserModel } from '../model';
+import { generateToken } from '../password';
 /**
  * @swagger
  * /api/auth/login:
@@ -78,6 +78,4 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = {
-  loginUser,
-};
+export { loginUser };

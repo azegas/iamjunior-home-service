@@ -1,4 +1,5 @@
 import { BusinessModel } from '../model';
+import { Request, Response } from 'express';
 
 /*
 http://localhost:3000/api/businesses
@@ -15,17 +16,17 @@ http://localhost:3000/api/businesses
  *         description: A list of businesses
  */
 
-const getBusinesses = async function (req, res) {
+const getBusinesses = async (req: Request, res: Response): Promise<void> => {
   try {
-    // populate basically means "expand" the category field to include ALL the fields in the Category model.
-    // Without it - we would only get the category id
-    const businesses = await BusinessModel.find().populate('category');
+    const businesses = await BusinessModel.find();
     if (businesses.length === 0) {
-      return res.status(404).json({ success: false, message: 'No businesses found.' });
+      res.status(404).json({ success: false, message: 'No businesses found.' });
+    } else {
+      res.json(businesses);
     }
-    return res.json(businesses);
   } catch (error) {
-    return res.status(500).json({ success: false, message: 'Internal server error.' });
+    console.log(error);
+    res.status(500).json({ success: false, message: 'Internal server error.' });
   }
 };
 

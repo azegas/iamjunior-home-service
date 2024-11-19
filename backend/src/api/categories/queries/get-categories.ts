@@ -16,12 +16,10 @@ http://localhost:3000/api/categories
  *         description: A list of categories
  */
 
-async function getCategories(req: Request, res: Response) {
+async function getCategories(req, res) {
   const categories = await CategoryModel.find();
   if (categories.length === 0) {
-    return res
-      .status(404)
-      .json({ success: false, message: 'No categories found.' });
+    return res.status(404).json({ success: false, message: 'No categories found.' });
   }
   res.json(categories);
 }

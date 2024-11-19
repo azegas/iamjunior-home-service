@@ -63,7 +63,7 @@ const validateFieldTypes = ({ name, color, icon }: Partial<Category>): string | 
 };
 
 // Main function to create a category
-const createCategory = async (req: Request, res: Response): Promise<Response> => {
+const createCategory = async (req, res) => {
   const { name, color, icon } = req.body as Category;
 
   // Validate required fields
