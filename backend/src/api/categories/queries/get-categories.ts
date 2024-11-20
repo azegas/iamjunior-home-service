@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
 import { CategoryModel } from '../model';
+import { Request, Response } from 'express';
 
 /*
 http://localhost:3000/api/categories
@@ -16,12 +16,19 @@ http://localhost:3000/api/categories
  *         description: A list of categories
  */
 
-async function getCategories(req, res) {
-  const categories = await CategoryModel.find();
-  if (categories.length === 0) {
-    return res.status(404).json({ success: false, message: 'No categories found.' });
+const getCategories = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const categories = await CategoryModel.find();
+
+    if (categories.length === 0) {
+      return res.status(404).json({ success: false, message: 'No categories found.' });
+    }
+
+    return res.json(categories);
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return res.status(500).json({ success: false, message: 'Internal server error.' });
   }
-  res.json(categories);
-}
+};
 
 export { getCategories };

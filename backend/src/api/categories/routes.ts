@@ -5,7 +5,7 @@ import { createCategory } from './mutations/create-category';
 
 const categoriesRouter = express.Router();
 
-// categoriesRouter.get('/', getCategories);
-// categoriesRouter.post('/', createCategory);
+categoriesRouter.get('/', getCategories);
+categoriesRouter.post('/', createCategory);
 
 export { categoriesRouter };

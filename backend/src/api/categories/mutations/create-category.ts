@@ -63,26 +63,26 @@ const validateFieldTypes = ({ name, color, icon }: Partial<Category>): string | 
 };
 
 // Main function to create a category
-const createCategory = async (req, res) => {
+const createCategory = async (req: Request, res: Response): Promise<void> => {
   const { name, color, icon } = req.body as Category;
 
   // Validate required fields
   const requiredFieldsError = validateRequiredFields(req.body);
   if (requiredFieldsError) {
-    return res.status(400).json({ success: false, message: requiredFieldsError });
+    res.status(400).json({ success: false, message: requiredFieldsError });
   }
 
   // Validate field types and formats
   const fieldTypesError = validateFieldTypes(req.body);
   if (fieldTypesError) {
-    return res.status(400).json({ success: false, message: fieldTypesError });
+    res.status(400).json({ success: false, message: fieldTypesError });
   }
 
   try {
     // Check for existing category by name
     const existingCategory = await CategoryModel.findOne({ name });
     if (existingCategory) {
-      return res.status(409).json({
+      res.status(409).json({
         success: false,
         message: `Category with name '${name}' already exists.`,
       });
@@ -92,7 +92,7 @@ const createCategory = async (req, res) => {
     const newCategory = new CategoryModel({ name, color, icon });
     const category = await newCategory.save();
 
-    return res.status(201).json({
+    res.status(201).json({
       success: true,
       message: 'Category created successfully',
       category,
@@ -100,9 +100,9 @@ const createCategory = async (req, res) => {
   } catch (error: any) {
     // Handle duplicate key error (MongoDB error code 11000)
     if (error.code === 11000) {
-      return res.status(409).json({ success: false, message: 'Category already exists.' });
+      res.status(409).json({ success: false, message: 'Category already exists.' });
     }
-    return res.status(500).json({ success: false, message: 'Internal server error.' });
+    res.status(500).json({ success: false, message: 'Internal server error.' });
   }
 };
 
