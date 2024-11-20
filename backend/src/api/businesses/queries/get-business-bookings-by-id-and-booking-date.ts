@@ -1,8 +1,9 @@
 import { BusinessModel } from '../model';
 import { BookingModel } from '../../bookings/model';
+import { Request, Response } from 'express';
 
 /*
-http://localhost:3000/api/businesses/:id/bookings/date/:date
+http://localhost:3000/api/businesses/:businessId/bookings/date/:bookingDate
 http://localhost:3000/api/businesses/1/bookings/date/2023-10-01
 */
 
@@ -26,7 +27,7 @@ http://localhost:3000/api/businesses/1/bookings/date/2023-10-01
  *         description: A list of bookings
  */
 
-async function getBusinessByIdAndDate(req, res) {
+const getBusinessByIdAndDate = async (req: Request, res: Response): Promise<void> => {
   const businessId = req.params.id;
   const date = req.params.date;
 
@@ -48,6 +49,6 @@ async function getBusinessByIdAndDate(req, res) {
   } catch {
     res.status(500).json({ message: 'Internal Server Error' });
   }
-}
+};
 
 export { getBusinessByIdAndDate };

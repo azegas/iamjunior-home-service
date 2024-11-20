@@ -1,5 +1,7 @@
 import { BusinessModel } from '../model';
 import { CategoryModel } from '../../categories/model';
+import { Request, Response } from 'express';
+import { Business } from '../types';
 
 /*
 http://localhost:3000/api/businesses
@@ -55,7 +57,7 @@ http://localhost:3000/api/businesses
  */
 
 // Helper function to validate required fields
-const validateRequiredFields = (fields) => {
+const validateRequiredFields = (fields: Business) => {
   const { name, description, address, worker, category, contactPerson, email, images } = fields;
   if (
     !name ||
@@ -73,7 +75,7 @@ const validateRequiredFields = (fields) => {
 };
 
 // Helper function to validate field types
-const validateFieldTypes = (fields) => {
+const validateFieldTypes = (fields: Business) => {
   const { name, description, address, contactPerson, email, images } = fields;
   if (
     typeof name !== 'string' ||
@@ -90,34 +92,38 @@ const validateFieldTypes = (fields) => {
 };
 
 // Helper function to check if category exists
-const checkCategoryExists = async (categoryName) => {
+const checkCategoryExists = async (categoryName: string) => {
   const categories = await CategoryModel.find();
   return categories.find((cat) => cat.name.toLowerCase() === categoryName.toLowerCase());
 };
 
 // Main function
-const postBusiness = async (req, res) => {
+const postBusiness = async (req: Request, res: Response): Promise<void> => {
   const { name, description, address, worker, category, contactPerson, email, images } = req.body;
 
   // Validate required fields
   const requiredFieldsError = validateRequiredFields(req.body);
   if (requiredFieldsError) {
-    return res.status(400).json({ success: false, message: requiredFieldsError });
+    res.status(400).json({ success: false, message: requiredFieldsError });
+    return;
   }
 
   // Validate field types
   const fieldTypesError = validateFieldTypes(req.body);
   if (fieldTypesError) {
-    return res.status(400).json({ success: false, message: fieldTypesError });
+    res.status(400).json({ success: false, message: fieldTypesError });
+    return;
   }
 
   // Check if category exists
   const categoryExists = await checkCategoryExists(category);
   if (!categoryExists) {
-    return res.status(400).json({
+    const availableCategories = await CategoryModel.distinct('name');
+    res.status(400).json({
       success: false,
-      message: `Category '${category}' does not exist. Available categories are: ${await CategoryModel.distinct('name').join(', ')}.`,
+      message: `Category '${category}' does not exist. Available categories are: ${availableCategories.join(', ')}.`,
     });
+    return;
   }
 
   // Create and save new business

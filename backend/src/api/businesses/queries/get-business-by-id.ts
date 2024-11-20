@@ -1,4 +1,5 @@
 import { BusinessModel } from '../model';
+import { Request, Response } from 'express';
 
 /*
 http://localhost:3000/api/businesses/:id
@@ -21,7 +22,7 @@ http://localhost:3000/api/businesses/1
  *         description: A business
  */
 
-async function getBusinessById(req, res) {
+const getBusinessById = async (req: Request, res: Response): Promise<void> => {
   const businessId = req.params.id;
   try {
     const business = await BusinessModel.findById(businessId);
@@ -33,6 +34,6 @@ async function getBusinessById(req, res) {
   } catch {
     res.status(500).json({ message: 'Internal server error.' });
   }
-}
+};
 
 export { getBusinessById };

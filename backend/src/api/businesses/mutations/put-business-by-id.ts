@@ -1,5 +1,7 @@
 import { BusinessModel } from '../model';
 import { CategoryModel } from '../../categories/model';
+import { Request, Response } from 'express';
+import { Business } from '../types';
 
 /*
 http://localhost:3000/api/businesses/:id
@@ -9,6 +11,7 @@ http://localhost:3000/api/businesses/1
     "name": "New Name",
     "description": "New Description",
     "address": "New Address",
+    "worker": "New Worker",
     "category": "New Category",
     "contactPerson": "New Contact Person",
     "email": "new.email@business.com",
@@ -40,6 +43,8 @@ http://localhost:3000/api/businesses/1
  *                 type: string
  *               address:
  *                 type: string
+ *               worker:
+ *                 type: string
  *               category:
  *                 type: string
  *               contactPerson:
@@ -57,19 +62,21 @@ http://localhost:3000/api/businesses/1
  *         description: Invalid input
  */
 
-async function putBusiness(req, res) {
+const putBusiness = async (req: Request, res: Response): Promise<void> => {
   const businessId = req.params.id;
 
   try {
     const business = await BusinessModel.findById(businessId);
     if (!business) {
-      return res.status(404).json({ message: 'Business with such id does not exist' });
+      res.status(404).json({ message: 'Business with such id does not exist' });
+      return;
     }
 
     const allowedFields = [
       'name',
       'description',
       'address',
+      'worker',
       'category',
       'contactPerson',
       'email',
@@ -82,7 +89,8 @@ async function putBusiness(req, res) {
 
     // Check for any unknown fields
     if (unknownFields.length > 0) {
-      return res.status(400).json({ message: 'Unknown fields provided', unknownFields });
+      res.status(400).json({ message: 'Unknown fields provided', unknownFields });
+      return;
     }
 
     // Check if there’s at least one valid field to update
@@ -90,14 +98,16 @@ async function putBusiness(req, res) {
       (field) => allowedFields.includes(field) && req.body[field],
     );
     if (!hasValidFields) {
-      return res.status(400).json({ message: 'Please provide at least one valid field to update' });
+      res.status(400).json({ message: 'Please provide at least one valid field to update' });
+      return;
     }
 
     // Validate category against existing categories
     const categories = await CategoryModel.find();
     const validCategories = categories.map((category) => category._id.toString());
     if (req.body.category && !validCategories.includes(req.body.category)) {
-      return res.status(400).json({ message: 'Invalid category provided' });
+      res.status(400).json({ message: 'Invalid category provided' });
+      return;
     }
 
     // Update business fields only if they are provided and of the correct type
@@ -105,20 +115,25 @@ async function putBusiness(req, res) {
       if (req.body[field] !== undefined) {
         if (field === 'images') {
           if (!Array.isArray(req.body[field])) {
-            return res.status(400).json({ message: 'Images should be an array' });
+            res.status(400).json({ message: 'Images should be an array' });
+            return;
           }
-          if (!req.body[field].every((image) => typeof image === 'string')) {
-            return res.status(400).json({ message: 'All images should be strings' });
+          if (!req.body[field].every((image: string) => typeof image === 'string')) {
+            res.status(400).json({ message: 'All images should be strings' });
+            return;
           }
         } else {
           if (field === 'email' && !req.body[field].includes('@')) {
-            return res.status(400).json({ message: 'Email should contain @' });
+            res.status(400).json({ message: 'Email should contain @' });
+            return;
           }
           if (typeof req.body[field] !== 'string') {
-            return res.status(400).json({ message: `${field} should be a string` });
+            res.status(400).json({ message: `${field} should be a string` });
+            return;
           }
         }
-        business[field] = req.body[field];
+        // (business as Business)[field] = req.body[field];
+        (business as any)[field] = req.body[field];
       }
     });
 
@@ -130,6 +145,6 @@ async function putBusiness(req, res) {
   } catch {
     res.status(500).json({ message: 'Internal server error.' });
   }
-}
+};
 
 export { putBusiness };

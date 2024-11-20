@@ -14,10 +14,10 @@ import { appendFile } from 'fs';
 const businessesRouter = express.Router();
 
 businessesRouter.get('/', getBusinesses);
-// businessesRouter.post('/', postBusiness);
-// businessesRouter.get('/:id', getBusinessById);
-// businessesRouter.get('/category/:category', getBusinessByCategory);
-// businessesRouter.put('/:id', putBusiness);
-// businessesRouter.get('/:id/bookings/date/:date', getBusinessByIdAndDate);
+businessesRouter.get('/:id', getBusinessById);
+businessesRouter.get('/category/:category', getBusinessByCategory);
+businessesRouter.get('/:id/bookings/date/:date', getBusinessByIdAndDate);
+businessesRouter.post('/', postBusiness);
+businessesRouter.put('/:id', putBusiness);
 
 export { businessesRouter };
