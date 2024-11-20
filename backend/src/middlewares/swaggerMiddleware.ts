@@ -19,7 +19,9 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ['./api/**/*.js'], // where swagger should look for api endpoints (basically in all files)
+  // where swagger should look for api endpoints (basically in all files)
+  // swagger works with .js files, not .ts files, that is why we point to the dist folder (transpiled files)
+  apis: ['./dist/api/**/*.js'],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
