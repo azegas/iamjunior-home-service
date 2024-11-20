@@ -20,9 +20,7 @@ const users = require('./sample-data').users;
 async function connectToDB() {
   if (!process.env.DB_CONNECTION_STRING) {
     // eslint-disable-next-line no-console
-    console.error(
-      'Error: DB_CONNECTION_STRING environment variable is not set.',
-    );
+    console.error('Error: DB_CONNECTION_STRING environment variable is not set.');
     process.exit(1); // Exit with an error code
   }
 
@@ -72,9 +70,7 @@ async function recreateBusinesses(createdCategories) {
 
     // Map the business categories to their corresponding IDs
     const businessesWithCategoryId = businesses.map((business) => {
-      const category = createdCategories.find(
-        (category) => category.name === business.category,
-      );
+      const category = createdCategories.find((category) => category.name === business.category);
       return { ...business, category: category._id };
     });
 
@@ -142,17 +138,14 @@ async function createRandomBookingsForUsers() {
       const businesses = await BusinessModel.find();
       if (!businesses.length) {
         // eslint-disable-next-line no-console
-        console.error(
-          'No businesses found in the database to create bookings for.',
-        );
+        console.error('No businesses found in the database to create bookings for.');
         return;
       }
 
       for (const user of createdUsers) {
         for (let i = 0; i < 5; i++) {
           // Select a random business
-          const randomBusiness =
-            businesses[Math.floor(Math.random() * businesses.length)];
+          const randomBusiness = businesses[Math.floor(Math.random() * businesses.length)];
 
           // Create a new booking
           const randomBooking = new BookingModel({

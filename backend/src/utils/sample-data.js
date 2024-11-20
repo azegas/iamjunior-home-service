@@ -101,9 +101,7 @@ const businesses = [
     contactPerson: 'Emily Brown',
     email: 'emily.brown@furniture-moving.com',
     category: 'shifting',
-    images: [
-      'https://www.move.org/app/uploads/2020/03/The-5-Best-Moving-Companies-of-2020.jpeg',
-    ],
+    images: ['https://www.move.org/app/uploads/2020/03/The-5-Best-Moving-Companies-of-2020.jpeg'],
   },
   {
     id: 5,
@@ -129,9 +127,7 @@ const businesses = [
     contactPerson: 'Sarah Taylor',
     email: 'sarah.taylor@electrical-work.com',
     category: 'electric',
-    images: [
-      'https://www.optimistdaily.com/wp-content/uploads/shutterstock_668450440.jpg',
-    ],
+    images: ['https://www.optimistdaily.com/wp-content/uploads/shutterstock_668450440.jpg'],
   },
   {
     id: 7,
@@ -185,9 +181,7 @@ const businesses = [
     contactPerson: 'Emily Brown',
     email: 'emily.brown@furniture-moving-2.com',
     category: 'shifting',
-    images: [
-      'https://www.move.org/app/uploads/2020/03/The-5-Best-Moving-Companies-of-2020.jpeg',
-    ],
+    images: ['https://www.move.org/app/uploads/2020/03/The-5-Best-Moving-Companies-of-2020.jpeg'],
   },
   {
     id: 11,
