@@ -1,6 +1,10 @@
+import { Request, Response } from 'express';
 import { UserModel } from '../model';
+import { User } from '../types';
 
 /*
+http://localhost:3000/api/auth/register
+
 {
   "username": "aze",
   "email": "aze@gmail.com",
@@ -36,7 +40,7 @@ import { UserModel } from '../model';
  *         description: Username already exists
  */
 
-const validateFields = (username, email, password) => {
+const validateFields = (username: string, email: string, password: string): string | null => {
   if (!username || !email || !password) {
     return 'Required fields: username, email, and password.';
   }
@@ -46,39 +50,43 @@ const validateFields = (username, email, password) => {
   return null;
 };
 
-const isValidEmail = (email) => email.includes('@');
+const isValidEmail = (email: string): boolean => email.includes('@');
 
-const checkExistingUsername = async (username) => {
+const checkExistingUsername = async (username: string): Promise<User | null> => {
   return await UserModel.findOne({ username });
 };
 
-const checkExistingEmail = async (email) => {
+const checkExistingEmail = async (email: string): Promise<User | null> => {
   return await UserModel.findOne({ email });
 };
 
-const registerUser = async (req, res) => {
+const registerUser = async (req: Request, res: Response): Promise<void> => {
   const { username, email, password } = req.body;
 
   // Validate fields
   const fieldError = validateFields(username, email, password);
   if (fieldError) {
-    return res.status(400).json({ success: false, message: fieldError });
+    res.status(400).json({ success: false, message: fieldError });
+    return;
   }
 
   // Validate email format
   if (!isValidEmail(email)) {
-    return res.status(400).json({ success: false, message: 'Invalid email format.' });
+    res.status(400).json({ success: false, message: 'Invalid email format.' });
+    return;
   }
 
   try {
     // Check for existing username
     if (await checkExistingUsername(username)) {
-      return res.status(409).json({ success: false, message: 'Username already exists.' });
+      res.status(409).json({ success: false, message: 'Username already exists.' });
+      return;
     }
 
     // Check for existing email
     if (await checkExistingEmail(email)) {
-      return res.status(409).json({ success: false, message: 'Email already exists.' });
+      res.status(409).json({ success: false, message: 'Email already exists.' });
+      return;
     }
 
     // Create new user
@@ -88,7 +96,7 @@ const registerUser = async (req, res) => {
       message: 'User registered successfully',
       user: newUser,
     });
-  } catch {
+  } catch (error) {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };

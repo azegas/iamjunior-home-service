@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const userSchema = new mongoose.Schema(
   {
@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema(
 );
 
 // hash password before saving to database
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function (next: Function) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 10);
   }
@@ -33,7 +33,7 @@ userSchema.pre('save', async function (next) {
 });
 
 // custom method to check if hashed password is correct
-userSchema.methods.isCorrectPassword = function (password) {
+userSchema.methods.isCorrectPassword = async function (password: string) {
   return bcrypt.compare(password, this.password);
 };
 
@@ -48,6 +48,4 @@ userSchema.methods.toJSON = function () {
 
 const UserModel = mongoose.model('User', userSchema);
 
-module.exports = {
-  UserModel,
-};
+export { UserModel };

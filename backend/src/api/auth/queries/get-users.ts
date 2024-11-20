@@ -1,4 +1,10 @@
 import { UserModel } from '../model';
+import { Request, Response } from 'express';
+
+/* 
+http://localhost:3000/api/auth/users
+*/
+
 /**
  * @swagger
  * /api/auth/users:
@@ -12,10 +18,11 @@ import { UserModel } from '../model';
  *         description: No users found
  */
 
-const getUsers = async (req, res) => {
+const getUsers = async (req: Request, res: Response): Promise<void> => {
   const users = await UserModel.find();
   if (users.length === 0) {
-    return res.status(404).json({ message: 'No users found' });
+    res.status(404).json({ message: 'No users found' });
+    return;
   }
   res.status(200).json(users);
 };

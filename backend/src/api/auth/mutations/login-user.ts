@@ -1,5 +1,17 @@
+import { Request, Response } from 'express';
 import { UserModel } from '../model';
 import { generateToken } from '../password';
+import { User } from '../types';
+
+/*
+http://localhost:3000/api/auth/login
+
+{
+    "email": "user@example.com",
+    "password": "password"
+}
+*/
+
 /**
  * @swagger
  * /api/auth/login:
@@ -26,46 +38,47 @@ import { generateToken } from '../password';
  *         description: User not found
  */
 
-const loginUser = async (req, res) => {
+// Login controller function
+const loginUser = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
   // Check if all required fields are provided
   if (!email || !password) {
-    return res.status(400).json({
+    res.status(400).json({
       success: false,
       message: 'Required fields: email and password.',
     });
+    return;
   }
 
   // Check if fields are of the correct type
   if (typeof email !== 'string' || typeof password !== 'string') {
-    return res.status(400).json({
+    res.status(400).json({
       success: false,
       message: 'email and password should be strings.',
     });
+    return;
   }
 
   try {
     // Check if user exists
-    const existingUser = await UserModel.findOne({ email });
+    const existingUser: User | null = await UserModel.findOne({ email });
     if (!existingUser) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Invalid credentials.',
       });
+      return;
     }
 
     // Check if user password is correct
-    const passwordIsCorrect = await existingUser.isCorrectPassword(password);
-    if (!passwordIsCorrect) {
-      return res.status(400).json({
-        success: false,
-        message: 'Invalid credentials.',
-      });
+    if (!(await existingUser.isCorrectPassword(password))) {
+      res.status(401).json({ message: 'Incorrect email or password' });
+      return;
     }
 
     // Generate JWT token
-    const token = generateToken(existingUser._id);
+    const token = generateToken(existingUser._id.toString());
 
     res.status(200).json({
       success: true,
@@ -73,7 +86,7 @@ const loginUser = async (req, res) => {
       token,
       user: existingUser,
     });
-  } catch {
+  } catch (error) {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
