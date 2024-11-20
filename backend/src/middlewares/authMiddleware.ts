@@ -1,8 +1,8 @@
 // we can use this middleware on any request, any router that needs authentication
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 
-const jwt = require('jsonwebtoken');
-
-const authMiddleware = (req, res, next) => {
+const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -12,8 +12,8 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const token = authHeader.split(' ')[1];
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.currentUser = payload;
+    const payload = jwt.verify(token, process.env.JWT_SECRET as jwt.Secret);
+    (req as any).currentUser = payload; // Casting req to any to bypass the type error
     next(); // move to the next function
   } catch {
     res.status(401).json({ message: 'Unauthorized' });
@@ -21,6 +21,4 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-module.exports = {
-  authMiddleware,
-};
+export default authMiddleware;
