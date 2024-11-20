@@ -5,6 +5,10 @@ import { swaggerMiddleware } from './middlewares/swaggerMiddleware';
 import { globalMiddlewares } from './middlewares/globalMiddlewares';
 import { connectToDB } from './utils/db';
 
+// ----------------------------------------------------------------
+// MIDDLEWARES (stuff that is applied to all requests)
+// ----------------------------------------------------------------
+
 globalMiddlewares(app);
 swaggerMiddleware(app);
 
@@ -14,10 +18,10 @@ swaggerMiddleware(app);
 
 // TODO move routes to separate file
 
-const { categoriesRouter } = require('./api/categories/routes');
-const { businessesRouter } = require('./api/businesses/routes');
-const { bookingsRouter } = require('./api/bookings/routes');
-const { authRouter } = require('./api/auth/routes');
+import { categoriesRouter } from './api/categories/routes';
+import { businessesRouter } from './api/businesses/routes';
+import { bookingsRouter } from './api/bookings/routes';
+import { authRouter } from './api/auth/routes';
 
 // middleware to handle the routes. here we define the route prefix
 app.use('/api/categories', categoriesRouter);

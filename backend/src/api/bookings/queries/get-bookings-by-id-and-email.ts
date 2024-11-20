@@ -1,4 +1,5 @@
 import { BookingModel } from '../model';
+import { Request, Response } from 'express';
 
 /*
 http://localhost:3000/api/bookings/:businessId/email/:email
@@ -25,7 +26,7 @@ http://localhost:3000/api/bookings/1/email/user@example.com
  *         description: A list of bookings
  */
 
-async function getBookingsByIdAndEmail(req, res) {
+async function getBookingsByIdAndEmail(req: Request, res: Response) {
   const businessId = req.params.businessId;
   const email = req.params.email;
 

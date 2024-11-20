@@ -1,4 +1,6 @@
 import { BookingModel } from '../model';
+import { Request, Response } from 'express';
+import { Booking } from '../types';
 
 /*
 http://localhost:3000/api/bookings
@@ -47,7 +49,7 @@ http://localhost:3000/api/bookings
  *         description: Invalid input
  */
 
-const validateRequiredFields = (fields) => {
+const validateRequiredFields = (fields: Booking) => {
   const { businessId, date, time, userEmail, userName, status } = fields;
   if (!businessId || !date || !time || !userEmail || !userName || !status) {
     return 'Required fields: businessId, date, time, userEmail, userName, and status.';
@@ -55,7 +57,7 @@ const validateRequiredFields = (fields) => {
   return null;
 };
 
-const validateFieldTypes = (fields) => {
+const validateFieldTypes = (fields: Booking) => {
   const { businessId, date, time, userEmail, userName, status } = fields;
   if (
     typeof businessId !== 'string' ||
@@ -73,19 +75,21 @@ const validateFieldTypes = (fields) => {
   return null;
 };
 
-const postBooking = async (req, res) => {
+const postBooking = async (req: Request, res: Response): Promise<void> => {
   const { businessId, date, time, userEmail, userName, status } = req.body;
 
   // Validate required fields
   const requiredFieldsError = validateRequiredFields(req.body);
   if (requiredFieldsError) {
-    return res.status(400).json({ success: false, message: requiredFieldsError });
+    res.status(400).json({ success: false, message: requiredFieldsError });
+    return;
   }
 
   // Validate field types
   const fieldTypesError = validateFieldTypes(req.body);
   if (fieldTypesError) {
-    return res.status(400).json({ success: false, message: fieldTypesError });
+    res.status(400).json({ success: false, message: fieldTypesError });
+    return;
   }
 
   const newBooking = new BookingModel({

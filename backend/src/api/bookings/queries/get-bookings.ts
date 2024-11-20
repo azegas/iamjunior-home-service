@@ -1,4 +1,5 @@
 import { BookingModel } from '../model';
+import { Request, Response } from 'express';
 
 /*
 http://localhost:3000/api/bookings
@@ -17,13 +18,15 @@ http://localhost:3000/api/bookings
  *         description: No bookings found
  */
 
-async function getBookings(req, res) {
+async function getBookings(req: Request, res: Response) {
   try {
+    // const bookings = await BookingModel.find().populate('businessId');
     const bookings = await BookingModel.find();
     if (bookings.length === 0) {
-      return res.status(404).json({ success: false, message: 'No bookings found.' });
+      res.status(404).json({ success: false, message: 'No bookings found.' });
+    } else {
+      res.json(bookings);
     }
-    res.json(bookings);
   } catch {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }

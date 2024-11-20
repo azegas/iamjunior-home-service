@@ -1,4 +1,5 @@
 import { BookingModel } from '../model';
+import { Request, Response } from 'express';
 
 /*
 Example API endpoints for deleting a booking by ID:
@@ -22,11 +23,12 @@ Example API endpoints for deleting a booking by ID:
  *         description: Booking deleted successfully
  */
 
-async function deleteBooking(req, res) {
+async function deleteBooking(req: Request, res: Response): Promise<void> {
   const { id } = req.params;
 
   if (!id) {
-    return res.status(400).json({ success: false, message: 'Id is required.' });
+    res.status(400).json({ success: false, message: 'Id is required.' });
+    return;
   }
 
   try {
@@ -36,12 +38,22 @@ async function deleteBooking(req, res) {
     // Check if the booking with the specified id exists
     if (!result) {
       // If not found, return a 404 Not Found error with a message
-      return res.status(404).json({ success: false, message: 'Booking not found.' });
+      res.status(404).json({ success: false, message: 'Booking not found.' });
+    } else {
+      // If found, return a 200 OK response with a success message
+      res.status(200).json({ success: true, message: 'Booking deleted successfully.' });
     }
-
-    res.status(200).json({ success: true, message: 'Booking deleted successfully.' });
-  } catch {
-    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  } catch (error) {
+    if (error instanceof Error && error.name === 'CastError') {
+      console.error(`Booking with id ${id} does not exist.`);
+      res.status(500).json({
+        success: false,
+        message: `Booking with id ${id} does not exist.`,
+      });
+    } else {
+      console.error('Error deleting booking:', error);
+      res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
   }
 }
 

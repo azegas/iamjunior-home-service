@@ -7,9 +7,9 @@ import { deleteBooking } from './mutations/delete-booking';
 
 const bookingsRouter = express.Router();
 
-// bookingsRouter.get('/', getBookings);
-// bookingsRouter.get('/:businessId/email/:email', getBookingsByIdAndEmail);
-// bookingsRouter.post('/', postBooking);
-// bookingsRouter.delete('/:id', deleteBooking);
+bookingsRouter.get('/', getBookings);
+bookingsRouter.get('/:businessId/email/:email', getBookingsByIdAndEmail);
+bookingsRouter.post('/', postBooking);
+bookingsRouter.delete('/:id', deleteBooking);
 
 export { bookingsRouter };
