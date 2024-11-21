@@ -9,7 +9,7 @@
     "dev": "nodemon",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "deploy": "vercel --prod"
+    "deploy": "tsc && vercel --prod"
   },
   "keywords": [],
   "author": "",
