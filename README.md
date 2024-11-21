@@ -296,6 +296,10 @@ Create `backend/vercel.json`:
 }
 ```
 
+TODO write docs about vercel deployment (after ts conversion)
+
+Vercel most likely automatically sets this variables - NODE_ENV to be "production" when we are deploying. SOOOOOOO, we can use it and make some conditional logic in the code. Find all the `process.env.NODE_ENV === 'production'` to see what we change to run in production and locally.
+
 ```bash
 cd backend
 vercel login
