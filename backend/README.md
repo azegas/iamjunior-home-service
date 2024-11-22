@@ -12,6 +12,11 @@
   - [MongoDB ir Mongoose](#mongodb-ir-mongoose)
   - [Autentifikacija Node.js](#autentifikacija-nodejs)
   - [ESlint ir Prettier](#eslint-ir-prettier)
+  - [Typescript basics](#typescript-basics)
+  - [Frontend + Backend](#frontend--backend)
+  - [Formik + Yup](#formik--yup)
+  - [React-query](#react-query)
+  - [Praktika 2 paskaitas](#praktika-2-paskaitas)
 
 # iamjunior-home-service (backend)
 
@@ -89,3 +94,34 @@ Sukurti RESTful API naudojant Express.js, skirtą valdyti kategorijas, įmones i
 
 - [x] Integruoti ESlint ir atitikti visus ESlint reikalavimus
 - [x] Integruoti Prettier ir suformatuoti visus failus
+
+## Typescript basics
+
+- [x] Integruoti Typescript palaikymą
+- [x] Refactorinti visą kodą iš Javascript į Typescript
+
+## Frontend + Backend
+
+- [x] Pridėti kategorijas ir įmones į duomenų bazę
+- [x] Sukurta front-end aplikacija
+- [x] Sukurta prisijungimo ir registracijos forma
+- [x] Sujungti /categories ir /businesses API su front-end aplikacija
+- [x] Sujungti /login ir /register API su prisijungimo ir registracijos formomis.(Įgyvendinti registracijos formą, jeigu nėra)
+- [x] (Optional) Pridėti error ir sucess messages. Pvz. kai įvesti netinkami duomenys
+
+## Formik + Yup
+
+- [ ] Integruoti Formik ir yup bibliotekas į React aplikaciją
+- [ ] Login forma
+- [ ] Register forma
+
+## React-query
+
+- [ ] Integruoti React-query biblioteką į React aplikaciją
+
+## Praktika 2 paskaitas
+
+- [x] Padaryti dinaminį route vieno business page
+- [ ] Dropdown menu paspaudus ant Avatar
+- [ ] Sidebar modal form atidarymas nuspaudus "Book Appointment" mygtuką
+- [ ] Atidaryti Mano užsakymai route pasirinkus "My booking" opciją iš dropdown menu
