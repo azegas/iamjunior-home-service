@@ -1,4 +1,4 @@
-- [About project](#about-project)
+- [About the project](#about-the-project)
 - [Live site](#live-site)
 - [Run project](#run-project)
   - [Clone the project](#clone-the-project)
@@ -14,7 +14,7 @@
     - [Deploy frontend (Vite/React)](#deploy-frontend-vitereact)
     - [CORS](#cors)
 
-# About project
+# About the project
 
 https://www.iamjunior.lt/front-end-akceleratorius-javascript course task.
 
@@ -45,7 +45,7 @@ cd backend
 # set the environment variables to .env file
 cp .env_template .env
 npm i
-npm run server
+npm run dev
 ```
 
 When site has been launched:
@@ -69,7 +69,7 @@ node recreate-db.js
 # make sure backend server is running first
 cd frontend
 npm i
-npm run dev
+npm run client
 # open http://localhost:5173/ in your browser to preview the site
 ```
 
@@ -141,14 +141,14 @@ Setup needed files (frontend/backend):
 
 `.eslint.config` or something similar file should be setup already in your chosen folder by the previous command. One for frontend and one for backend.
 
-```json
+```bash
 # example rules:
 
 rules: {
-            'react/react-in-jsx-scope': 'off',
-            'react/prop-types': 'off',
-            'no-console': 'error'
-    }
+  'react/react-in-jsx-scope': 'off',
+  'react/prop-types': 'off',
+  'no-console': 'error'
+}
 ```
 
 configure eslint rules (all eslint rules - https://eslint.org/docs/latest/rules/)
@@ -269,6 +269,8 @@ Also have `index.html` file in the public folder.
 
 Create `backend/vercel.json`:
 
+For a JavaScript project:
+
 ```json
 {
   "version": 2,
@@ -288,7 +290,35 @@ Create `backend/vercel.json`:
 }
 ```
 
-`Package.json` add deploy commands:
+For a TypeScript project:
+
+Vercel can not deploy our TypeScript files, it has to deploy `.js` files. For that we
+first transpile the TypeScript files to `.js` files with the `tsc` command. during build process `package.json`. It generates the `dist` folder with all the `.js` files and this folder can be deployed.
+
+A hack was also made for swagger-ui-express to work with Vercel by including the `node_modules/swagger-ui-dist` folder in the build process (otherwise we would get "uncaught ReferenceError: SwaggerBundle is not defined" error). I feel like this is a workaround, not a solution. Good enoguh for my case now, but should be investigated more in the future. Now we just found what swagger needs and provided it to it to work. This was not needed for JavaScript project as you can see in the `vercel.json` example above.
+
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/server.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["./dist/**", "./node_modules/swagger-ui-dist/**"]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/server.js"
+    }
+  ]
+}
+```
+
+`package.json` add deploy commands:
 
 ```json
 "scripts": {
