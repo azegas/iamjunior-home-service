@@ -28,17 +28,16 @@ const LoginForm = () => {
     const isProd = import.meta.env.VITE_PROD === 'true';
 
     try {
-      console.log('Bandoma prisijungti {', email, password, '}');
-      // const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/auth/login`;
-      // const response = await fetch(apiUrl, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ email, password }),
-      // });
-      // const data = await response.json();
-      // handleLoginResponse(response, data);
+      const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/auth/login`;
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      handleLoginResponse(response, data);
     } catch {
       toast.error('An error occurred during login. Please try again.');
     }
@@ -68,35 +67,44 @@ const LoginForm = () => {
       onSubmit={handleLogin}
       validationSchema={validationSchema}
     >
-      {({ values, errors, touched, dirty, isValid, handleChange, handleSubmit, handleBlur }) => (
+      {({
+        values,
+        errors,
+        touched,
+        dirty,
+        isValid,
+        handleChange,
+        handleSubmit,
+        handleBlur,
+        isSubmitting,
+      }) => (
         <div className={styles.login}>
           <h1 className="title">Login</h1>
-          <pre>{JSON.stringify({ errors, touched }, null, 2)}</pre>
           <form onSubmit={handleSubmit}>
             <InputField
-              label="Email:"
               type="email"
-              id="email"
               name="email"
+              label="Email:"
               value={values.email}
               error={errors.email}
               touched={touched.email}
+              disabled={isSubmitting}
               onChange={handleChange}
               onBlur={handleBlur}
             />
             <InputField
-              label="Password:"
               type="password"
-              id="password"
               name="password"
+              label="Password:"
               value={values.password}
               error={errors.password}
               touched={touched.password}
+              disabled={isSubmitting}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            <button type="submit" disabled={!dirty || !isValid}>
-              Login
+            <button type="submit" disabled={!dirty || !isValid || isSubmitting}>
+              {isSubmitting ? 'Logging in...' : 'Login'}
             </button>
           </form>
         </div>
