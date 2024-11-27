@@ -7,16 +7,28 @@ type InputFieldProps = {
   id: string;
   value: string;
   name: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
+  touched?: boolean;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 };
 
-const InputField = ({ label, type, id, value, name, onChange, error }: InputFieldProps) => {
+const InputField = ({
+  label,
+  type,
+  id,
+  value,
+  name,
+  onChange,
+  error,
+  touched,
+  onBlur,
+}: InputFieldProps) => {
   return (
     <div className={styles.inputField}>
       <label htmlFor={id}>{label}</label>
-      <input type={type} id={id} value={value} name={name} onChange={onChange} />
-      {error && <div style={{ color: 'black' }}>{error}</div>}
+      <input type={type} id={id} value={value} name={name} onChange={onChange} onBlur={onBlur} />
+      {error && touched && <div style={{ color: 'black' }}>{error}</div>}
     </div>
   );
 };

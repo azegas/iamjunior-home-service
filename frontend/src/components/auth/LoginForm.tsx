@@ -68,10 +68,10 @@ const LoginForm = () => {
       onSubmit={handleLogin}
       validationSchema={validationSchema}
     >
-      {({ values, errors, handleChange, handleSubmit }) => (
+      {({ values, errors, touched, handleChange, handleSubmit, handleBlur }) => (
         <div className={styles.login}>
           <h1 className="title">Login</h1>
-          <pre>{JSON.stringify(errors, null, 2)}</pre>
+          <pre>{JSON.stringify({ errors, touched }, null, 2)}</pre>
           <form onSubmit={handleSubmit}>
             <InputField
               label="Email:"
@@ -79,8 +79,10 @@ const LoginForm = () => {
               id="email"
               name="email"
               value={values.email}
-              onChange={handleChange}
               error={errors.email}
+              touched={touched.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
             <InputField
               label="Password:"
@@ -88,8 +90,10 @@ const LoginForm = () => {
               id="password"
               name="password"
               value={values.password}
-              onChange={handleChange}
               error={errors.password}
+              touched={touched.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
             <button type="submit">Login</button>
           </form>
