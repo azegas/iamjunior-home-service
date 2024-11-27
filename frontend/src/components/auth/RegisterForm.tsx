@@ -12,7 +12,7 @@ const RegisterForm = () => {
   const { saveUserToContext } = useUser() ?? {};
   const navigate = useNavigate();
 
-  const validationSchema = yup.object({
+  const registerValidationSchema = yup.object({
     username: yup
       .string()
       .min(3, 'Username must be at least 3 characters long.')
@@ -67,7 +67,7 @@ const RegisterForm = () => {
           setSubmitting(false);
         }
       }}
-      validationSchema={validationSchema}
+      validationSchema={registerValidationSchema}
     >
       {({
         values,

@@ -7,6 +7,7 @@
     - [Komponento gyvavimo ciklai ir react-router-dom](#komponento-gyvavimo-ciklai-ir-react-router-dom)
     - [Custom Hooks](#custom-hooks)
     - [React Context ir zustand](#react-context-ir-zustand)
+    - [Formik \& Yup](#formik--yup)
 
 # iamjunior-home-service (frontend)
 
@@ -68,3 +69,16 @@
 2. [x] Redirect: Suvedus inputus ir paspaudus Login mygtuką išsaugoti userio informaciją su useContext ir localStorage bei redirectint į pagrindinį / route
 3. [x] Topbar komponentas: Atnaujinti komponento state kai asmuo yra prisijungęs
 4. [x] Register (optional): Įgyvendinti /register route ir savo norimą dizainą
+
+### Formik & Yup
+
+1. [x] Integruoti Formik ir yup bibliotekas į React aplikaciją
+   1. [x] Login forma
+   2. [x] Register forma
+2. [x] Naudokite tipus kiekviename komponente: Naudokite TypeScript tipus visur, kur įmanoma, kad užtikrintumėte saugumą ir pagerintumėte kodo kokybę.
+3. [x] Klaidos pranešimai: Visada parodykite klaidos pranešimus šalia laukelių, kad vartotojai žinotų, kas negerai.
+4. [x] Naudokite Yup validaciją: Yup yra galinga biblioteka, kuri leidžia lengvai kurti sudėtingas validacijos taisykles.
+5. [x] Automatinis laukų tikrinimas: Naudokite touched savybę iš Formik, kad parodytumėte klaidas tik tiems laukams, kurie buvo paliesti (paspausti). Field tai daro automatiškai.
+6. [x] Kintamųjų laikymas: Laikykite initialValues ir validationSchema ne renderio viduje. Galite laikyti virš komponento arba geriausia iškelti į atskirą failą.
+7. [x] Pavadinimai: Kuriant didelę aplikaciją naudoti papildomus žodžius kintamiesmams pvz.: komponentas LoginForm.tsx, tipai LoginFormValues, pradinės reikšmės const loginInitialValues: LoginFormValues = {...}, schema const loginValidationSchema: Yup.Schema<LoginFormValues> = Yup.object({...})
+8. [x] Pernaudojamumas: Išsikelti dažniausiai naudojamus error žinutes į atskirą kintamąjį pvz.: const errorMessage = { required: "Laukas privalomas"}

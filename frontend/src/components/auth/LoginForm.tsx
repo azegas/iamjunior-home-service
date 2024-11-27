@@ -9,7 +9,7 @@ import { Formik, FormikConfig } from 'formik';
 import { LoginValues } from '@types';
 import * as yup from 'yup';
 
-const validationSchema = yup.object({
+const loginValidationSchema = yup.object({
   email: yup.string().email('Invalid email address').required('Email is required'),
   password: yup.string().required('Password is required'),
 });
@@ -65,7 +65,7 @@ const LoginForm = () => {
         password: '',
       }}
       onSubmit={handleLogin}
-      validationSchema={validationSchema}
+      validationSchema={loginValidationSchema}
     >
       {({
         values,
