@@ -1,5 +1,5 @@
 import { useUser } from '@/context/UserContext';
-import { json, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import InputField from '@/components/common/InputField';
 import styles from './LoginForm.module.scss';
 import '@/styles/global.scss';

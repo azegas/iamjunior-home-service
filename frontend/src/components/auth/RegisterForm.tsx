@@ -1,6 +1,6 @@
 import { useUser } from '@/context/UserContext';
 import { useNavigate } from 'react-router-dom';
-import { Formik, FormikConfig } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 import InputField from '@/components/common/InputField';
 import styles from './RegisterForm.module.scss';
