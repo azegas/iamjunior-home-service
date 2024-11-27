@@ -71,7 +71,7 @@ const LoginForm = () => {
       {({ values, errors, handleChange, handleSubmit }) => (
         <div className={styles.login}>
           <h1 className="title">Login</h1>
-          <div>{JSON.stringify(errors)}</div>
+          <pre>{JSON.stringify(errors, null, 2)}</pre>
           <form onSubmit={handleSubmit}>
             <InputField
               label="Email:"
@@ -80,8 +80,7 @@ const LoginForm = () => {
               name="email"
               value={values.email}
               onChange={handleChange}
-              error={!!errors.email}
-              errorMessage={errors.email}
+              error={errors.email}
             />
             <InputField
               label="Password:"
@@ -90,8 +89,7 @@ const LoginForm = () => {
               name="password"
               value={values.password}
               onChange={handleChange}
-              error={!!errors.password}
-              errorMessage={errors.password}
+              error={errors.password}
             />
             <button type="submit">Login</button>
           </form>
