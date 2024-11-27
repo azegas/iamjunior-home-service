@@ -1,5 +1,5 @@
 import { useUser } from '@/context/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import InputField from '@/components/common/InputField';
 import styles from './LoginForm.module.scss';
 import '@/styles/global.scss';
@@ -7,6 +7,12 @@ import { toast } from 'react-toastify';
 import { LoginResponse } from './types';
 import { Formik, FormikConfig } from 'formik';
 import { LoginValues } from '@types';
+import * as yup from 'yup';
+
+const validationSchema = yup.object({
+  email: yup.string().email('Invalid email address').required('Email is required'),
+  password: yup.string().required('Password is required'),
+});
 
 // create a type for the form values
 type LoginFormFormValues = FormikConfig<LoginValues>;
@@ -22,16 +28,17 @@ const LoginForm = () => {
     const isProd = import.meta.env.VITE_PROD === 'true';
 
     try {
-      const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/auth/login`;
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-      handleLoginResponse(response, data);
+      console.log('Bandoma prisijungti {', email, password, '}');
+      // const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/auth/login`;
+      // const response = await fetch(apiUrl, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({ email, password }),
+      // });
+      // const data = await response.json();
+      // handleLoginResponse(response, data);
     } catch {
       toast.error('An error occurred during login. Please try again.');
     }
@@ -59,10 +66,12 @@ const LoginForm = () => {
         password: '',
       }}
       onSubmit={handleLogin}
+      validationSchema={validationSchema}
     >
-      {({ values, handleChange, handleSubmit }) => (
+      {({ values, errors, handleChange, handleSubmit }) => (
         <div className={styles.login}>
           <h1 className="title">Login</h1>
+          <div>{JSON.stringify(errors)}</div>
           <form onSubmit={handleSubmit}>
             <InputField
               label="Email:"
@@ -71,7 +80,7 @@ const LoginForm = () => {
               name="email"
               value={values.email}
               onChange={handleChange}
-              required // provides default html error message "Please fill in this field"
+              // required // provides default html error message "Please fill in this field"
               error={false}
               errorMessage=""
             />
@@ -82,7 +91,7 @@ const LoginForm = () => {
               name="password"
               value={values.password}
               onChange={handleChange}
-              required // provides default html error message "Please fill in this field"
+              // required // provides default html error message "Please fill in this field"
               error={false}
               errorMessage=""
             />
