@@ -8,7 +8,6 @@ type InputFieldProps = {
   value: string;
   name: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  required: boolean;
   error: boolean;
   errorMessage: string;
 };
@@ -20,21 +19,13 @@ const InputField = ({
   value,
   name,
   onChange,
-  required,
   error,
   errorMessage,
 }: InputFieldProps) => {
   return (
     <div className={styles.inputField}>
       <label htmlFor={id}>{label}</label>
-      <input
-        type={type}
-        id={id}
-        value={value}
-        name={name}
-        onChange={onChange}
-        required={required}
-      />
+      <input type={type} id={id} value={value} name={name} onChange={onChange} />
       {error && <div style={{ color: 'red' }}>{errorMessage}</div>}
     </div>
   );

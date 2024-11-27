@@ -80,7 +80,6 @@ const LoginForm = () => {
               name="email"
               value={values.email}
               onChange={handleChange}
-              // required // provides default html error message "Please fill in this field"
               error={false}
               errorMessage=""
             />
@@ -91,8 +90,6 @@ const LoginForm = () => {
               name="password"
               value={values.password}
               onChange={handleChange}
-              // required // provides default html error message "Please fill in this field"
-              error={false}
               errorMessage=""
             />
             <button type="submit">Login</button>
