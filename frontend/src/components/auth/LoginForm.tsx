@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useUser } from '@/context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import InputField from '@/components/common/InputField';
@@ -6,20 +5,19 @@ import styles from './LoginForm.module.scss';
 import '@/styles/global.scss';
 import { toast } from 'react-toastify';
 import { LoginResponse } from './types';
+import { Formik, FormikConfig } from 'formik';
+import { LoginValues } from '@types';
+
+// create a type for the form values
+type LoginFormFormValues = FormikConfig<LoginValues>;
+// const x: LoginFormFormValues;
+// x.
 
 const LoginForm = () => {
   const { saveUserToContext } = useUser() ?? {};
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await loginAttempt();
-  };
-
-  const loginAttempt = async () => {
-    const userData = { email, password };
+  const handleLogin: LoginFormFormValues['onSubmit'] = async ({ email, password }) => {
     // check if we are in production or development, and set the api url accordingly (from .env file)
     const isProd = import.meta.env.VITE_PROD === 'true';
 
@@ -30,7 +28,7 @@ const LoginForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
       handleLoginResponse(response, data);
@@ -54,34 +52,45 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={styles.login}>
-      <h1 className="title">Login</h1>
-      <form onSubmit={handleSubmit}>
-        <InputField
-          label="Email:"
-          type="email"
-          id="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          error={false}
-          errorMessage=""
-        />
-        <InputField
-          label="Password:"
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          error={false}
-          errorMessage=""
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <Formik
+      // creates context for the form
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      onSubmit={handleLogin}
+    >
+      {({ values, handleChange, handleSubmit }) => (
+        <div className={styles.login}>
+          <h1 className="title">Login</h1>
+          <form onSubmit={handleSubmit}>
+            <InputField
+              label="Email:"
+              type="email"
+              id="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              required // provides default html error message "Please fill in this field"
+              error={false}
+              errorMessage=""
+            />
+            <InputField
+              label="Password:"
+              type="password"
+              id="password"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              required // provides default html error message "Please fill in this field"
+              error={false}
+              errorMessage=""
+            />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      )}
+    </Formik>
   );
 };
 
