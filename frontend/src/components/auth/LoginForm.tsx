@@ -80,8 +80,8 @@ const LoginForm = () => {
               name="email"
               value={values.email}
               onChange={handleChange}
-              error={false}
-              errorMessage=""
+              error={!!errors.email}
+              errorMessage={errors.email}
             />
             <InputField
               label="Password:"
@@ -90,7 +90,8 @@ const LoginForm = () => {
               name="password"
               value={values.password}
               onChange={handleChange}
-              errorMessage=""
+              error={!!errors.password}
+              errorMessage={errors.password}
             />
             <button type="submit">Login</button>
           </form>

@@ -9,7 +9,7 @@ type InputFieldProps = {
   name: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   error: boolean;
-  errorMessage: string;
+  errorMessage: string | undefined;
 };
 
 const InputField = ({
