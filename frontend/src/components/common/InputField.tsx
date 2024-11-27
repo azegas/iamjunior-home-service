@@ -2,40 +2,40 @@ import React from 'react';
 import styles from './InputField.module.scss';
 
 type InputFieldProps = {
-  label: string;
   type: string;
-  id: string;
-  value: string;
   name: string;
+  label: string;
+  value: string;
+  error?: string;
+  touched?: boolean;
+  disabled?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  required: boolean;
-  error: boolean;
-  errorMessage: string;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 };
 
 const InputField = ({
-  label,
   type,
-  id,
-  value,
   name,
-  onChange,
-  required,
+  label,
+  value,
   error,
-  errorMessage,
+  touched,
+  disabled,
+  onChange,
+  onBlur,
 }: InputFieldProps) => {
   return (
     <div className={styles.inputField}>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={name}>{label}</label>
       <input
         type={type}
-        id={id}
-        value={value}
         name={name}
+        value={value}
         onChange={onChange}
-        required={required}
+        onBlur={onBlur}
+        disabled={disabled}
       />
-      {error && <div style={{ color: 'red' }}>{errorMessage}</div>}
+      {error && touched && <div style={{ color: 'black' }}>{error}</div>}
     </div>
   );
 };

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
 import { useUser } from '@/context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 import InputField from '@/components/common/InputField';
 import styles from './RegisterForm.module.scss';
 import '@/styles/global.scss';
@@ -10,49 +11,26 @@ import { LoginResponse } from './types';
 const RegisterForm = () => {
   const { saveUserToContext } = useUser() ?? {};
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [usernameError, setUsernameError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    validateUsername();
-    if (usernameError) return;
-
-    const userData = { username, password, email };
-    // check if we are in production or development, and set the api url accordingly (from .env file)
-    const isProd = import.meta.env.VITE_PROD === 'true';
-
-    try {
-      const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/auth/register`;
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-
-      const data = await response.json();
-      handleRegistrationResponse(response, data);
-    } catch {
-      toast.error('An error occurred during registration. Please try again.');
-    }
-  };
-
-  const validateUsername = () => {
-    if (username.length < 3) {
-      setUsernameError('Username must be at least 3 characters long.');
-    } else {
-      setUsernameError('');
-    }
-  };
+  const registerValidationSchema = yup.object({
+    username: yup
+      .string()
+      .min(3, 'Username must be at least 3 characters long.')
+      .required('Username is required'),
+    email: yup.string().email('Invalid email address').required('Email is required'),
+    password: yup
+      .string()
+      .min(8, 'Password must be at least 8 characters long.')
+      .max(32, 'Password must be at most 32 characters long.')
+      .matches(/[A-Z]/, 'Password must contain at least one uppercase letter.')
+      .matches(/[0-9]/, 'Password must contain at least one number.')
+      .required('Password is required'),
+  });
 
   const handleRegistrationResponse = (response: Response, data: LoginResponse) => {
     if (response.ok) {
       saveUserToContext?.(data.user);
-      toast.success(`Registered successfully, hello ${username}!`);
+      toast.success(`Registered successfully, hello ${data.user.username}!`);
       navigate('/');
     } else {
       if (data.message) {
@@ -62,46 +40,89 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className={styles.register}>
-      <h1 className="title">Register</h1>
-      <form onSubmit={handleSubmit}>
-        <InputField
-          label="Username:"
-          type="text"
-          id="username"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          // !! true if usernameError is a non-empty string (truthy).
-          error={!!usernameError}
-          errorMessage={usernameError}
-        />
-        <InputField
-          label="Email:"
-          type="email"
-          id="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          error={false}
-          errorMessage=""
-        />
-        <InputField
-          label="Password:"
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          error={false}
-          errorMessage=""
-        />
-        <button type="submit">Register</button>
-      </form>
-    </div>
+    <Formik
+      initialValues={{
+        username: '',
+        email: '',
+        password: '',
+      }}
+      onSubmit={async (values, { setSubmitting }) => {
+        setSubmitting(true);
+        try {
+          const isProd = import.meta.env.VITE_PROD === 'true';
+          const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/auth/register`;
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          });
+
+          const data = await response.json();
+          handleRegistrationResponse(response, data);
+        } catch {
+          toast.error('An error occurred during registration. Please try again.');
+        } finally {
+          setSubmitting(false);
+        }
+      }}
+      validationSchema={registerValidationSchema}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        dirty,
+        isValid,
+        handleChange,
+        handleSubmit,
+        handleBlur,
+        isSubmitting,
+      }) => (
+        <div className={styles.register}>
+          <h1 className="title">Register</h1>
+          <form onSubmit={handleSubmit}>
+            <InputField
+              type="text"
+              name="username"
+              label="Username:"
+              value={values.username}
+              error={errors.username}
+              touched={touched.username}
+              disabled={isSubmitting}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <InputField
+              type="email"
+              name="email"
+              label="Email:"
+              value={values.email}
+              error={errors.email}
+              touched={touched.email}
+              disabled={isSubmitting}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <InputField
+              type="password"
+              name="password"
+              label="Password:"
+              value={values.password}
+              error={errors.password}
+              touched={touched.password}
+              disabled={isSubmitting}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <button type="submit" disabled={!dirty || !isValid || isSubmitting}>
+              {isSubmitting ? 'Registering...' : 'Register'}
+            </button>
+          </form>
+        </div>
+      )}
+    </Formik>
   );
 };
 
