@@ -68,7 +68,7 @@ const LoginForm = () => {
       onSubmit={handleLogin}
       validationSchema={validationSchema}
     >
-      {({ values, errors, touched, handleChange, handleSubmit, handleBlur, dirty }) => (
+      {({ values, errors, touched, dirty, isValid, handleChange, handleSubmit, handleBlur }) => (
         <div className={styles.login}>
           <h1 className="title">Login</h1>
           <pre>{JSON.stringify({ errors, touched }, null, 2)}</pre>
@@ -95,7 +95,7 @@ const LoginForm = () => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            <button type="submit" disabled={!dirty}>
+            <button type="submit" disabled={!dirty || !isValid}>
               Login
             </button>
           </form>
