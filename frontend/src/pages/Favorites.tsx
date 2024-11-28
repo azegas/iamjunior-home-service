@@ -1,14 +1,23 @@
 import BusinessList from '../components/business/BusinessList';
-import useFetchBusinesses from '../hooks/use-fetch-businesses';
+import fetchBusinesses from '../api/fetchBusinesses';
+import { useQuery } from '@tanstack/react-query';
 import { useFavorite } from '../context/FavoriteContext';
 import { useUser } from '../context/UserContext';
 import '../styles/global.scss';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../components/auth/types';
-import { Business } from '../components/business/types';
 
 const Favorites = () => {
-  const { businesses }: { businesses: Business[] | null } = useFetchBusinesses();
+  const {
+    data: businesses,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['businesses'],
+    queryFn: fetchBusinesses,
+    staleTime: Infinity, // don't refetch businesses if they are already fetched and are in cache
+  });
+
   const favoriteContext = useFavorite();
   const userContext = useUser();
   const favorites: string[] = favoriteContext?.favorites || [];
@@ -18,6 +27,8 @@ const Favorites = () => {
   const filteredBusinesses = businesses
     ? businesses.filter((business) => favorites.includes(business._id))
     : [];
+
+  if (error) return <p>Error loading businesses: {error.message}</p>;
 
   if (favorites.length === 0) {
     return user ? (
@@ -33,7 +44,15 @@ const Favorites = () => {
     );
   }
 
-  return <BusinessList businesses={filteredBusinesses} categoryName="Favorites" />;
+  return (
+    <div>
+      {isLoading ? (
+        <p>Loading businesses...</p>
+      ) : (
+        <BusinessList businesses={filteredBusinesses} categoryName="Favorites" />
+      )}
+    </div>
+  );
 };
 
 export default Favorites;
