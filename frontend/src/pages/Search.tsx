@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import useFetchCategories from '../hooks/use-fetch-categories';
-import useFetchBusinesses from '../hooks/use-fetch-businesses';
+import { useQuery } from '@tanstack/react-query';
+import fetchCategories from '../api/fetchCategories';
+import fetchBusinesses from '../api/fetchBusinesses';
 import Loading from '../components/common/Loading';
 import Error from '../components/common/Error';
 import BusinessList from '../components/business/BusinessList';
@@ -9,35 +9,48 @@ import CategoryList from '../components/category/CategoryList';
 import '../styles/global.scss';
 import styles from '../components/common/Search.module.scss';
 import Container from '../components/common/Container';
-import { Business } from '../components/business/types';
 
 const Search = () => {
   const { categoryName } = useParams<{ categoryName: string }>();
-  const { categories, errorsCategories, isLoadingCategories } = useFetchCategories();
-  const { businesses, errorsBusinesses, isLoadingBusinesses } = useFetchBusinesses();
-  const [filteredBusinesses, setFilteredBusinesses] = useState<Business[]>([]);
 
-  useEffect(() => {
-    if (businesses) {
-      const filtered = businesses.filter((business) => business.category.name === categoryName);
-      setFilteredBusinesses(filtered);
-    } else {
-      setFilteredBusinesses([]);
-    }
-  }, [categoryName, businesses]);
+  const {
+    data: categories,
+    isLoading: isLoadingCategories,
+    error: errorsCategories,
+  } = useQuery({
+    queryKey: ['categories'],
+    queryFn: fetchCategories,
+    staleTime: Infinity, // Do not refetch categories
+  });
+
+  const {
+    data: businesses,
+    isLoading: isLoadingBusinesses,
+    error: errorsBusinesses,
+  } = useQuery({
+    queryKey: ['businesses'],
+    queryFn: fetchBusinesses,
+    staleTime: Infinity, // Do not refetch businesses
+  });
+
+  // Derive filtered businesses directly whenever the categoryName changes
+  const filteredBusinesses =
+    businesses?.filter((business) => business.category?.name === categoryName) || [];
 
   return (
     <>
-      {/* Show error message if there is an error */}
-      {errorsCategories &&
-        errorsCategories.map((error, index) => <Error key={index} message={error.message} />)}
-      {errorsBusinesses &&
-        errorsBusinesses.map((error, index) => <Error key={index} message={error.message} />)}
+      {/* Show error messages */}
+      {errorsCategories && (
+        <Error message={`Error fetching categories: ${String(errorsCategories)}`} />
+      )}
+      {errorsBusinesses && (
+        <Error message={`Error fetching businesses: ${String(errorsBusinesses)}`} />
+      )}
 
-      {/* Show loading component while fetching data */}
+      {/* Show loading component */}
       {(isLoadingCategories || isLoadingBusinesses) && <Loading />}
 
-      {/* Show search container only if data is fetched and loading is stopped */}
+      {/* Show content if loading is complete */}
       {!isLoadingCategories && !isLoadingBusinesses && (
         <Container>
           <div className={styles.searchContainer}>
