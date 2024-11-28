@@ -6,7 +6,7 @@ import '@/styles/global.scss';
 import { toast } from 'react-toastify';
 import { LoginResponse } from './types';
 import { Formik, FormikConfig } from 'formik';
-import { LoginValues } from '@types';
+import { LoginValues } from './types';
 import * as yup from 'yup';
 
 const loginValidationSchema = yup.object({

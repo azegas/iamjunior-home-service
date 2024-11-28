@@ -13,3 +13,8 @@ export type LoginResponse = {
   token: string;
   user: User;
 };
+
+export type LoginValues = {
+  email: string;
+  password: string;
+};
