@@ -7,7 +7,7 @@ type UserContextProps = {
   clearUserFromContext: () => void;
 };
 
-const UserContext = createContext<UserContextProps | undefined>(undefined);
+export const UserContext = createContext<UserContextProps | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState(() => {
