@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "deploy": "npm run build && vercel --prod",
     "test": "jest",
-    "coverage": "npm test --coverage --watchAll"
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.61.5",
