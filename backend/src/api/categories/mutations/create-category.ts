@@ -1,6 +1,6 @@
-import { CategoryModel } from '../model';
+import { CategoryModel } from '../categories-model';
 import { Request, Response } from 'express';
-import { Category } from '../types';
+import { Category } from '../categories-types';
 
 /*
 http://localhost:3000/api/categories

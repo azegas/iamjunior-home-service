@@ -1,4 +1,4 @@
-import { UserModel } from '../model';
+import { UserModel } from '../auth-model';
 import { Request, Response } from 'express';
 
 /* 

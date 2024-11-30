@@ -1,6 +1,6 @@
-import { BookingModel } from '../model';
+import { BookingModel } from '../bookings-model';
 import { Request, Response } from 'express';
-import { Booking } from '../types';
+import { Booking } from '../bookings-types';
 
 /*
 http://localhost:3000/api/bookings

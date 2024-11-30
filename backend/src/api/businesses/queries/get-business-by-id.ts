@@ -1,4 +1,4 @@
-import { BusinessModel } from '../model';
+import { BusinessModel } from '../businesses-model';
 import { Request, Response } from 'express';
 
 /*

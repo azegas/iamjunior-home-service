@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { UserModel } from '../model';
-import { User } from '../types';
+import { UserModel } from '../auth-model';
+import { User } from '../auth-types';
 
 /*
 http://localhost:3000/api/auth/register

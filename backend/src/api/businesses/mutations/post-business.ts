@@ -1,7 +1,7 @@
-import { BusinessModel } from '../model';
-import { CategoryModel } from '../../categories/model';
+import { BusinessModel } from '../businesses-model';
+import { CategoryModel } from '../../categories/categories-model';
 import { Request, Response } from 'express';
-import { Business } from '../types';
+import { Business } from '../businesses-types';
 
 /*
 http://localhost:3000/api/businesses

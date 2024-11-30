@@ -1,5 +1,5 @@
-import { BusinessModel } from '../model';
-import { CategoryModel } from '../../categories/model';
+import { BusinessModel } from '../businesses-model';
+import { CategoryModel } from '../../categories/categories-model';
 import { Request, Response } from 'express';
 
 /*

@@ -1,4 +1,4 @@
-import { CategoryModel } from '../model';
+import { CategoryModel } from '../categories-model';
 import { Request, Response } from 'express';
 
 /*

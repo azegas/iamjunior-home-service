@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { UserModel } from '../model';
-import { generateToken } from '../generate-token';
-import { User } from '../types';
+import { UserModel } from '../auth-model';
+import { generateToken } from '../auth-token';
+import { User } from '../auth-types';
 
 /*
 http://localhost:3000/api/auth/login

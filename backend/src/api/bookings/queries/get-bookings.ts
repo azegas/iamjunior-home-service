@@ -1,4 +1,4 @@
-import { BookingModel } from '../model';
+import { BookingModel } from '../bookings-model';
 import { Request, Response } from 'express';
 
 /*

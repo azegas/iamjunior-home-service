@@ -1,5 +1,5 @@
-import { BusinessModel } from '../model';
-import { BookingModel } from '../../bookings/model';
+import { BusinessModel } from '../businesses-model';
+import { BookingModel } from '../../bookings/bookings-model';
 import { Request, Response } from 'express';
 
 /*
