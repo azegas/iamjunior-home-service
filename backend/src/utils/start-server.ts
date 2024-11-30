@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { connectToDB } from './utils/db';
+import { connectToDB } from './db';
 import express from 'express';
 
 export const startServer = async (app: express.Application) => {
