@@ -44,12 +44,14 @@ const Home = () => {
       {(isLoadingCategories || isLoadingBusinesses) && <Loading />}
       {!isLoadingCategories && categories && <Hero categories={categories} />}
 
-      {(!isLoadingCategories || !isLoadingBusinesses) && (
-        <SearchInput onSearch={(value) => setSearchQuery(value)} />
-      )}
-
       {!isLoadingBusinesses && (
-        <BusinessList businesses={filteredBusinesses} categoryName="All businesses" />
+        <>
+          <h1 style={{ textAlign: 'center', padding: '20px' }}>
+            Search through {businesses?.length} businesses
+          </h1>
+          <SearchInput onSearch={(value) => setSearchQuery(value)} />
+          <BusinessList businesses={filteredBusinesses} categoryName="" />
+        </>
       )}
     </>
   );

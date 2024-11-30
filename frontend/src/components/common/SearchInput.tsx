@@ -12,12 +12,7 @@ const SearchInput = ({ onSearch }: { onSearch: (value: string) => void }) => {
 
   return (
     <div className={styles.searchInput}>
-      <input
-        type="text"
-        placeholder="Search for a service"
-        onChange={handleChange}
-        value={searchValue}
-      />
+      <input type="text" placeholder="Search..." onChange={handleChange} value={searchValue} />
     </div>
   );
 };
