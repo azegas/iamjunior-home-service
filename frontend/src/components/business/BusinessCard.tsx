@@ -23,7 +23,7 @@ const BusinessCard = ({
           src={
             favorites?.includes(business._id)
               ? 'https://img.icons8.com/?size=100&id=DFU1kReSUccu&format=png&color=000000'
-              : 'https://img.icons8.com/?size=100&id=12306&format=png&color=000000'
+              : 'https://img.icons8.com/?size=100&id=87&format=png&color=FF0000'
           }
           alt="Favorite"
           onClick={onFavoriteClick}
