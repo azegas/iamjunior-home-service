@@ -6,7 +6,7 @@ import { getBusinessById } from './queries/get-business-by-id';
 import { getBusinessByCategory } from './queries/get-business-by-category';
 import { putBusiness } from './mutations/put-business-by-id';
 import { getBusinessByIdAndDate } from './queries/get-business-bookings-by-id-and-booking-date';
-import { appendFile } from 'fs';
+import { deleteBusiness } from './mutations/delete-business';
 
 // can use authMiddleware to make so that certain endpoints are only usable by authenticated users
 // import { authMiddleware } from '../../middlewares/authMiddleware';
@@ -19,5 +19,6 @@ businessesRouter.get('/category/:category', getBusinessByCategory);
 businessesRouter.get('/:id/bookings/date/:date', getBusinessByIdAndDate);
 businessesRouter.post('/', postBusiness);
 businessesRouter.put('/:id', putBusiness);
+businessesRouter.delete('/:id', deleteBusiness);
 
 export { businessesRouter };

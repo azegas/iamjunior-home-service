@@ -20,7 +20,7 @@ Example API endpoints for deleting a category by ID:
  *         description: The ID of the category
  *     responses:
  *       200:
- *         description: Booking deleted successfully
+ *         description: Category deleted successfully
  */
 
 async function deleteCategory(req: Request, res: Response): Promise<void> {
@@ -32,10 +32,10 @@ async function deleteCategory(req: Request, res: Response): Promise<void> {
   }
 
   try {
-    // Find and delete the booking with the specified 'id'
+    // Find and delete the category with the specified 'id'
     const result = await CategoryModel.findByIdAndDelete(id);
 
-    // Check if the booking with the specified id exists
+    // Check if the category with the specified id exists
     if (!result) {
       // If not found, return a 404 Not Found error with a message
       res.status(404).json({ success: false, message: 'Category not found.' });
