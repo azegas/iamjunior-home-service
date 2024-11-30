@@ -16,14 +16,18 @@ const BusinessList = ({ businesses, categoryName }: BusinessListProps) => {
     <Container>
       <h1 className="titleSmaller">{categoryName}</h1>
       <div className={styles.businessList}>
-        {businesses.map((business) => (
-          <div key={business._id}>
-            <BusinessCard
-              business={business}
-              onFavoriteClick={() => handleFavorite?.(business._id)}
-            />
-          </div>
-        ))}
+        {businesses.length > 0 ? (
+          businesses.map((business) => (
+            <div key={business._id}>
+              <BusinessCard
+                business={business}
+                onFavoriteClick={() => handleFavorite?.(business._id)}
+              />
+            </div>
+          ))
+        ) : (
+          <p>No businesses found.</p>
+        )}
       </div>
     </Container>
   );
