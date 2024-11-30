@@ -6,6 +6,9 @@ const fetchCategories = async (): Promise<Category[]> => {
   const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/categories`;
 
   try {
+    // Intentionally adding a delay to simulate a long loading process. It happens only for the innitial load thanks to staleTime: Infinity
+    await new Promise((resolve) => setTimeout(resolve, 2000)); // 2 seconds delay
+
     const response = await fetch(apiUrl);
 
     if (!response.ok) {
