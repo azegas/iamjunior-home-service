@@ -5,7 +5,7 @@ type Routes = {
   about: string;
   login: string;
   register: string;
-  search: (categoryName: string) => string;
+  categories: (categoryName: string) => string;
   business: (id: string) => string;
   favorites: string;
   dashboard: string;
@@ -19,7 +19,7 @@ const routes: Routes = {
   about: '/about',
   login: '/login',
   register: '/register',
-  search: (categoryName: string) => `/search/${categoryName}`,
+  categories: (categoryName: string) => `/categories/${categoryName}`,
   business: (id: string) => `/business/${id}`,
   favorites: '/favorites',
   dashboard: '/dashboard',

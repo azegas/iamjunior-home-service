@@ -12,7 +12,7 @@ type CategoryCardProps = {
 
 const CategoryCard = ({ category, className, businesses, showCount }: CategoryCardProps) => {
   return (
-    <NavLink to={`/search/${category.name}`} className={`${styles.categoryCard} ${className}`}>
+    <NavLink to={`/categories/${category.name}`} className={`${styles.categoryCard} ${className}`}>
       <img src={category.icon} alt={category.name} />
       <p>
         {category.name}{' '}

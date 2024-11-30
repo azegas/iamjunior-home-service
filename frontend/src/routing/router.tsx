@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       { path: routes.about, element: <About /> },
       { path: routes.login, element: <Login /> },
       { path: routes.register, element: <Register /> },
-      { path: routes.search(':categoryName'), element: <Search /> },
+      { path: routes.categories(':categoryName'), element: <Search /> },
       { path: routes.page404, element: <Page404 /> },
       { path: routes.business(':id'), element: <BusinessDetail /> },
       { path: routes.favorites, element: <Favorites /> },
