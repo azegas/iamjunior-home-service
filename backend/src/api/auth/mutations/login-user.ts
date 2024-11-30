@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { UserModel } from '../model';
-import { generateToken } from '../password';
+import { generateToken } from '../generate-token';
 import { User } from '../types';
 
 /*
