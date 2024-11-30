@@ -1,6 +1,7 @@
 import { Express } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
+import 'dotenv/config';
 
 const swaggerOptions = {
   swaggerDefinition: {
