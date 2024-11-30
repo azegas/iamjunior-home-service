@@ -4,9 +4,9 @@ import styles from './NavBar.module.scss';
 import { clearLocalStorage } from '@/utils/utils';
 import { useUser } from '@/context/UserContext';
 import { useFavorite } from '@/context/FavoriteContext';
-import { toast } from 'react-toastify';
 import Container from '@/components/common/Container';
 import routes from '@/routing/routes';
+import DropdownProfile from '@/components/common/DropdownProfile';
 
 interface MenuItem {
   link: string;
@@ -22,7 +22,7 @@ const menuItemsLeft: MenuItem[] = [
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { user, clearUserFromContext } = useUser() ?? {};
+  const { user } = useUser() ?? {};
   const { favorites } = useFavorite() ?? {};
 
   return (
@@ -46,6 +46,7 @@ const Navbar = () => {
               ))}
             </div>
           </div>
+
           <div className={styles.right}>
             {user ? (
               <>
@@ -57,21 +58,7 @@ const Navbar = () => {
                   />
                   <span>{favorites?.length}</span>
                 </NavLink>
-
-                <div className={styles.links}>
-                  <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
-                    {user.username + (user.username.endsWith('s') ? '' : "'s")} Dashboard!
-                  </NavLink>
-                </div>
-                <button
-                  onClick={() => {
-                    clearUserFromContext?.();
-                    toast.success(`Logged out successfully, bye ${user.username}!`);
-                    navigate('/');
-                  }}
-                >
-                  Logout
-                </button>
+                <DropdownProfile />
               </>
             ) : (
               <button onClick={() => navigate('/login')}>Login/Signup</button>
