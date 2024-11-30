@@ -30,7 +30,7 @@ const BusinessCard = ({
         />
       )}
 
-      <Link to={`/business/${business._id}`} className={styles.businessLink}>
+      <Link to={`/business/details/${business._id}`} className={styles.businessLink}>
         <img
           className={styles.image}
           src={

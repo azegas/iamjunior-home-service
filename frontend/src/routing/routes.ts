@@ -20,7 +20,7 @@ const routes: Routes = {
   login: '/login',
   register: '/register',
   categories: (categoryName: string) => `/categories/${categoryName}`,
-  business: (id: string) => `/business/${id}`,
+  business: (id: string) => `/business/details/${id}`,
   favorites: '/favorites',
   dashboard: '/dashboard',
   page404: '*',
