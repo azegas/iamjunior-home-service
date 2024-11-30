@@ -60,7 +60,7 @@ const Navbar = () => {
 
                 <div className={styles.links}>
                   <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
-                    {user.username} Dashboard!
+                    {user.username + (user.username.endsWith('s') ? '' : "'s")} Dashboard!
                   </NavLink>
                 </div>
                 <button

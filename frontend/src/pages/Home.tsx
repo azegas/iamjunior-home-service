@@ -49,7 +49,7 @@ const Home = () => {
       )}
 
       {!isLoadingBusinesses && (
-        <BusinessList businesses={filteredBusinesses} categoryName="Our most popular businesses" />
+        <BusinessList businesses={filteredBusinesses} categoryName="All businesses" />
       )}
     </>
   );
