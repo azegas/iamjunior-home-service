@@ -7,7 +7,7 @@ const fetchCategories = async (): Promise<Category[]> => {
 
   try {
     // Intentionally adding a delay to simulate a long loading process. It happens only for the innitial load thanks to staleTime: Infinity
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // 2 seconds delay
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // 1 seconds delay
 
     const response = await fetch(apiUrl);
 

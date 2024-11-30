@@ -5,8 +5,12 @@ import Error from '../components/common/Error';
 import { useQuery } from '@tanstack/react-query';
 import fetchCategories from '../api/fetchCategories';
 import fetchBusinesses from '../api/fetchBusinesses';
+import { useState } from 'react';
+import SearchInput from '../components/common/SearchInput';
 
 const Home = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
   const {
     data: categories,
     isLoading: isLoadingCategories,
@@ -14,7 +18,7 @@ const Home = () => {
   } = useQuery({
     queryKey: ['categories'],
     queryFn: fetchCategories,
-    staleTime: Infinity, // never consider the data stale (dont need to refetch even in the background)
+    staleTime: Infinity,
   });
 
   const {
@@ -24,22 +28,28 @@ const Home = () => {
   } = useQuery({
     queryKey: ['businesses'],
     queryFn: fetchBusinesses,
-    staleTime: Infinity, // don't refetch categories if they are already fetched and are in cache
+    staleTime: Infinity,
   });
+
+  // Filter businesses based on the search query
+  const filteredBusinesses =
+    businesses?.filter((business) =>
+      business.name.toLowerCase().includes(searchQuery.toLowerCase()),
+    ) || [];
 
   return (
     <>
-      {/* Show error message if there is an error */}
       {errorsCategories && <Error message={errorsCategories.message} />}
       {errorsBusinesses && <Error message={errorsBusinesses.message} />}
-
-      {/* Show loading component while fetching data */}
       {(isLoadingCategories || isLoadingBusinesses) && <Loading />}
-
-      {/* Show hero and business list components only if data is fetched */}
       {!isLoadingCategories && categories && <Hero categories={categories} />}
-      {!isLoadingBusinesses && businesses && (
-        <BusinessList businesses={businesses} categoryName="All Businesses" />
+
+      {(!isLoadingCategories || !isLoadingBusinesses) && (
+        <SearchInput onSearch={(value) => setSearchQuery(value)} />
+      )}
+
+      {!isLoadingBusinesses && (
+        <BusinessList businesses={filteredBusinesses} categoryName="Our most popular businesses" />
       )}
     </>
   );

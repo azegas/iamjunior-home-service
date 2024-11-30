@@ -7,7 +7,7 @@ const Spinner = () => {
   return (
     <div>
       <img className={styles.spinner} src={svg} alt="spinner" />
-      <p>Hardcoded 2sec first time loading...</p>
+      <p>Hardcoded 1sec first time loading...</p>
     </div>
   );
 };

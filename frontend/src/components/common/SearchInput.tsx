@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './SearchInput.module.scss';
 
-const SearchInput = (onSearch: (value: string) => void) => {
+const SearchInput = ({ onSearch }: { onSearch: (value: string) => void }) => {
+  const [searchValue, setSearchValue] = useState('');
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onSearch(e.target.value);
+    const newValue = e.target.value;
+    setSearchValue(newValue);
+    onSearch(newValue);
   };
 
   return (
     <div className={styles.searchInput}>
-      <input type="text" placeholder="Search for a service" onChange={handleChange} />
-      <button>Search</button>
+      <input
+        type="text"
+        placeholder="Search for a service"
+        onChange={handleChange}
+        value={searchValue}
+      />
     </div>
   );
 };

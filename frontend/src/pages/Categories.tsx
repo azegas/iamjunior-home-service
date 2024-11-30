@@ -7,7 +7,7 @@ import Error from '../components/common/Error';
 import BusinessList from '../components/business/BusinessList';
 import CategoryList from '../components/category/CategoryList';
 import '../styles/global.scss';
-import styles from '../components/common/Search.module.scss';
+import styles from '../components/common/Categories.module.scss';
 import Container from '../components/common/Container';
 
 const Search = () => {

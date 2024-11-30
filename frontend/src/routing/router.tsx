@@ -7,7 +7,7 @@ import Contact from '../pages/Contact';
 import About from '../pages/About';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import Search from '../pages/Search';
+import Search from '../pages/Categories';
 import Page404 from '../pages/404';
 import Navbar from '../components/layout/NavBar';
 import Dashboard from '../pages/Dashboard';
