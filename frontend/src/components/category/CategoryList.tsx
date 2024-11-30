@@ -23,7 +23,10 @@ const CategoryList = ({
       <div className={`${styles.categoryList} ${classNameList}`}>
         {categories.map((category: Category) => (
           <CategoryCard
-            key={category.id}
+            // key={category.id} causes "Each child in a list should have a unique "key" prop." error
+            // Using a Composite Key: If category.id is not guaranteed to be unique,
+            // using a combination of properties to create a unique key, like so:
+            key={`${category.id}-${category.name}`}
             category={category}
             className={classNameCard}
             businesses={businesses}
