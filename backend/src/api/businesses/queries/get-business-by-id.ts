@@ -25,7 +25,7 @@ http://localhost:3000/api/businesses/1
 const getBusinessById = async (req: Request, res: Response): Promise<void> => {
   const businessId = req.params.id;
   try {
-    const business = await BusinessModel.findById(businessId);
+    const business = await BusinessModel.findById(businessId).populate('category');
     if (business) {
       res.json(business);
     } else {

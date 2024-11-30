@@ -20,8 +20,7 @@ http://localhost:3000/api/bookings
 
 async function getBookings(req: Request, res: Response) {
   try {
-    // const bookings = await BookingModel.find().populate('businessId');
-    const bookings = await BookingModel.find();
+    const bookings = await BookingModel.find().populate('businessId');
     if (bookings.length === 0) {
       res.status(404).json({ success: false, message: 'No bookings found.' });
     } else {
