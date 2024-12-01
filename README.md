@@ -16,13 +16,17 @@
 
 # About the project
 
-https://www.iamjunior.lt/front-end-akceleratorius-javascript course task. To find tasks of this project see `TASKS.md` file.
+https://www.iamjunior.lt/front-end-akceleratorius-javascript course task.
+
+To find tasks of this project see `TASKS.md` file.
 
 # Live site
 
 Frontend - https://frontend-one-mu-96.vercel.app/
 
 Backend - https://backend-eta-sable-64.vercel.app/
+
+Working directory - https://github.com/azegas/iamjunior-home-service
 
 # Run project
 
