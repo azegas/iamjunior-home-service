@@ -73,3 +73,14 @@ a {
   height: 80vh;
   gap: 20px;
 }
+
+.globalButton {
+  color: variables.$primary-color;
+  background-color: variables.$tertiary-color;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 20px;
+  border-color: variables.$primary-color;
+  text-align: center;
+  @include global-hover(variables.$primary-color);
+}
