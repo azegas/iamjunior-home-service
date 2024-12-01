@@ -16,9 +16,7 @@
 
 # About the project
 
-https://www.iamjunior.lt/front-end-akceleratorius-javascript course task.
-
-Frontend and backend, both have separate READMEs with more info about what has to be done.
+https://www.iamjunior.lt/front-end-akceleratorius-javascript course task. To find tasks of this project see `TASKS.md` file.
 
 # Live site
 
