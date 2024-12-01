@@ -20,7 +20,11 @@ const DropdownProfile = () => {
         <div className={styles.dropdown}>
           <ul>
             <li>
-              <NavLink to="/dashboard" className={() => ''} onClick={handleCloseDropdown}>
+              <NavLink
+                to="/dashboard"
+                className={() => ''} // Prevents the active class
+                onClick={handleCloseDropdown}
+              >
                 My Dashboard!
               </NavLink>
             </li>

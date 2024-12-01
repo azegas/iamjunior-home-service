@@ -116,7 +116,11 @@ const RegisterForm = () => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            <button type="submit" disabled={!dirty || !isValid || isSubmitting}>
+            <button
+              className="globalButton"
+              type="submit"
+              disabled={!dirty || !isValid || isSubmitting}
+            >
               {isSubmitting ? 'Registering...' : 'Register'}
             </button>
           </form>
