@@ -28,6 +28,11 @@ const UserDashboard = () => {
       </p>
 
       <h2>Bookings: {bookings?.length}</h2>
+
+<br/>
+      <p>Currently if there are no bookings - will break :) will fix it after midnightttt!!!</p>
+
+
       <div className="bookingsContainer">
         {isLoadingBookings && <Loading />}
         {errorBookings && <Error message={errorBookings.message} />}
