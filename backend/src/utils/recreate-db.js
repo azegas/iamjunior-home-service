@@ -161,7 +161,6 @@ async function createRandomBookingsForUsers() {
             date: `2023-01-0${i + 1}`, // Generate dates as '2023-01-01', '2023-01-02', etc.
             time: '10:00', // Sample booking time
             userEmail: user.email,
-            userName: user.username,
             status: 'pending', // Default status
           });
 

@@ -7,3 +7,8 @@ export type Booking = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type BookingResponse = {
+  message: string;
+  booking: Booking;
+};

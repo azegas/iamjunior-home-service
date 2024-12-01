@@ -3,11 +3,12 @@ import '@/styles/global.scss';
 import DateTimePickerComponent from './DateTimePicker';
 
 type BookingPanelProps = {
+  businessId: string;
   show: boolean;
   onClose: () => void;
 };
 
-const BookingPanel = ({ show, onClose }: BookingPanelProps) => {
+const BookingPanel = ({ businessId, show, onClose }: BookingPanelProps) => {
   if (!show) return null;
 
   return (
@@ -16,7 +17,7 @@ const BookingPanel = ({ show, onClose }: BookingPanelProps) => {
         <button className={styles.close} onClick={onClose}>
           &times;
         </button>
-        <DateTimePickerComponent />
+        <DateTimePickerComponent businessId={businessId} />
       </div>
     </div>
   );

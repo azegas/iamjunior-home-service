@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './DateTimePicker.module.scss';
+import makeBooking from '@/api/makeBookings';
+import { useUser } from '@/context/UserContext';
+import { toast } from 'react-toastify';
+import { formatErrorMessage } from '@/utils/utils';
+import { Booking } from './types';
+const DateTimePickerComponent = ({ businessId }: { businessId: string }) => {
+  const { user } = useUser() ?? {};
 
-const DateTimePickerComponent = () => {
   const timeSlots = [
     '10:00 AM',
     '10:30 AM',
@@ -51,7 +57,33 @@ const DateTimePickerComponent = () => {
         Time: {selectedTime ? selectedTime : 'Not selected'}
       </p>
 
-      <button className="globalButton">Book</button>
+      <button
+        className="globalButton"
+        onClick={async () => {
+          if (selectedDate && selectedTime) {
+            try {
+              const bookingData: Booking = {
+                businessId: businessId,
+                date: selectedDate.toLocaleDateString(),
+                time: selectedTime,
+                userEmail: user?.email ?? '',
+                status: 'pending',
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+              };
+              await makeBooking(bookingData);
+              toast.success('Appointment booked! Visit Bookings');
+            } catch (error) {
+              const errorMessage = formatErrorMessage(error);
+              throw new Error(errorMessage);
+            }
+          } else {
+            alert('Please select both date and time.');
+          }
+        }}
+      >
+        Book appointment!
+      </button>
     </div>
   );
 };

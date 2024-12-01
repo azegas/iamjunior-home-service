@@ -10,7 +10,6 @@ http://localhost:3000/api/bookings
     "date": "2023-01-01",
     "time": "10:00",
     "userEmail": "user@example.com",
-    "userName": "User Name",
     "status": "pending"
 }
 */
@@ -38,8 +37,6 @@ http://localhost:3000/api/bookings
  *                 type: string
  *               userEmail:
  *                 type: string
- *               userName:
- *                 type: string
  *               status:
  *                 type: string
  *     responses:
@@ -50,21 +47,20 @@ http://localhost:3000/api/bookings
  */
 
 const validateRequiredFields = (fields: Booking) => {
-  const { businessId, date, time, userEmail, userName, status } = fields;
-  if (!businessId || !date || !time || !userEmail || !userName || !status) {
-    return 'Required fields: businessId, date, time, userEmail, userName, and status.';
+  const { businessId, date, time, userEmail, status } = fields;
+  if (!businessId || !date || !time || !userEmail || !status) {
+    return 'Required fields: businessId, date, time, userEmail, and status.';
   }
   return null;
 };
 
 const validateFieldTypes = (fields: Booking) => {
-  const { businessId, date, time, userEmail, userName, status } = fields;
+  const { businessId, date, time, userEmail, status } = fields;
   if (
     typeof businessId !== 'string' ||
     typeof date !== 'string' ||
     typeof time !== 'string' ||
     typeof userEmail !== 'string' ||
-    typeof userName !== 'string' ||
     typeof status !== 'string'
   ) {
     return 'All fields should be strings.';
@@ -76,7 +72,7 @@ const validateFieldTypes = (fields: Booking) => {
 };
 
 const postBooking = async (req: Request, res: Response): Promise<void> => {
-  const { businessId, date, time, userEmail, userName, status } = req.body;
+  const { businessId, date, time, userEmail, status } = req.body;
 
   // Validate required fields
   const requiredFieldsError = validateRequiredFields(req.body);
@@ -97,7 +93,6 @@ const postBooking = async (req: Request, res: Response): Promise<void> => {
     date,
     time,
     userEmail,
-    userName,
     status,
   });
 

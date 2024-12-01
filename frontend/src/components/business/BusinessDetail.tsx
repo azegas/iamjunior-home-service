@@ -101,7 +101,11 @@ const BusinessDetail = () => {
               Book appointment with {business.worker.split(' ')[0]}
             </p>
             {showBookingPanel && (
-              <BookingPanel show={showBookingPanel} onClose={() => setShowBookingPanel(false)} />
+              <BookingPanel
+                businessId={id ?? ''}
+                show={showBookingPanel}
+                onClose={() => setShowBookingPanel(false)}
+              />
             )}
           </div>
         </div>

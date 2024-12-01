@@ -239,7 +239,6 @@ const bookings = [
     date: '2023-10-01',
     time: '14:30',
     userEmail: 'user@example.com',
-    userName: 'User One',
     status: 'Pending',
   },
   {
@@ -248,7 +247,6 @@ const bookings = [
     date: '2023-10-02',
     time: '15:00',
     userEmail: 'user@example.com',
-    userName: 'User Two',
     status: 'Completed',
   },
   {
@@ -257,7 +255,6 @@ const bookings = [
     date: '2023-10-03',
     time: '16:00',
     userEmail: 'user3@example.com',
-    userName: 'User Three',
     status: 'Pending',
   },
   {
@@ -266,7 +263,6 @@ const bookings = [
     date: '2023-10-04',
     time: '17:00',
     userEmail: 'user4@example.com',
-    userName: 'User Four',
     status: 'Completed',
   },
   {
@@ -275,7 +271,6 @@ const bookings = [
     date: '2023-10-05',
     time: '18:00',
     userEmail: 'user5@example.com',
-    userName: 'User Five',
     status: 'Pending',
   },
   {
@@ -284,7 +279,6 @@ const bookings = [
     date: '2023-10-06',
     time: '19:00',
     userEmail: 'user6@example.com',
-    userName: 'User Six',
     status: 'Completed',
   },
 ];
