@@ -21,24 +21,24 @@ const UserDashboard = () => {
   });
 
   return (
-    <Container>
-      <h1 className="title">User Dashboard</h1>
-      <p>
-        <b>Username:</b> {user?.username}
-      </p>
+    <>
+      <Container>
+        <h1 className="title">User Dashboard</h1>
+        <p>
+          <b>Username:</b> {user?.username}
+        </p>
 
-      <h2>Bookings: {bookings?.length}</h2>
-
-<br/>
-      <p>Currently if there are no bookings - will break :) will fix it after midnightttt!!!</p>
-
-
-      <div className="bookingsContainer">
         {isLoadingBookings && <Loading />}
-        {errorBookings && <Error message={errorBookings.message} />}
-        {!isLoadingBookings && bookings && <BookingList bookings={bookings} />}
-      </div>
-    </Container>
+        {!isLoadingBookings && !errorBookings && bookings && (
+          <div className="bookingsContainer">
+            <BookingList bookings={bookings} />
+          </div>
+        )}
+        {!isLoadingBookings && !bookings && (
+          <Error message="You have no bookings, make some first." />
+        )}
+      </Container>
+    </>
   );
 };
 
