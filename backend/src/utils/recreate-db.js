@@ -1,17 +1,25 @@
-// recreate-db.js is used to recreate the database from scratch
-// it deletes all categories, businesses, bookings, and users and recreates them with sample data
-// useful when developing locally
-// run this file with "node recreate-db.js"
+/*
+
+recreate-db.js is used to recreate the database from scratch
+it deletes all categories, businesses, bookings, and users and recreates them with sample data
+useful when developing locally
+
+run this file with:
+
+cd src/utils && node recreate-db.js && cd .. && cd .. && npm run dev
+
+*/
 
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-dotenv.config({ path: '../.env' });
+dotenv.config({ path: '../../.env' });
 const bcrypt = require('bcryptjs');
 
-const { CategoryModel } = require('../api/categories/model');
-const { BusinessModel } = require('../api/businesses/model');
-const { BookingModel } = require('../api/bookings/model');
-const { UserModel } = require('../api/auth/model');
+// since this recreate-db file is a .js file, we need to use the dist folder for transpiled js files
+const { CategoryModel } = require('../../dist/api/categories/categories-model');
+const { BusinessModel } = require('../../dist/api/businesses/businesses-model');
+const { BookingModel } = require('../../dist/api/bookings/bookings-model');
+const { UserModel } = require('../../dist/api/auth/auth-model');
 
 const categories = require('./sample-data').categories;
 const businesses = require('./sample-data').businesses;
