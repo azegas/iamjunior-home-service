@@ -9,6 +9,10 @@
   padding: 20px;
   height: 200px;
 
+  .name {
+    color: variables.$primary-color;
+  }
+
   .businessImage {
     align-self: center;
   }

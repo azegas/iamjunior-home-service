@@ -103,7 +103,11 @@ const LoginForm = () => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            <button type="submit" disabled={!dirty || !isValid || isSubmitting}>
+            <button
+              className="globalButton"
+              type="submit"
+              disabled={!dirty || !isValid || isSubmitting}
+            >
               {isSubmitting ? 'Logging in...' : 'Login'}
             </button>
           </form>

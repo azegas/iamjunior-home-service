@@ -61,7 +61,9 @@ const Navbar = () => {
                 <DropdownProfile />
               </>
             ) : (
-              <button onClick={() => navigate('/login')}>Login/Signup</button>
+              <button className="globalButton" onClick={() => navigate('/login')}>
+                Login/Signup
+              </button>
             )}
 
             {import.meta.env.VITE_PROD === 'false' && (

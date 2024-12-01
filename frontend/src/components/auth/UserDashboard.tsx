@@ -11,6 +11,8 @@ const UserDashboard = () => {
       <p>
         <b>Username:</b> {user?.username}
       </p>
+
+      <p>My bookings</p>
     </Container>
   );
 };

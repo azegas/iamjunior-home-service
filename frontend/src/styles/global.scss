@@ -75,12 +75,11 @@ a {
 }
 
 .globalButton {
-  color: variables.$primary-color;
-  background-color: variables.$tertiary-color;
-  font-weight: bold;
+  color: white;
+  background-color: variables.$primary-color;
   padding: 10px;
   border-radius: 20px;
-  border-color: variables.$primary-color;
+  border-color: white;
   text-align: center;
   @include global-hover(variables.$primary-color);
 }

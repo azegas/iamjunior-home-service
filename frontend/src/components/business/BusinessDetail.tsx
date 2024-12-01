@@ -8,9 +8,13 @@ import { useQuery } from '@tanstack/react-query';
 import fetchBusiness from '@/api/fetchBusiness';
 import fetchBusinessesByCategory from '@/api/fetchBusinessesByCategory';
 import BusinessCardSidebar from './BusinessCardSidebar';
+import BookingPanel from '@/components/booking/BookingPanel';
+import { useState } from 'react';
 
 const BusinessDetail = () => {
   const { id } = useParams<{ id: string }>();
+
+  const [showBookingPanel, setShowBookingPanel] = useState(false);
 
   const {
     data: business,
@@ -57,6 +61,8 @@ const BusinessDetail = () => {
           <div className={styles.details}>
             <p className={styles.category}>{business.category?.name || 'Category not available'}</p>
             <h1 className={styles.title}>{business.name}</h1>
+            <p className={styles.name}>{business.worker || 'Contact person not available'}</p>
+
             <p className={styles.field}>
               <img
                 src="https://img.icons8.com/?size=100&id=3723&format=png&color=000000"
@@ -91,8 +97,12 @@ const BusinessDetail = () => {
                 height={20}
               />
             </p>
-            <p>{business.worker || 'Contact person not available'}</p>
-            <p className="globalButton">Book appointment with {business.worker.split(' ')[0]}</p>
+            <p className="globalButton" onClick={() => setShowBookingPanel(!showBookingPanel)}>
+              Book appointment with {business.worker.split(' ')[0]}
+            </p>
+            {showBookingPanel && (
+              <BookingPanel show={showBookingPanel} onClose={() => setShowBookingPanel(false)} />
+            )}
           </div>
         </div>
 
