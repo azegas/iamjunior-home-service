@@ -10,10 +10,11 @@ import fetchBusinessesByCategory from '@/api/fetchBusinessesByCategory';
 import BusinessCardSidebar from './BusinessCardSidebar';
 import BookingPanel from '@/components/booking/BookingPanel';
 import { useState } from 'react';
+import { useUser } from '@/context/UserContext';
 
 const BusinessDetail = () => {
   const { id } = useParams<{ id: string }>();
-
+  const { user } = useUser() ?? {};
   const [showBookingPanel, setShowBookingPanel] = useState(false);
 
   const {
@@ -97,15 +98,19 @@ const BusinessDetail = () => {
                 height={20}
               />
             </p>
-            <p className="globalButton" onClick={() => setShowBookingPanel(!showBookingPanel)}>
-              Book appointment with {business.worker.split(' ')[0]}
-            </p>
-            {showBookingPanel && (
-              <BookingPanel
-                businessId={id ?? ''}
-                show={showBookingPanel}
-                onClose={() => setShowBookingPanel(false)}
-              />
+            {user && (
+              <>
+                <p className="globalButton" onClick={() => setShowBookingPanel(!showBookingPanel)}>
+                  Book appointment with {business.worker.split(' ')[0]}
+                </p>
+                {showBookingPanel && (
+                  <BookingPanel
+                    businessId={id ?? ''}
+                    show={showBookingPanel}
+                    onClose={() => setShowBookingPanel(false)}
+                  />
+                )}
+              </>
             )}
           </div>
         </div>
