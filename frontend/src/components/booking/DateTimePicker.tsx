@@ -72,7 +72,7 @@ const DateTimePickerComponent = ({ businessId }: { businessId: string }) => {
                 updatedAt: new Date().toISOString(),
               };
               await makeBooking(bookingData);
-              toast.success('Appointment booked! Visit Bookings');
+              toast.success('Appointment booked!');
             } catch (error) {
               const errorMessage = formatErrorMessage(error);
               throw new Error(errorMessage);

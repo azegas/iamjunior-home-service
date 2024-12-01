@@ -28,7 +28,7 @@ async function getBookingsByUserEmail(req: Request, res: Response) {
   try {
     const bookings = await BookingModel.find({
       userEmail: email,
-    });
+    }).populate('businessId');
     if (bookings.length > 0) {
       res.json(bookings);
     } else {
