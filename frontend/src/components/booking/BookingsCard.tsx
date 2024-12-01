@@ -1,8 +1,8 @@
-import { Booking } from '@/components/booking/types';
+import { BookingBusinessIdObject } from '@/components/booking/types';
 import styles from './BookingsCard.module.scss';
 import { Link } from 'react-router-dom';
 
-const BookingsCard = ({ booking }: { booking: Booking }) => {
+const BookingsCard = ({ booking }: { booking: BookingBusinessIdObject }) => {
   return (
     <Link to={`/business/details/${booking.businessId._id}`} className={styles.bookingCard}>
       <div className={styles.left}>

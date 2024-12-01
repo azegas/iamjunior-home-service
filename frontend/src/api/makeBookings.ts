@@ -1,7 +1,9 @@
 import { formatErrorMessage } from '@/utils/utils';
-import { Booking } from '@/components/booking/types';
+import { BookingBusinessIdString } from '@/components/booking/types';
 
-const makeBooking = async (bookingData: Booking): Promise<Booking> => {
+const makeBooking = async (
+  bookingData: BookingBusinessIdString,
+): Promise<BookingBusinessIdString> => {
   const isProd = import.meta.env.VITE_PROD === 'true';
   const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/bookings`;
 

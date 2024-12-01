@@ -1,7 +1,7 @@
-import { Booking } from '@/components/booking/types';
+import { BookingBusinessIdObject } from '@/components/booking/types';
 import { formatErrorMessage } from '@/utils/utils';
 
-const fetchBookingsByUser = async (userEmail: string): Promise<Booking[]> => {
+const fetchBookingsByUser = async (userEmail: string): Promise<BookingBusinessIdObject[]> => {
   const isProd = import.meta.env.VITE_PROD === 'true';
   const apiUrl = `${isProd ? import.meta.env.VITE_SERVER_URL_PROD : import.meta.env.VITE_SERVER_URL}api/bookings/email/${userEmail}`;
 
@@ -15,13 +15,13 @@ const fetchBookingsByUser = async (userEmail: string): Promise<Booking[]> => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const bookingsData: Partial<Booking>[] = await response.json();
+    const bookingsData: Partial<BookingBusinessIdObject>[] = await response.json();
 
     if (!bookingsData || bookingsData.length === 0) {
       throw new Error('Bookings not found');
     }
 
-    return bookingsData as Booking[];
+    return bookingsData as BookingBusinessIdObject[];
   } catch (error) {
     const errorMessage = formatErrorMessage(error);
     throw new Error(errorMessage);

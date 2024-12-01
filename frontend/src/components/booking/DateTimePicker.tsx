@@ -6,7 +6,8 @@ import makeBooking from '@/api/makeBookings';
 import { useUser } from '@/context/UserContext';
 import { toast } from 'react-toastify';
 import { formatErrorMessage } from '@/utils/utils';
-import { Booking } from './types';
+import { BookingBusinessIdString } from './types';
+
 const DateTimePickerComponent = ({ businessId }: { businessId: string }) => {
   const { user } = useUser() ?? {};
 
@@ -62,7 +63,8 @@ const DateTimePickerComponent = ({ businessId }: { businessId: string }) => {
         onClick={async () => {
           if (selectedDate && selectedTime) {
             try {
-              const bookingData: Booking = {
+              const bookingData: BookingBusinessIdString = {
+                _id: '',
                 businessId: businessId,
                 date: selectedDate.toLocaleDateString(),
                 time: selectedTime,
